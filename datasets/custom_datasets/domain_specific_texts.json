@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "name": "Domain-Specific Text Similarity",
+    "description": "Text pairs from various domains for semantic similarity evaluation",
+    "task_type": "similarity",
+    "created_by": "embedding_framework",
+    "version": "1.0"
+  },
+  "samples": [
+    {
+      "text1": "Machine learning algorithms can automatically learn patterns from data without explicit programming.",
+      "text2": "AI systems are capable of identifying patterns in datasets through automated learning processes.",
+      "label": 0.85,
+      "domain": "technology",
+      "difficulty": "medium"
+    },
+    {
+      "text1": "The patient exhibited symptoms of acute myocardial infarction including chest pain and shortness of breath.",
+      "text2": "Clinical presentation included cardiac chest discomfort and dyspnea consistent with heart attack.",
+      "label": 0.92,
+      "domain": "medical",
+      "difficulty": "high"
+    },
+    {
+      "text1": "The defendant's constitutional rights were violated during the unlawful search and seizure.",
+      "text2": "Fourth Amendment protections were breached through illegal evidence collection procedures.",
+      "label": 0.88,
+      "domain": "legal",
+      "difficulty": "high"
+    },
+    {
+      "text1": "Quarterly revenue increased by 15% compared to the same period last year.",
+      "text2": "Year-over-year financial performance showed a 15% growth in quarterly earnings.",
+      "label": 0.9,
+      "domain": "finance",
+      "difficulty": "medium"
+    },
+    {
+      "text1": "The novel explores themes of identity and belonging in post-war society.",
+      "text2": "This literary work examines questions of self and community in the aftermath of conflict.",
+      "label": 0.87,
+      "domain": "literature",
+      "difficulty": "medium"
+    },
+    {
+      "text1": "Climate change is causing unprecedented shifts in global weather patterns.",
+      "text2": "Rising temperatures are leading to extreme weather events worldwide.",
+      "label": 0.75,
+      "domain": "environment",
+      "difficulty": "low"
+    },
+    {
+      "text1": "The recipe calls for two cups of flour and one teaspoon of vanilla extract.",
+      "text2": "Investment portfolios should be diversified across multiple asset classes.",
+      "label": 0.05,
+      "domain": "mixed",
+      "difficulty": "low"
+    },
+    {
+      "text1": "Quantum entanglement demonstrates non-local correlations between particle pairs.",
+      "text2": "Entangled quantum systems exhibit instantaneous correlations regardless of spatial separation.",
+      "label": 0.95,
+      "domain": "physics",
+      "difficulty": "high"
+    },
+    {
+      "text1": "The marketing campaign resulted in a 25% increase in brand awareness.",
+      "text2": "Advertising efforts led to improved brand recognition among target demographics.",
+      "label": 0.82,
+      "domain": "marketing",
+      "difficulty": "medium"
+    },
+    {
+      "text1": "Students should submit their assignments before the midnight deadline.",
+      "text2": "Academic work must be turned in prior to the specified due date and time.",
+      "label": 0.88,
+      "domain": "education",
+      "difficulty": "low"
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "metadata": {
+    "test_type": "classification",
+    "category": "sentiment_analysis",
+    "description": "Sentiment classification evaluation across multiple domains and sentiment intensities",
+    "total_classes": 3,
+    "class_labels": [
+      "Positive",
+      "Negative",
+      "Neutral"
+    ],
+    "total_samples": 45,
+    "evaluation_metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1_score",
+      "sentiment_intensity"
+    ],
+    "domains": [
+      "product_reviews",
+      "social_media",
+      "customer_feedback",
+      "movie_reviews"
+    ],
+    "sentiment_scales": [
+      "binary",
+      "ternary",
+      "intensity_weighted"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "classification_id": "product_review_sentiment",
+      "domain": "product_reviews",
+      "num_classes": 3,
+      "class_labels": [
+        "Positive",
+        "Negative",
+        "Neutral"
+      ],
+      "samples": [
+        {
+          "sample_id": "product_1",
+          "text": "This product exceeded my expectations! Amazing quality and fast shipping. Definitely buying again!",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.92,
+          "confidence_threshold": 0.88
+        },
+        {
+          "sample_id": "product_2",
+          "text": "Great value for money. Works exactly as described and arrived on time. Very satisfied with purchase.",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.78,
+          "confidence_threshold": 0.85
+        },
+        {
+          "sample_id": "product_3",
+          "text": "Terrible quality! Product broke after one week of use. Complete waste of money. Avoid at all costs!",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.89,
+          "confidence_threshold": 0.91
+        },
+        {
+          "sample_id": "product_4",
+          "text": "Poor customer service and delayed delivery. Product doesn't match the description. Very disappointed.",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.76,
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "product_5",
+          "text": "Product is okay. Does what it's supposed to do but nothing special. Average quality for the price.",
+          "true_label": "Neutral",
+          "sentiment_intensity": 0.05,
+          "confidence_threshold": 0.72
+        },
+        {
+          "sample_id": "product_6",
+          "text": "Standard product with basic features. Delivery was on schedule. No major complaints or praise.",
+          "true_label": "Neutral",
+          "sentiment_intensity": -0.02,
+          "confidence_threshold": 0.68
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.83
+    },
+    {
+      "classification_id": "social_media_sentiment",
+      "domain": "social_media",
+      "num_classes": 3,
+      "class_labels": [
+        "Positive",
+        "Negative",
+        "Neutral"
+      ],
+      "samples": [
+        {
+          "sample_id": "social_1",
+          "text": "Best day ever! Just got promoted at work and celebrating with friends! Life is amazing! \ud83c\udf89 #blessed #promotion",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.95,
+          "confidence_threshold": 0.92
+        },
+        {
+          "sample_id": "social_2",
+          "text": "Love spending time with family on weekends. These moments are precious and make everything worthwhile. \u2764\ufe0f #family",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.82,
+          "confidence_threshold": 0.89
+        },
+        {
+          "sample_id": "social_3",
+          "text": "Stuck in traffic for 2 hours! This is absolutely ridiculous. My whole day is ruined! \ud83d\ude21 #traffic #frustrated",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.87,
+          "confidence_threshold": 0.9
+        },
+        {
+          "sample_id": "social_4",
+          "text": "Another Monday morning... feeling exhausted already. Why does the weekend go by so fast? \ud83d\ude34 #mondayblues",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.64,
+          "confidence_threshold": 0.78
+        },
+        {
+          "sample_id": "social_5",
+          "text": "Weather forecast shows rain for the next three days. Planning indoor activities for the weekend. #weather #planning",
+          "true_label": "Neutral",
+          "sentiment_intensity": 0.08,
+          "confidence_threshold": 0.75
+        },
+        {
+          "sample_id": "social_6",
+          "text": "Meeting scheduled for 3 PM today. Agenda includes project updates and budget review. #work #meeting",
+          "true_label": "Neutral",
+          "sentiment_intensity": -0.01,
+          "confidence_threshold": 0.71
+        }
+      ],
+      "difficulty": "easy",
+      "expected_accuracy": 0.87
+    },
+    {
+      "classification_id": "customer_feedback_sentiment",
+      "domain": "customer_feedback",
+      "num_classes": 3,
+      "class_labels": [
+        "Positive",
+        "Negative",
+        "Neutral"
+      ],
+      "samples": [
+        {
+          "sample_id": "feedback_1",
+          "text": "Outstanding customer service! The representative was knowledgeable, patient, and resolved my issue quickly.",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.88,
+          "confidence_threshold": 0.91
+        },
+        {
+          "sample_id": "feedback_2",
+          "text": "Your team went above and beyond to help me. Impressed with the professionalism and attention to detail.",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.85,
+          "confidence_threshold": 0.89
+        },
+        {
+          "sample_id": "feedback_3",
+          "text": "Extremely poor service experience. Waited 45 minutes on hold only to be transferred multiple times without resolution.",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.91,
+          "confidence_threshold": 0.93
+        },
+        {
+          "sample_id": "feedback_4",
+          "text": "Staff seemed unprepared and couldn't answer basic questions about your services. Very frustrating experience.",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.73,
+          "confidence_threshold": 0.86
+        },
+        {
+          "sample_id": "feedback_5",
+          "text": "Service was adequate. Issue was resolved but took longer than expected. Room for improvement in efficiency.",
+          "true_label": "Neutral",
+          "sentiment_intensity": 0.12,
+          "confidence_threshold": 0.74
+        },
+        {
+          "sample_id": "feedback_6",
+          "text": "Standard service experience. Representative followed protocol and addressed my inquiry appropriately.",
+          "true_label": "Neutral",
+          "sentiment_intensity": 0.03,
+          "confidence_threshold": 0.69
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.81
+    },
+    {
+      "classification_id": "movie_review_sentiment",
+      "domain": "movie_reviews",
+      "num_classes": 3,
+      "class_labels": [
+        "Positive",
+        "Negative",
+        "Neutral"
+      ],
+      "samples": [
+        {
+          "sample_id": "movie_1",
+          "text": "Absolutely brilliant film! Exceptional acting, stunning cinematography, and a compelling storyline. Masterpiece!",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.94,
+          "confidence_threshold": 0.93
+        },
+        {
+          "sample_id": "movie_2",
+          "text": "Enjoyed this movie thoroughly. Great character development and engaging plot twists kept me entertained throughout.",
+          "true_label": "Positive",
+          "sentiment_intensity": 0.79,
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "movie_3",
+          "text": "Complete disaster! Poor acting, confusing plot, and terrible special effects. Two hours of my life wasted.",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.92,
+          "confidence_threshold": 0.94
+        },
+        {
+          "sample_id": "movie_4",
+          "text": "Disappointing sequel that fails to capture the magic of the original. Predictable storyline and weak character arcs.",
+          "true_label": "Negative",
+          "sentiment_intensity": -0.71,
+          "confidence_threshold": 0.84
+        },
+        {
+          "sample_id": "movie_5",
+          "text": "Decent film with some good moments but also noticeable flaws. Worth watching once but not memorable.",
+          "true_label": "Neutral",
+          "sentiment_intensity": 0.15,
+          "confidence_threshold": 0.76
+        },
+        {
+          "sample_id": "movie_6",
+          "text": "Average movie that follows familiar tropes. Competent production but lacks originality and emotional impact.",
+          "true_label": "Neutral",
+          "sentiment_intensity": -0.08,
+          "confidence_threshold": 0.73
+        }
+      ],
+      "difficulty": "hard",
+      "expected_accuracy": 0.79
+    }
+  ]
+}

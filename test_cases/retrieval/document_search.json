@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "name": "Document Search Retrieval",
+    "description": "Retrieval evaluation for document search scenarios with keyword and semantic queries",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_queries": 15,
+    "domains": [
+      "business",
+      "academic",
+      "legal",
+      "technical",
+      "news"
+    ],
+    "evaluation_metrics": [
+      "precision_at_k",
+      "recall_at_k",
+      "mrr",
+      "ndcg"
+    ],
+    "retrieval_type": "document_search",
+    "corpus_size_range": "8-15 documents per query"
+  },
+  "test_cases": [
+    {
+      "id": "ds_001",
+      "query": "artificial intelligence business strategy implementation",
+      "corpus": [
+        {
+          "doc_id": "doc_001",
+          "text": "Implementing AI in Business Strategy: A Comprehensive Guide. Organizations must develop a clear AI strategy that aligns with business objectives. This involves identifying use cases, building data infrastructure, training teams, and establishing governance frameworks. Successful AI implementation requires executive buy-in, cross-functional collaboration, and continuous monitoring of ROI.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_002",
+          "text": "The Role of Artificial Intelligence in Modern Business Operations. AI technologies are transforming how companies operate, from automating routine tasks to providing predictive analytics. Machine learning algorithms help optimize supply chains, improve customer service, and enhance decision-making processes across various departments.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_003",
+          "text": "Strategic Planning for Digital Transformation. Companies embarking on digital transformation must consider technology adoption, organizational change management, and cultural shifts. Key success factors include leadership commitment, employee training, and phased implementation approaches.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_004",
+          "text": "Recipe for Traditional Italian Carbonara. Authentic carbonara requires eggs, pecorino romano cheese, guanciale, and black pepper. The key is to create a creamy sauce without scrambling the eggs by tempering them with hot pasta water.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_005",
+          "text": "AI Ethics and Governance Frameworks. As artificial intelligence becomes more prevalent in business, organizations must establish ethical guidelines and governance structures. This includes addressing bias, ensuring transparency, protecting privacy, and maintaining human oversight in AI decision-making processes.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_006",
+          "text": "Building AI-Ready Data Infrastructure. Successful AI implementation depends on robust data infrastructure. Organizations need to ensure data quality, establish data pipelines, implement security measures, and create scalable storage solutions to support machine learning workloads.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_007",
+          "text": "The History of Ancient Rome. The Roman Empire was one of the largest empires in ancient history, spanning three continents at its peak. Roman innovations in engineering, law, and governance influenced Western civilization for centuries.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_008",
+          "text": "Change Management in AI Adoption. Implementing artificial intelligence requires significant organizational change. Companies must address employee concerns, provide training programs, redesign workflows, and create new roles to support AI initiatives.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_001",
+        "doc_002",
+        "doc_003",
+        "doc_005",
+        "doc_006",
+        "doc_008"
+      ],
+      "domain": "business",
+      "difficulty": "medium",
+      "query_type": "multi_keyword",
+      "metadata": {
+        "topic": "ai_business_strategy",
+        "search_intent": "implementation_guidance",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "ds_002",
+      "query": "machine learning research methodology validation",
+      "corpus": [
+        {
+          "doc_id": "doc_009",
+          "text": "Research Methodology in Machine Learning Studies. Proper validation techniques are crucial for ML research. This includes cross-validation, train-test-validation splits, statistical significance testing, and reproducibility measures. Researchers must also consider dataset bias, overfitting, and generalization capabilities.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_010",
+          "text": "Statistical Validation Methods for AI Models. Model validation involves multiple techniques including k-fold cross-validation, bootstrap sampling, and holdout validation. Proper statistical testing ensures that model performance improvements are significant and not due to random chance.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_011",
+          "text": "Experimental Design in Computer Science Research. Rigorous experimental methodology requires careful control of variables, appropriate sample sizes, and proper statistical analysis. Researchers must consider confounding factors and ensure reproducible results.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_012",
+          "text": "Best Practices for Hiking in National Parks. When hiking, always carry sufficient water, inform others of your plans, stay on marked trails, and be aware of weather conditions. Proper preparation and safety equipment are essential for enjoyable outdoor experiences.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_013",
+          "text": "Reproducibility Crisis in Machine Learning. Many ML studies fail to provide sufficient detail for reproduction. Best practices include sharing code, documenting hyperparameters, providing dataset descriptions, and using version control for experiments.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_014",
+          "text": "Peer Review Process in Academic Publishing. The peer review system ensures quality control in scientific publications. Reviewers evaluate methodology, significance, and validity of research findings before publication in academic journals.",
+          "relevance_score": 0.6,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_015",
+          "text": "Gardening Tips for Spring Season. Spring is the perfect time to prepare your garden for the growing season. Start by cleaning up debris, testing soil pH, planning your plant layout, and selecting appropriate seeds or seedlings for your climate zone.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_009",
+        "doc_010",
+        "doc_011",
+        "doc_013",
+        "doc_014"
+      ],
+      "domain": "academic",
+      "difficulty": "hard",
+      "query_type": "technical_research",
+      "metadata": {
+        "topic": "ml_research_validation",
+        "search_intent": "methodology_guidance",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "ds_003",
+      "query": "contract law intellectual property licensing",
+      "corpus": [
+        {
+          "doc_id": "doc_016",
+          "text": "Intellectual Property Licensing Agreements: Legal Framework. IP licensing contracts must clearly define scope, duration, territory, and compensation terms. Key considerations include exclusive vs. non-exclusive rights, sublicensing provisions, and termination clauses. Proper legal documentation protects both licensor and licensee interests.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_017",
+          "text": "Contract Law Fundamentals in IP Transactions. Intellectual property contracts require specific legal elements including offer, acceptance, consideration, and mutual assent. Courts interpret these agreements based on contract law principles while considering the unique nature of IP rights.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_018",
+          "text": "Patent Licensing Strategies for Technology Companies. Companies must balance licensing revenue with competitive advantages. Strategic considerations include cross-licensing agreements, patent pools, and defensive licensing to avoid litigation while maximizing IP value.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_019",
+          "text": "Copyright Law and Digital Media. Copyright protection extends to digital content including software, multimedia, and online publications. Fair use provisions, DMCA compliance, and international copyright treaties affect how digital content can be used and distributed.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_020",
+          "text": "Trademark Registration Process. Trademark applications require comprehensive searches, proper classification, and detailed descriptions of goods or services. The registration process involves examination, publication, and potential opposition proceedings before final approval.",
+          "relevance_score": 0.6,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_021",
+          "text": "Cooking Techniques for Perfect Steak. Achieving the perfect steak requires proper temperature control, seasoning, and timing. Different cuts require different cooking methods, from grilling to pan-searing, to achieve optimal flavor and texture.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_022",
+          "text": "Employment Contract Negotiations. Employment agreements should address compensation, benefits, job responsibilities, confidentiality, and termination conditions. Both employers and employees benefit from clear, comprehensive contract terms.",
+          "relevance_score": 0.4,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_016",
+        "doc_017",
+        "doc_018",
+        "doc_019",
+        "doc_020"
+      ],
+      "domain": "legal",
+      "difficulty": "hard",
+      "query_type": "specialized_legal",
+      "metadata": {
+        "topic": "ip_contract_law",
+        "search_intent": "legal_guidance",
+        "corpus_diversity": "medium",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "ds_004",
+      "query": "cloud computing security architecture best practices",
+      "corpus": [
+        {
+          "doc_id": "doc_023",
+          "text": "Cloud Security Architecture: Best Practices and Implementation. Secure cloud architecture requires multi-layered security controls including identity management, encryption, network segmentation, and continuous monitoring. Organizations must implement zero-trust principles and maintain compliance with industry standards.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_024",
+          "text": "Identity and Access Management in Cloud Environments. IAM systems control user access to cloud resources through authentication, authorization, and audit mechanisms. Best practices include multi-factor authentication, role-based access control, and regular access reviews.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_025",
+          "text": "Data Encryption Strategies for Cloud Storage. Protecting sensitive data in the cloud requires encryption at rest and in transit. Key management, encryption algorithms, and compliance requirements must be carefully considered when implementing cloud encryption solutions.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_026",
+          "text": "Network Security in Distributed Systems. Securing network communications involves firewalls, VPNs, intrusion detection systems, and traffic monitoring. Network segmentation and micro-segmentation help limit attack surfaces in complex distributed architectures.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_027",
+          "text": "Photography Composition Techniques. Good photography requires understanding of rule of thirds, leading lines, framing, and lighting. Composition techniques help create visually appealing and impactful images across different photography genres.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_028",
+          "text": "Compliance and Governance in Cloud Computing. Cloud governance frameworks ensure adherence to regulatory requirements and organizational policies. This includes data residency, audit trails, incident response, and vendor management processes.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_029",
+          "text": "Container Security in Kubernetes. Securing containerized applications requires image scanning, runtime protection, network policies, and secrets management. Kubernetes security involves RBAC, pod security policies, and cluster hardening measures.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_023",
+        "doc_024",
+        "doc_025",
+        "doc_026",
+        "doc_028",
+        "doc_029"
+      ],
+      "domain": "technical",
+      "difficulty": "hard",
+      "query_type": "technical_architecture",
+      "metadata": {
+        "topic": "cloud_security",
+        "search_intent": "implementation_guidance",
+        "corpus_diversity": "medium",
+        "distractor_count": 1
+      }
+    },
+    {
+      "id": "ds_005",
+      "query": "renewable energy market trends investment opportunities",
+      "corpus": [
+        {
+          "doc_id": "doc_030",
+          "text": "Renewable Energy Investment Trends 2024. The renewable energy sector continues to attract significant investment, with solar and wind technologies leading growth. Market drivers include declining costs, government incentives, and corporate sustainability commitments. Investment opportunities span utility-scale projects, distributed generation, and energy storage.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_031",
+          "text": "Global Solar Market Analysis. Solar photovoltaic installations reached record levels, driven by cost reductions and policy support. Emerging markets show strong growth potential, while developed markets focus on grid integration and storage solutions.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_032",
+          "text": "Wind Energy Sector Outlook. Offshore wind development presents significant opportunities despite higher initial costs. Technological advances in turbine efficiency and grid integration are expanding viable wind energy markets globally.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_033",
+          "text": "Energy Storage Market Dynamics. Battery storage systems are becoming economically viable for grid-scale applications. Investment in storage technologies supports renewable energy integration and grid stability requirements.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_034",
+          "text": "Traditional Cooking Methods Around the World. Different cultures have developed unique cooking techniques using local ingredients and traditional tools. These methods often reflect historical, geographical, and cultural influences on cuisine development.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_035",
+          "text": "Green Finance and ESG Investing. Environmental, social, and governance factors increasingly influence investment decisions. Green bonds, sustainability-linked loans, and ESG funds channel capital toward environmentally beneficial projects.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_036",
+          "text": "Cryptocurrency Market Volatility. Digital asset markets experience significant price fluctuations driven by regulatory developments, institutional adoption, and market sentiment. Investors must consider high volatility and regulatory risks.",
+          "relevance_score": 0.2,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_030",
+        "doc_031",
+        "doc_032",
+        "doc_033",
+        "doc_035"
+      ],
+      "domain": "news",
+      "difficulty": "medium",
+      "query_type": "market_analysis",
+      "metadata": {
+        "topic": "renewable_energy_investment",
+        "search_intent": "market_intelligence",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    }
+  ]
+}

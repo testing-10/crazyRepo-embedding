@@ -1,0 +1,189 @@
+{
+  "embedding_api_costs": {
+    "last_updated": "2024-01-01T00:00:00Z",
+    "currency": "USD",
+    "cost_models": {
+      "openai": {
+        "text-embedding-3-small": {
+          "cost_per_1k_tokens": 2e-05,
+          "max_tokens": 8191,
+          "dimensions": 1536,
+          "billing_unit": "tokens",
+          "notes": "OpenAI's most cost-effective embedding model"
+        },
+        "text-embedding-3-large": {
+          "cost_per_1k_tokens": 0.00013,
+          "max_tokens": 8191,
+          "dimensions": 3072,
+          "billing_unit": "tokens",
+          "notes": "OpenAI's highest performance embedding model"
+        },
+        "text-embedding-ada-002": {
+          "cost_per_1k_tokens": 0.0001,
+          "max_tokens": 8191,
+          "dimensions": 1536,
+          "billing_unit": "tokens",
+          "notes": "Legacy OpenAI embedding model"
+        }
+      },
+      "cohere": {
+        "embed-english-v3.0": {
+          "cost_per_1k_tokens": 0.0001,
+          "max_tokens": 512,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Cohere's English embedding model"
+        },
+        "embed-multilingual-v3.0": {
+          "cost_per_1k_tokens": 0.0001,
+          "max_tokens": 512,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Cohere's multilingual embedding model"
+        },
+        "embed-english-light-v3.0": {
+          "cost_per_1k_tokens": 0.0001,
+          "max_tokens": 512,
+          "dimensions": 384,
+          "billing_unit": "tokens",
+          "notes": "Cohere's lightweight English model"
+        }
+      },
+      "azure_openai": {
+        "text-embedding-3-small": {
+          "cost_per_1k_tokens": 2e-05,
+          "max_tokens": 8191,
+          "dimensions": 1536,
+          "billing_unit": "tokens",
+          "notes": "Azure OpenAI embedding model - small"
+        },
+        "text-embedding-3-large": {
+          "cost_per_1k_tokens": 0.00013,
+          "max_tokens": 8191,
+          "dimensions": 3072,
+          "billing_unit": "tokens",
+          "notes": "Azure OpenAI embedding model - large"
+        },
+        "text-embedding-ada-002": {
+          "cost_per_1k_tokens": 0.0001,
+          "max_tokens": 8191,
+          "dimensions": 1536,
+          "billing_unit": "tokens",
+          "notes": "Azure OpenAI legacy embedding model"
+        }
+      },
+      "jina": {
+        "jina-embeddings-v2-base-en": {
+          "cost_per_1k_tokens": 2e-05,
+          "max_tokens": 8192,
+          "dimensions": 768,
+          "billing_unit": "tokens",
+          "notes": "Jina AI base English embedding model"
+        },
+        "jina-embeddings-v2-small-en": {
+          "cost_per_1k_tokens": 1e-05,
+          "max_tokens": 8192,
+          "dimensions": 512,
+          "billing_unit": "tokens",
+          "notes": "Jina AI small English embedding model"
+        }
+      },
+      "huggingface": {
+        "sentence-transformers/all-MiniLM-L6-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 256,
+          "dimensions": 384,
+          "billing_unit": "tokens",
+          "notes": "Free open-source model via HuggingFace"
+        },
+        "sentence-transformers/all-mpnet-base-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 384,
+          "dimensions": 768,
+          "billing_unit": "tokens",
+          "notes": "Free open-source model via HuggingFace"
+        },
+        "BAAI/bge-large-en-v1.5": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 512,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Free BGE model via HuggingFace"
+        },
+        "BAAI/bge-m3": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 8192,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Free multilingual BGE model"
+        },
+        "intfloat/e5-large-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 512,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Free E5 model via HuggingFace"
+        },
+        "thenlper/gte-large": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 512,
+          "dimensions": 1024,
+          "billing_unit": "tokens",
+          "notes": "Free GTE model via HuggingFace"
+        }
+      },
+      "sentence_transformers": {
+        "all-MiniLM-L6-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 256,
+          "dimensions": 384,
+          "billing_unit": "tokens",
+          "notes": "Local execution - no API costs"
+        },
+        "all-mpnet-base-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 384,
+          "dimensions": 768,
+          "billing_unit": "tokens",
+          "notes": "Local execution - no API costs"
+        },
+        "paraphrase-multilingual-MiniLM-L12-v2": {
+          "cost_per_1k_tokens": 0.0,
+          "max_tokens": 128,
+          "dimensions": 384,
+          "billing_unit": "tokens",
+          "notes": "Local multilingual model - no API costs"
+        }
+      }
+    },
+    "cost_calculation_notes": [
+      "Costs are based on publicly available pricing as of January 2024",
+      "Token counting may vary between providers",
+      "Some providers charge by characters instead of tokens",
+      "Free models (HuggingFace, Sentence Transformers) have no API costs but may have compute costs",
+      "Actual costs may vary based on volume discounts and enterprise agreements",
+      "Always verify current pricing with the respective providers"
+    ],
+    "token_estimation": {
+      "average_tokens_per_word": 1.3,
+      "average_characters_per_token": 4,
+      "estimation_notes": [
+        "Token counts are estimates and may vary by tokenizer",
+        "Different models may use different tokenization schemes",
+        "Actual token usage should be measured during testing"
+      ]
+    },
+    "cost_tracking_metadata": {
+      "framework_version": "1.0.0",
+      "last_verified": "2024-01-01",
+      "update_frequency": "monthly",
+      "data_sources": [
+        "OpenAI Pricing Page",
+        "Cohere Pricing Documentation",
+        "Azure OpenAI Pricing",
+        "Jina AI Pricing",
+        "HuggingFace Model Cards"
+      ]
+    }
+  }
+}

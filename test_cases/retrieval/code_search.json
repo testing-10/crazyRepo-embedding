@@ -1,0 +1,254 @@
+{
+  "metadata": {
+    "name": "Code Search Retrieval",
+    "description": "Retrieval evaluation for code search scenarios with programming queries",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_queries": 12,
+    "domains": [
+      "python",
+      "javascript",
+      "java",
+      "algorithms",
+      "web_development"
+    ],
+    "evaluation_metrics": [
+      "precision_at_k",
+      "recall_at_k",
+      "mrr",
+      "ndcg"
+    ],
+    "retrieval_type": "code_search",
+    "corpus_size_range": "6-12 code snippets per query"
+  },
+  "test_cases": [
+    {
+      "id": "cs_001",
+      "query": "python function sort list of dictionaries by key",
+      "corpus": [
+        {
+          "doc_id": "code_001",
+          "text": "def sort_dict_list(dict_list, key):\n    \"\"\"Sort a list of dictionaries by a specific key.\"\"\"\n    return sorted(dict_list, key=lambda x: x[key])\n\n# Example usage:\nstudents = [{'name': 'Alice', 'grade': 85}, {'name': 'Bob', 'grade': 92}]\nsorted_students = sort_dict_list(students, 'grade')",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_002",
+          "text": "# Alternative approach using operator.itemgetter\nfrom operator import itemgetter\n\ndef sort_by_key(data, sort_key):\n    return sorted(data, key=itemgetter(sort_key))\n\n# More efficient for simple key access\nresult = sort_by_key(my_list, 'timestamp')",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_003",
+          "text": "# Sorting with multiple keys and reverse order\ndef multi_key_sort(items):\n    return sorted(items, key=lambda x: (x['priority'], -x['score']))\n\n# Sort by priority ascending, then score descending\ntasks = [{'name': 'task1', 'priority': 1, 'score': 95}]",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_004",
+          "text": "function calculateArea(radius) {\n    // Calculate area of a circle\n    return Math.PI * radius * radius;\n}\n\nconsole.log(calculateArea(5)); // Output: 78.54",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_005",
+          "text": "# In-place sorting of list of dictionaries\ndef sort_inplace(dict_list, key_name):\n    dict_list.sort(key=lambda item: item[key_name])\n    return dict_list\n\n# Modifies original list\nmy_data.sort(key=lambda x: x['date'])",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_006",
+          "text": "class BinaryTree:\n    def __init__(self, value):\n        self.value = value\n        self.left = None\n        self.right = None\n    \n    def insert(self, value):\n        if value < self.value:\n            if self.left is None:\n                self.left = BinaryTree(value)",
+          "relevance_score": 0.1,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "code_001",
+        "code_002",
+        "code_003",
+        "code_005"
+      ],
+      "domain": "python",
+      "difficulty": "medium",
+      "query_type": "function_implementation",
+      "metadata": {
+        "topic": "list_sorting",
+        "programming_concept": "lambda_functions",
+        "corpus_diversity": "medium",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "cs_002",
+      "query": "javascript async await fetch API error handling",
+      "corpus": [
+        {
+          "doc_id": "code_007",
+          "text": "async function fetchData(url) {\n    try {\n        const response = await fetch(url);\n        if (!response.ok) {\n            throw new Error(`HTTP error! status: ${response.status}`);\n        }\n        const data = await response.json();\n        return data;\n    } catch (error) {\n        console.error('Fetch error:', error);\n        throw error;\n    }\n}",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_008",
+          "text": "// Fetch with timeout and retry logic\nasync function fetchWithRetry(url, options = {}) {\n    const { retries = 3, timeout = 5000 } = options;\n    \n    for (let i = 0; i < retries; i++) {\n        try {\n            const controller = new AbortController();\n            const timeoutId = setTimeout(() => controller.abort(), timeout);\n            \n            const response = await fetch(url, {\n                ...options,\n                signal: controller.signal\n            });\n            \n            clearTimeout(timeoutId);\n            return await response.json();\n        } catch (error) {\n            if (i === retries - 1) throw error;\n            await new Promise(resolve => setTimeout(resolve, 1000));\n        }\n    }\n}",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_009",
+          "text": "// Promise-based approach without async/await\nfunction getData(url) {\n    return fetch(url)\n        .then(response => {\n            if (!response.ok) {\n                throw new Error('Network response was not ok');\n            }\n            return response.json();\n        })\n        .catch(error => {\n            console.error('Error:', error);\n            return null;\n        });\n}",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_010",
+          "text": "def fibonacci(n):\n    \"\"\"Calculate fibonacci number recursively.\"\"\"\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)\n\n# Example: fibonacci(10) returns 55",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_011",
+          "text": "// Multiple concurrent requests with error handling\nasync function fetchMultiple(urls) {\n    const promises = urls.map(async (url) => {\n        try {\n            const response = await fetch(url);\n            return await response.json();\n        } catch (error) {\n            console.warn(`Failed to fetch ${url}:`, error);\n            return null;\n        }\n    });\n    \n    return Promise.allSettled(promises);\n}",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_012",
+          "text": "public class Calculator {\n    public static int add(int a, int b) {\n        return a + b;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(add(5, 3));\n    }\n}",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "code_007",
+        "code_008",
+        "code_009",
+        "code_011"
+      ],
+      "domain": "javascript",
+      "difficulty": "hard",
+      "query_type": "async_programming",
+      "metadata": {
+        "topic": "fetch_api",
+        "programming_concept": "error_handling",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "cs_003",
+      "query": "binary search algorithm implementation",
+      "corpus": [
+        {
+          "doc_id": "code_013",
+          "text": "def binary_search(arr, target):\n    \"\"\"Binary search implementation - iterative approach.\"\"\"\n    left, right = 0, len(arr) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return -1  # Target not found",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_014",
+          "text": "def binary_search_recursive(arr, target, left=0, right=None):\n    \"\"\"Recursive binary search implementation.\"\"\"\n    if right is None:\n        right = len(arr) - 1\n    \n    if left > right:\n        return -1\n    \n    mid = (left + right) // 2\n    if arr[mid] == target:\n        return mid\n    elif arr[mid] < target:\n        return binary_search_recursive(arr, target, mid + 1, right)\n    else:\n        return binary_search_recursive(arr, target, left, mid - 1)",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_015",
+          "text": "// Java binary search implementation\npublic static int binarySearch(int[] arr, int target) {\n    int left = 0, right = arr.length - 1;\n    \n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        \n        if (arr[mid] == target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    \n    return -1;\n}",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_016",
+          "text": "function bubbleSort(arr) {\n    const n = arr.length;\n    for (let i = 0; i < n - 1; i++) {\n        for (let j = 0; j < n - i - 1; j++) {\n            if (arr[j] > arr[j + 1]) {\n                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];\n            }\n        }\n    }\n    return arr;\n}",
+          "relevance_score": 0.2,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_017",
+          "text": "# Binary search with bounds checking\ndef safe_binary_search(arr, target):\n    if not arr or not isinstance(arr, list):\n        return -1\n    \n    # Ensure array is sorted\n    if arr != sorted(arr):\n        raise ValueError(\"Array must be sorted for binary search\")\n    \n    return binary_search(arr, target)",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_018",
+          "text": "CREATE TABLE users (\n    id SERIAL PRIMARY KEY,\n    username VARCHAR(50) UNIQUE NOT NULL,\n    email VARCHAR(100) UNIQUE NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "code_013",
+        "code_014",
+        "code_015",
+        "code_017"
+      ],
+      "domain": "algorithms",
+      "difficulty": "medium",
+      "query_type": "algorithm_implementation",
+      "metadata": {
+        "topic": "binary_search",
+        "programming_concept": "search_algorithms",
+        "corpus_diversity": "medium",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "cs_004",
+      "query": "react component state management hooks",
+      "corpus": [
+        {
+          "doc_id": "code_019",
+          "text": "import React, { useState, useEffect } from 'react';\n\nfunction Counter() {\n    const [count, setCount] = useState(0);\n    const [name, setName] = useState('');\n    \n    useEffect(() => {\n        document.title = `Count: ${count}`;\n    }, [count]);\n    \n    return (\n        <div>\n            <p>Count: {count}</p>\n            <button onClick={() => setCount(count + 1)}>Increment</button>\n            <input value={name} onChange={(e) => setName(e.target.value)} />\n        </div>\n    );\n}",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_020",
+          "text": "// Custom hook for local storage state\nimport { useState, useEffect } from 'react';\n\nfunction useLocalStorage(key, initialValue) {\n    const [storedValue, setStoredValue] = useState(() => {\n        try {\n            const item = window.localStorage.getItem(key);\n            return item ? JSON.parse(item) : initialValue;\n        } catch (error) {\n            return initialValue;\n        }\n    });\n    \n    const setValue = (value) => {\n        try {\n            setStoredValue(value);\n            window.localStorage.setItem(key, JSON.stringify(value));\n        } catch (error) {\n            console.error(error);\n        }\n    };\n    \n    return [storedValue, setValue];\n}",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_021",
+          "text": "// useReducer for complex state management\nimport React, { useReducer } from 'react';\n\nconst initialState = { count: 0, step: 1 };\n\nfunction reducer(state, action) {\n    switch (action.type) {\n        case 'increment':\n            return { ...state, count: state.count + state.step };\n        case 'decrement':\n            return { ...state, count: state.count - state.step };\n        case 'setStep':\n            return { ...state, step: action.step };\n        default:\n            return state;\n    }\n}\n\nfunction Counter() {\n    const [state, dispatch] = useReducer(reducer, initialState);\n    return (\n        <div>\n            <p>Count: {state.count}</p>\n            <button onClick={() => dispatch({ type: 'increment' })}>+</button>\n        </div>\n    );\n}",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_022",
+          "text": "SELECT users.name, COUNT(orders.id) as order_count\nFROM users\nLEFT JOIN orders ON users.id = orders.user_id\nGROUP BY users.id, users.name\nORDER BY order_count DESC;",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_023",
+          "text": "// Context API for global state\nimport React, { createContext, useContext, useReducer } from 'react';\n\nconst StateContext = createContext();\n\nexport function StateProvider({ children, initialState, reducer }) {\n    return (\n        <StateContext.Provider value={useReducer(reducer, initialState)}>\n            {children}\n        </StateContext.Provider>\n    );\n}\n\nexport const useStateValue = () => useContext(StateContext);",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_024",
+          "text": "def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    \n    return quicksort(left) + middle + quicksort(right)",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "code_019",
+        "code_020",
+        "code_021",
+        "code_023"
+      ],
+      "domain": "web_development",
+      "difficulty": "hard",
+      "query_type": "framework_specific",
+      "metadata": {
+        "topic": "react_hooks",
+        "programming_concept": "state_management",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    }
+  ]
+}

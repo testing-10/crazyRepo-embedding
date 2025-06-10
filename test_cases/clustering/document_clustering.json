@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "test_type": "clustering",
+    "category": "document_clustering",
+    "description": "Document clustering evaluation across various domains and topics",
+    "total_clusters": 15,
+    "total_documents": 45,
+    "evaluation_metrics": [
+      "silhouette_score",
+      "adjusted_rand_index",
+      "normalized_mutual_info"
+    ],
+    "domains": [
+      "technology",
+      "healthcare",
+      "finance",
+      "education",
+      "legal"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "cluster_id": "tech_cluster_1",
+      "domain": "technology",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "tech_1",
+          "text": "Machine learning algorithms are revolutionizing artificial intelligence applications across industries.",
+          "expected_cluster": 0,
+          "topic": "AI/ML"
+        },
+        {
+          "doc_id": "tech_2",
+          "text": "Deep neural networks and transformer architectures enable advanced natural language processing.",
+          "expected_cluster": 0,
+          "topic": "AI/ML"
+        },
+        {
+          "doc_id": "tech_3",
+          "text": "Cloud computing platforms provide scalable infrastructure for enterprise applications.",
+          "expected_cluster": 1,
+          "topic": "Cloud Computing"
+        },
+        {
+          "doc_id": "tech_4",
+          "text": "Kubernetes orchestration simplifies container deployment and management in distributed systems.",
+          "expected_cluster": 1,
+          "topic": "Cloud Computing"
+        },
+        {
+          "doc_id": "tech_5",
+          "text": "Blockchain technology ensures secure and transparent cryptocurrency transactions.",
+          "expected_cluster": 2,
+          "topic": "Blockchain"
+        },
+        {
+          "doc_id": "tech_6",
+          "text": "Smart contracts automate decentralized finance protocols on blockchain networks.",
+          "expected_cluster": 2,
+          "topic": "Blockchain"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_silhouette_score": 0.75
+    },
+    {
+      "cluster_id": "healthcare_cluster_1",
+      "domain": "healthcare",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "health_1",
+          "text": "Cardiovascular disease remains the leading cause of mortality worldwide, requiring preventive interventions.",
+          "expected_cluster": 0,
+          "topic": "Cardiology"
+        },
+        {
+          "doc_id": "health_2",
+          "text": "Hypertension management through lifestyle modifications and antihypertensive medications reduces cardiac risk.",
+          "expected_cluster": 0,
+          "topic": "Cardiology"
+        },
+        {
+          "doc_id": "health_3",
+          "text": "Cancer immunotherapy harnesses the immune system to target malignant cells effectively.",
+          "expected_cluster": 1,
+          "topic": "Oncology"
+        },
+        {
+          "doc_id": "health_4",
+          "text": "Chemotherapy protocols combined with radiation therapy improve cancer treatment outcomes.",
+          "expected_cluster": 1,
+          "topic": "Oncology"
+        },
+        {
+          "doc_id": "health_5",
+          "text": "Mental health disorders require comprehensive psychiatric evaluation and therapeutic intervention.",
+          "expected_cluster": 2,
+          "topic": "Psychiatry"
+        },
+        {
+          "doc_id": "health_6",
+          "text": "Cognitive behavioral therapy effectively treats anxiety and depression in clinical settings.",
+          "expected_cluster": 2,
+          "topic": "Psychiatry"
+        }
+      ],
+      "difficulty": "hard",
+      "expected_silhouette_score": 0.7
+    },
+    {
+      "cluster_id": "finance_cluster_1",
+      "domain": "finance",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "fin_1",
+          "text": "Portfolio diversification strategies minimize investment risk through asset allocation optimization.",
+          "expected_cluster": 0,
+          "topic": "Investment Management"
+        },
+        {
+          "doc_id": "fin_2",
+          "text": "Risk-adjusted returns and Sharpe ratios evaluate investment performance across market conditions.",
+          "expected_cluster": 0,
+          "topic": "Investment Management"
+        },
+        {
+          "doc_id": "fin_3",
+          "text": "Corporate financial statements provide insights into company profitability and liquidity positions.",
+          "expected_cluster": 1,
+          "topic": "Corporate Finance"
+        },
+        {
+          "doc_id": "fin_4",
+          "text": "Cash flow analysis and working capital management optimize corporate financial operations.",
+          "expected_cluster": 1,
+          "topic": "Corporate Finance"
+        },
+        {
+          "doc_id": "fin_5",
+          "text": "Central bank monetary policy influences interest rates and economic growth trajectories.",
+          "expected_cluster": 2,
+          "topic": "Macroeconomics"
+        },
+        {
+          "doc_id": "fin_6",
+          "text": "Inflation targeting and quantitative easing shape macroeconomic stability and market dynamics.",
+          "expected_cluster": 2,
+          "topic": "Macroeconomics"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_silhouette_score": 0.72
+    },
+    {
+      "cluster_id": "education_cluster_1",
+      "domain": "education",
+      "expected_clusters": 2,
+      "documents": [
+        {
+          "doc_id": "edu_1",
+          "text": "Personalized learning approaches adapt educational content to individual student needs and abilities.",
+          "expected_cluster": 0,
+          "topic": "Pedagogy"
+        },
+        {
+          "doc_id": "edu_2",
+          "text": "Active learning methodologies engage students through collaborative problem-solving activities.",
+          "expected_cluster": 0,
+          "topic": "Pedagogy"
+        },
+        {
+          "doc_id": "edu_3",
+          "text": "Educational technology platforms enhance remote learning accessibility and student engagement.",
+          "expected_cluster": 1,
+          "topic": "EdTech"
+        },
+        {
+          "doc_id": "edu_4",
+          "text": "Learning management systems streamline course delivery and assessment in digital environments.",
+          "expected_cluster": 1,
+          "topic": "EdTech"
+        }
+      ],
+      "difficulty": "easy",
+      "expected_silhouette_score": 0.8
+    },
+    {
+      "cluster_id": "legal_cluster_1",
+      "domain": "legal",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "legal_1",
+          "text": "Contract law governs legally binding agreements between parties in commercial transactions.",
+          "expected_cluster": 0,
+          "topic": "Contract Law"
+        },
+        {
+          "doc_id": "legal_2",
+          "text": "Breach of contract remedies include damages, specific performance, and contract rescission.",
+          "expected_cluster": 0,
+          "topic": "Contract Law"
+        },
+        {
+          "doc_id": "legal_3",
+          "text": "Intellectual property rights protect creative works and innovations from unauthorized use.",
+          "expected_cluster": 1,
+          "topic": "IP Law"
+        },
+        {
+          "doc_id": "legal_4",
+          "text": "Patent applications require detailed technical specifications and claims for invention protection.",
+          "expected_cluster": 1,
+          "topic": "IP Law"
+        },
+        {
+          "doc_id": "legal_5",
+          "text": "Criminal procedure ensures due process rights during investigation and prosecution phases.",
+          "expected_cluster": 2,
+          "topic": "Criminal Law"
+        },
+        {
+          "doc_id": "legal_6",
+          "text": "Evidence admissibility rules determine what information can be presented in criminal trials.",
+          "expected_cluster": 2,
+          "topic": "Criminal Law"
+        }
+      ],
+      "difficulty": "hard",
+      "expected_silhouette_score": 0.68
+    }
+  ]
+}

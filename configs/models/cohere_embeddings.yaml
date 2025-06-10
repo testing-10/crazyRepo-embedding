@@ -1,0 +1,24 @@
+api_config:
+  base_url: https://api.cohere.ai/v1
+  max_retries: 3
+  retry_delay: 1
+  timeout: 30
+batch_config:
+  max_batch_size: 96
+  max_concurrent_requests: 8
+cost:
+  currency: USD
+  per_1k_tokens: 0.0001
+dimensions: 1024
+display_name: Cohere Embed v3 English
+enabled: true
+input_type: search_document
+max_tokens: 512
+model_name: embed-english-v3.0
+normalization: true
+provider: cohere
+supported_tasks:
+- similarity
+- retrieval
+- clustering
+truncate: END

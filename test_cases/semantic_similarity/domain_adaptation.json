@@ -1,0 +1,472 @@
+{
+  "metadata": {
+    "name": "Domain Adaptation Similarity",
+    "description": "Semantic similarity evaluation across specialized domains to test model adaptation",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_pairs": 40,
+    "domains": [
+      "medical",
+      "legal",
+      "financial",
+      "scientific",
+      "technical",
+      "academic"
+    ],
+    "similarity_scale": "0.0 to 1.0 (higher = more similar)",
+    "evaluation_metrics": [
+      "cosine_similarity",
+      "semantic_similarity_score"
+    ],
+    "purpose": "Test embedding model performance on domain-specific terminology and concepts"
+  },
+  "test_cases": [
+    {
+      "id": "da_001",
+      "text1": "The patient presented with acute myocardial infarction and was immediately administered thrombolytic therapy.",
+      "text2": "The individual suffered a heart attack and received clot-dissolving medication right away.",
+      "expected_similarity": 0.88,
+      "domain": "medical",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "medical_terms": [
+          "myocardial infarction",
+          "thrombolytic therapy"
+        ],
+        "layman_terms": [
+          "heart attack",
+          "clot-dissolving medication"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_002",
+      "text1": "The defendant's counsel filed a motion for summary judgment based on lack of material facts in dispute.",
+      "text2": "The accused person's lawyer requested the court to decide the case without trial due to no disagreement on important facts.",
+      "expected_similarity": 0.85,
+      "domain": "legal",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "legal_terms": [
+          "defendant's counsel",
+          "motion for summary judgment",
+          "material facts"
+        ],
+        "layman_terms": [
+          "accused person's lawyer",
+          "requested court decision",
+          "important facts"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_003",
+      "text1": "The company's EBITDA margin improved significantly due to operational leverage and cost optimization initiatives.",
+      "text2": "The business's earnings before interest, taxes, depreciation, and amortization increased substantially through better operations and expense reduction.",
+      "expected_similarity": 0.9,
+      "domain": "financial",
+      "category": "acronym_expansion",
+      "difficulty": "medium",
+      "metadata": {
+        "financial_terms": [
+          "EBITDA margin",
+          "operational leverage"
+        ],
+        "expanded_terms": [
+          "earnings before interest, taxes, depreciation, and amortization"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_004",
+      "text1": "The quantum entanglement phenomenon demonstrates non-local correlations between particles regardless of spatial separation.",
+      "text2": "Quantum particles can be mysteriously connected, instantly affecting each other even when far apart.",
+      "expected_similarity": 0.82,
+      "domain": "scientific",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "scientific_terms": [
+          "quantum entanglement",
+          "non-local correlations",
+          "spatial separation"
+        ],
+        "layman_terms": [
+          "mysteriously connected",
+          "instantly affecting",
+          "far apart"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "very_high_to_low"
+      }
+    },
+    {
+      "id": "da_005",
+      "text1": "The API endpoint implements RESTful architecture with JSON payload serialization and OAuth2 authentication.",
+      "text2": "The web service follows REST design principles, uses JSON data format, and requires OAuth2 security tokens.",
+      "expected_similarity": 0.92,
+      "domain": "technical",
+      "category": "technical_paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "technical_terms": [
+          "API endpoint",
+          "RESTful architecture",
+          "JSON payload serialization",
+          "OAuth2"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_high"
+      }
+    },
+    {
+      "id": "da_006",
+      "text1": "The research methodology employed a randomized controlled trial with double-blind placebo comparison.",
+      "text2": "The study used a scientific method where neither patients nor doctors knew who received real treatment versus fake pills.",
+      "expected_similarity": 0.86,
+      "domain": "academic",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "academic_terms": [
+          "randomized controlled trial",
+          "double-blind",
+          "placebo comparison"
+        ],
+        "layman_terms": [
+          "scientific method",
+          "neither knew",
+          "fake pills"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_007",
+      "text1": "Hypertension management requires ACE inhibitors, diuretics, and lifestyle modifications including dietary sodium restriction.",
+      "text2": "High blood pressure treatment needs blood pressure medications, water pills, and life changes like eating less salt.",
+      "expected_similarity": 0.89,
+      "domain": "medical",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "medical_terms": [
+          "hypertension",
+          "ACE inhibitors",
+          "diuretics",
+          "dietary sodium restriction"
+        ],
+        "layman_terms": [
+          "high blood pressure",
+          "blood pressure medications",
+          "water pills",
+          "eating less salt"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_008",
+      "text1": "The contract contains a force majeure clause that excuses performance during unforeseeable circumstances.",
+      "text2": "The agreement includes a provision that releases parties from obligations during unexpected events beyond their control.",
+      "expected_similarity": 0.87,
+      "domain": "legal",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "legal_terms": [
+          "force majeure clause",
+          "excuses performance",
+          "unforeseeable circumstances"
+        ],
+        "layman_terms": [
+          "provision",
+          "releases parties",
+          "unexpected events beyond control"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_009",
+      "text1": "The portfolio's Sharpe ratio indicates risk-adjusted returns relative to the risk-free rate benchmark.",
+      "text2": "The investment collection's performance measure shows how much extra return you get for the additional risk taken.",
+      "expected_similarity": 0.84,
+      "domain": "financial",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "financial_terms": [
+          "Sharpe ratio",
+          "risk-adjusted returns",
+          "risk-free rate benchmark"
+        ],
+        "layman_terms": [
+          "performance measure",
+          "extra return",
+          "additional risk"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "very_high_to_low"
+      }
+    },
+    {
+      "id": "da_010",
+      "text1": "Machine learning algorithms utilize gradient descent optimization to minimize the loss function during training.",
+      "text2": "AI systems use mathematical techniques to gradually improve their accuracy by reducing prediction errors.",
+      "expected_similarity": 0.83,
+      "domain": "technical",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "technical_terms": [
+          "gradient descent optimization",
+          "loss function",
+          "training"
+        ],
+        "layman_terms": [
+          "mathematical techniques",
+          "improve accuracy",
+          "reducing errors"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "very_high_to_low"
+      }
+    },
+    {
+      "id": "da_011",
+      "text1": "Chronic obstructive pulmonary disease requires bronchodilators and corticosteroids for symptom management.",
+      "text2": "COPD patients need medications that open airways and reduce lung inflammation to control breathing problems.",
+      "expected_similarity": 0.91,
+      "domain": "medical",
+      "category": "acronym_and_technical",
+      "difficulty": "medium",
+      "metadata": {
+        "medical_terms": [
+          "chronic obstructive pulmonary disease",
+          "bronchodilators",
+          "corticosteroids"
+        ],
+        "mixed_terms": [
+          "COPD",
+          "open airways",
+          "reduce inflammation"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_012",
+      "text1": "The court granted the plaintiff's motion for injunctive relief to prevent irreparable harm.",
+      "text2": "The judge approved the complainant's request to stop the defendant's actions that would cause permanent damage.",
+      "expected_similarity": 0.88,
+      "domain": "legal",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "legal_terms": [
+          "plaintiff",
+          "injunctive relief",
+          "irreparable harm"
+        ],
+        "layman_terms": [
+          "complainant",
+          "stop actions",
+          "permanent damage"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_013",
+      "text1": "The company's debt-to-equity ratio exceeded industry benchmarks, indicating potential liquidity concerns.",
+      "text2": "The business borrowed too much money compared to its ownership value, suggesting possible cash flow problems.",
+      "expected_similarity": 0.86,
+      "domain": "financial",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "financial_terms": [
+          "debt-to-equity ratio",
+          "industry benchmarks",
+          "liquidity concerns"
+        ],
+        "layman_terms": [
+          "borrowed too much",
+          "ownership value",
+          "cash flow problems"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_low"
+      }
+    },
+    {
+      "id": "da_014",
+      "text1": "The hypothesis was validated through statistical significance testing with p-values below 0.05.",
+      "text2": "The theory was confirmed using mathematical analysis showing results were very unlikely to occur by chance.",
+      "expected_similarity": 0.85,
+      "domain": "academic",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "academic_terms": [
+          "hypothesis",
+          "statistical significance",
+          "p-values"
+        ],
+        "layman_terms": [
+          "theory",
+          "mathematical analysis",
+          "unlikely by chance"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_015",
+      "text1": "The microservice architecture implements containerized deployment with Kubernetes orchestration.",
+      "text2": "The software design uses small, independent services packaged in containers managed by Kubernetes.",
+      "expected_similarity": 0.9,
+      "domain": "technical",
+      "category": "technical_paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "technical_terms": [
+          "microservice architecture",
+          "containerized deployment",
+          "Kubernetes orchestration"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_high"
+      }
+    },
+    {
+      "id": "da_016",
+      "text1": "Diabetes mellitus type 2 management involves metformin therapy and glucose monitoring protocols.",
+      "text2": "Type 2 diabetes treatment includes blood sugar medication and regular blood glucose level checking.",
+      "expected_similarity": 0.92,
+      "domain": "medical",
+      "category": "technical_to_layman",
+      "difficulty": "easy",
+      "metadata": {
+        "medical_terms": [
+          "diabetes mellitus type 2",
+          "metformin therapy",
+          "glucose monitoring protocols"
+        ],
+        "layman_terms": [
+          "type 2 diabetes",
+          "blood sugar medication",
+          "blood glucose checking"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_017",
+      "text1": "The merger requires due diligence review and regulatory approval from antitrust authorities.",
+      "text2": "The company combination needs thorough investigation and permission from competition regulators.",
+      "expected_similarity": 0.87,
+      "domain": "legal",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "legal_terms": [
+          "merger",
+          "due diligence",
+          "antitrust authorities"
+        ],
+        "layman_terms": [
+          "company combination",
+          "thorough investigation",
+          "competition regulators"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "high_to_medium"
+      }
+    },
+    {
+      "id": "da_018",
+      "text1": "The algorithm demonstrates O(n log n) time complexity for sorting operations.",
+      "text2": "The computer program takes time proportional to n times log n to arrange data in order.",
+      "expected_similarity": 0.88,
+      "domain": "technical",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "technical_terms": [
+          "algorithm",
+          "O(n log n)",
+          "time complexity",
+          "sorting operations"
+        ],
+        "layman_terms": [
+          "computer program",
+          "proportional to",
+          "arrange data"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "very_high_to_medium"
+      }
+    },
+    {
+      "id": "da_019",
+      "text1": "The patient exhibits symptoms of acute respiratory distress syndrome requiring mechanical ventilation.",
+      "text2": "The person shows signs of severe lung failure and needs a breathing machine for life support.",
+      "expected_similarity": 0.89,
+      "domain": "medical",
+      "category": "technical_to_layman",
+      "difficulty": "medium",
+      "metadata": {
+        "medical_terms": [
+          "acute respiratory distress syndrome",
+          "mechanical ventilation"
+        ],
+        "layman_terms": [
+          "severe lung failure",
+          "breathing machine",
+          "life support"
+        ],
+        "semantic_overlap": "very_high",
+        "terminology_complexity": "very_high_to_low"
+      }
+    },
+    {
+      "id": "da_020",
+      "text1": "The research employed a longitudinal cohort study design with multivariate regression analysis.",
+      "text2": "The study followed the same group of people over time and used complex statistics to analyze multiple factors.",
+      "expected_similarity": 0.84,
+      "domain": "academic",
+      "category": "technical_to_layman",
+      "difficulty": "hard",
+      "metadata": {
+        "academic_terms": [
+          "longitudinal cohort study",
+          "multivariate regression analysis"
+        ],
+        "layman_terms": [
+          "followed same group over time",
+          "complex statistics",
+          "multiple factors"
+        ],
+        "semantic_overlap": "high",
+        "terminology_complexity": "very_high_to_low"
+      }
+    }
+  ]
+}

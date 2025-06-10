@@ -1,0 +1,390 @@
+{
+  "metadata": {
+    "name": "Cross-Modal Search Retrieval",
+    "description": "Retrieval evaluation for cross-modal search scenarios (text-to-image, image-to-text, etc.)",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_queries": 10,
+    "modalities": [
+      "text",
+      "image_description",
+      "code",
+      "diagram"
+    ],
+    "evaluation_metrics": [
+      "precision_at_k",
+      "recall_at_k",
+      "mrr",
+      "ndcg"
+    ],
+    "retrieval_type": "cross_modal_search",
+    "corpus_size_range": "8-12 items per query"
+  },
+  "test_cases": [
+    {
+      "id": "cm_001",
+      "query": "red sports car driving on mountain road",
+      "query_modality": "text",
+      "corpus": [
+        {
+          "doc_id": "img_001",
+          "text": "A bright red Ferrari speeding along a winding mountain highway with scenic alpine views in the background. The car's sleek design contrasts beautifully with the rugged mountain landscape.",
+          "modality": "image_description",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_002",
+          "text": "A vintage red Porsche 911 navigating through serpentine mountain curves during golden hour. The vehicle's classic silhouette is highlighted against the dramatic mountain backdrop.",
+          "modality": "image_description",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_003",
+          "text": "A blue sedan parked in a suburban driveway next to a white picket fence. The family car sits peacefully in front of a two-story colonial house with manicured landscaping.",
+          "modality": "image_description",
+          "relevance_score": 0.2,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "img_004",
+          "text": "A red motorcycle speeding through mountain tunnels with dramatic lighting effects. The rider leans into sharp curves as the bike navigates the challenging mountain terrain.",
+          "modality": "image_description",
+          "relevance_score": 0.6,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_005",
+          "text": "A crimson Lamborghini parked at a mountain overlook with panoramic valley views. The luxury sports car's angular design creates striking geometric patterns against the natural landscape.",
+          "modality": "image_description",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_006",
+          "text": "A group of hikers walking along a forest trail carrying backpacks and hiking poles. The outdoor enthusiasts are surrounded by tall pine trees and dappled sunlight.",
+          "modality": "image_description",
+          "relevance_score": 0.1,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "img_007",
+          "text": "A red convertible sports car driving along a coastal highway with ocean views. The vehicle's top is down, and passengers enjoy the scenic seaside drive.",
+          "modality": "image_description",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_008",
+          "text": "A mountain landscape photograph showing snow-capped peaks reflected in a pristine alpine lake. The serene scene captures the majesty of untouched wilderness.",
+          "modality": "image_description",
+          "relevance_score": 0.3,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "img_001",
+        "img_002",
+        "img_004",
+        "img_005",
+        "img_007"
+      ],
+      "domain": "automotive",
+      "difficulty": "medium",
+      "query_type": "visual_description",
+      "metadata": {
+        "topic": "sports_car_mountain",
+        "search_intent": "image_retrieval",
+        "corpus_diversity": "high",
+        "distractor_count": 3
+      }
+    },
+    {
+      "id": "cm_002",
+      "query": "function that calculates area of circle",
+      "query_modality": "text",
+      "corpus": [
+        {
+          "doc_id": "code_001",
+          "text": "def calculate_circle_area(radius):\n    \"\"\"Calculate the area of a circle given its radius.\"\"\"\n    import math\n    return math.pi * radius ** 2\n\n# Example usage:\narea = calculate_circle_area(5)\nprint(f\"Area: {area}\")",
+          "modality": "code",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_002",
+          "text": "function circleArea(r) {\n    // JavaScript function to compute circle area\n    return Math.PI * r * r;\n}\n\nconsole.log(circleArea(10)); // Output: 314.159...",
+          "modality": "code",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_003",
+          "text": "public class Circle {\n    public static double area(double radius) {\n        return Math.PI * Math.pow(radius, 2);\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(area(7.5));\n    }\n}",
+          "modality": "code",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_004",
+          "text": "def calculate_rectangle_area(length, width):\n    \"\"\"Calculate the area of a rectangle.\"\"\"\n    return length * width\n\n# Example:\nrect_area = calculate_rectangle_area(10, 5)\nprint(f\"Rectangle area: {rect_area}\")",
+          "modality": "code",
+          "relevance_score": 0.3,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "diagram_001",
+          "text": "Geometric diagram showing a circle with radius 'r' labeled, center point marked, and the formula A = \u03c0r\u00b2 displayed below. The diagram illustrates the relationship between radius and area.",
+          "modality": "diagram",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_005",
+          "text": "def fibonacci_sequence(n):\n    \"\"\"Generate fibonacci sequence up to n terms.\"\"\"\n    if n <= 0:\n        return []\n    elif n == 1:\n        return [0]\n    elif n == 2:\n        return [0, 1]\n    \n    fib = [0, 1]\n    for i in range(2, n):\n        fib.append(fib[i-1] + fib[i-2])\n    return fib",
+          "modality": "code",
+          "relevance_score": 0.1,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_006",
+          "text": "# Circle class with area calculation method\nclass Circle:\n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        import math\n        return math.pi * self.radius ** 2\n    \n    def circumference(self):\n        import math\n        return 2 * math.pi * self.radius",
+          "modality": "code",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "code_001",
+        "code_002",
+        "code_003",
+        "diagram_001",
+        "code_006"
+      ],
+      "domain": "programming",
+      "difficulty": "easy",
+      "query_type": "code_functionality",
+      "metadata": {
+        "topic": "circle_area_calculation",
+        "search_intent": "code_retrieval",
+        "corpus_diversity": "medium",
+        "distractor_count": 2
+      }
+    },
+    {
+      "id": "cm_003",
+      "query": "database schema with users and orders tables",
+      "query_modality": "text",
+      "corpus": [
+        {
+          "doc_id": "diagram_002",
+          "text": "Entity-relationship diagram showing Users table (id, name, email, created_at) connected to Orders table (id, user_id, product_name, quantity, price, order_date) with a one-to-many relationship line.",
+          "modality": "diagram",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_007",
+          "text": "CREATE TABLE users (\n    id SERIAL PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    email VARCHAR(255) UNIQUE NOT NULL,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n\nCREATE TABLE orders (\n    id SERIAL PRIMARY KEY,\n    user_id INTEGER REFERENCES users(id),\n    product_name VARCHAR(200) NOT NULL,\n    quantity INTEGER NOT NULL,\n    price DECIMAL(10,2) NOT NULL,\n    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+          "modality": "code",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "diagram_003",
+          "text": "Database schema diagram illustrating a complete e-commerce system with tables for Users, Orders, Products, Categories, and OrderItems, showing all foreign key relationships and constraints.",
+          "modality": "diagram",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_008",
+          "text": "class User(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(80), unique=True, nullable=False)\n    email = db.Column(db.String(120), unique=True, nullable=False)\n    orders = db.relationship('Order', backref='user', lazy=True)\n\nclass Order(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)\n    total = db.Column(db.Float, nullable=False)",
+          "modality": "code",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_009",
+          "text": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+          "modality": "code",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "diagram_004",
+          "text": "Network topology diagram showing routers, switches, and servers connected in a hierarchical structure with IP address ranges and VLAN configurations labeled.",
+          "modality": "diagram",
+          "relevance_score": 0.1,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "text_001",
+          "text": "Database normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. The process involves dividing large tables into smaller, related tables and defining relationships between them.",
+          "modality": "text",
+          "relevance_score": 0.4,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "diagram_002",
+        "code_007",
+        "diagram_003",
+        "code_008"
+      ],
+      "domain": "database",
+      "difficulty": "medium",
+      "query_type": "schema_design",
+      "metadata": {
+        "topic": "database_schema",
+        "search_intent": "design_reference",
+        "corpus_diversity": "high",
+        "distractor_count": 3
+      }
+    },
+    {
+      "id": "cm_004",
+      "query": "sunset over ocean with sailboat",
+      "query_modality": "text",
+      "corpus": [
+        {
+          "doc_id": "img_009",
+          "text": "A magnificent sunset painting the sky in brilliant oranges and purples over a calm ocean, with a white sailboat silhouetted against the colorful horizon. The water reflects the warm sunset colors.",
+          "modality": "image_description",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_010",
+          "text": "A peaceful marina at dusk with several sailboats moored at wooden docks. The setting sun creates golden reflections on the water surface, and seagulls fly overhead.",
+          "modality": "image_description",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_011",
+          "text": "A dramatic seascape showing large waves crashing against rocky cliffs during a storm. Dark clouds fill the sky, and spray from the waves creates a misty atmosphere.",
+          "modality": "image_description",
+          "relevance_score": 0.3,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "img_012",
+          "text": "A tropical beach scene at sunrise with palm trees swaying in the breeze. A small fishing boat is visible on the horizon, and the sand shows footprints from early morning walkers.",
+          "modality": "image_description",
+          "relevance_score": 0.6,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_013",
+          "text": "A busy city harbor with cargo ships, cranes, and industrial equipment. The urban skyline forms a backdrop to the commercial maritime activity.",
+          "modality": "image_description",
+          "relevance_score": 0.2,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "img_014",
+          "text": "A romantic sunset cruise with a luxury yacht sailing through calm waters. Passengers enjoy champagne on deck as the sun sets behind distant mountains.",
+          "modality": "image_description",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "img_015",
+          "text": "An underwater photograph showing colorful coral reefs and tropical fish swimming in crystal-clear blue water. Sunlight filters down from the surface above.",
+          "modality": "image_description",
+          "relevance_score": 0.1,
+          "is_relevant": false
+        }
+      ],
+      "expected_relevant_docs": [
+        "img_009",
+        "img_010",
+        "img_012",
+        "img_014"
+      ],
+      "domain": "photography",
+      "difficulty": "easy",
+      "query_type": "scenic_description",
+      "metadata": {
+        "topic": "sunset_sailboat",
+        "search_intent": "image_retrieval",
+        "corpus_diversity": "high",
+        "distractor_count": 3
+      }
+    },
+    {
+      "id": "cm_005",
+      "query": "machine learning model training workflow",
+      "query_modality": "text",
+      "corpus": [
+        {
+          "doc_id": "diagram_005",
+          "text": "Flowchart diagram showing the complete ML pipeline: Data Collection \u2192 Data Preprocessing \u2192 Feature Engineering \u2192 Model Selection \u2192 Training \u2192 Validation \u2192 Testing \u2192 Deployment \u2192 Monitoring, with feedback loops indicated.",
+          "modality": "diagram",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_010",
+          "text": "# Complete ML training pipeline\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score\n\n# Load and split data\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Preprocess\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\nX_test_scaled = scaler.transform(X_test)\n\n# Train model\nmodel = RandomForestClassifier()\nmodel.fit(X_train_scaled, y_train)\n\n# Evaluate\npredictions = model.predict(X_test_scaled)\naccuracy = accuracy_score(y_test, predictions)",
+          "modality": "code",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "diagram_006",
+          "text": "Neural network architecture diagram showing input layer, hidden layers with activation functions, and output layer. Weights and biases are illustrated with connecting lines and nodes.",
+          "modality": "diagram",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "text_002",
+          "text": "Machine learning model training involves several key steps: data preparation, feature selection, algorithm choice, hyperparameter tuning, and performance evaluation. Cross-validation helps ensure model generalization.",
+          "modality": "text",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "code_011",
+          "text": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)\n\nprint([fibonacci(i) for i in range(10)])",
+          "modality": "code",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "diagram_007",
+          "text": "Organizational chart showing company hierarchy from CEO down through various departments including Engineering, Marketing, Sales, and Human Resources.",
+          "modality": "diagram",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "code_012",
+          "text": "# MLOps pipeline with automated training\nimport mlflow\nimport mlflow.sklearn\n\nwith mlflow.start_run():\n    # Log parameters\n    mlflow.log_param(\"n_estimators\", 100)\n    mlflow.log_param(\"max_depth\", 10)\n    \n    # Train model\n    model = RandomForestClassifier(n_estimators=100, max_depth=10)\n    model.fit(X_train, y_train)\n    \n    # Log metrics\n    accuracy = model.score(X_test, y_test)\n    mlflow.log_metric(\"accuracy\", accuracy)\n    \n    # Log model\n    mlflow.sklearn.log_model(model, \"model\")",
+          "modality": "code",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "diagram_005",
+        "code_010",
+        "diagram_006",
+        "text_002",
+        "code_012"
+      ],
+      "domain": "machine_learning",
+      "difficulty": "hard",
+      "query_type": "workflow_process",
+      "metadata": {
+        "topic": "ml_training_workflow",
+        "search_intent": "process_understanding",
+        "corpus_diversity": "high",
+        "distractor_count": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+datasets:
+  datasets_path: ./datasets/
+  enabled_datasets:
+  - similarity_pairs
+  - retrieval_corpus
+  - clustering_documents
+  - efficiency_benchmark
+  preprocessing:
+    clean_text: true
+    max_text_length: 8000
+    min_text_length: 10
+    remove_duplicates: true
+environment:
+  cleanup_temp_files: true
+  device_preference: auto
+  memory_limit: 8GB
+  random_seed: 42
+  temp_directory: ./temp/
+evaluation:
+  cross_validation:
+    enabled: false
+    folds: 5
+  metrics:
+    clustering:
+      enabled: true
+      metrics:
+      - silhouette_score
+      - calinski_harabasz
+      - davies_bouldin
+      - adjusted_rand_index
+    efficiency:
+      enabled: true
+      metrics:
+      - embedding_time
+      - throughput
+      - memory_usage
+      - api_cost
+    retrieval:
+      enabled: true
+      k_values:
+      - 1
+      - 3
+      - 5
+      - 10
+      metrics:
+      - precision_at_k
+      - recall_at_k
+      - map_at_k
+      - ndcg_at_k
+    similarity:
+      enabled: true
+      metrics:
+      - cosine_similarity
+      - pearson_correlation
+      - spearman_correlation
+execution:
+  batch_processing:
+    adaptive_batch_size: true
+    enabled: true
+    max_batch_size: 128
+    min_batch_size: 8
+  caching:
+    cache_directory: ./cache/
+    cache_embeddings: true
+    cache_results: true
+    cache_ttl: 86400
+    enabled: true
+  error_handling:
+    fail_fast: false
+    log_errors: true
+    max_retries: 3
+    retry_delay: 2
+  parallel_processing:
+    enabled: false
+    max_workers: 4
+logging:
+  backup_count: 5
+  level: INFO
+  log_directory: ./logs/
+  log_format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  log_to_file: true
+  max_log_size: 10MB
+  rotate_logs: true
+models:
+  enabled_models:
+  - openai_embeddings
+  - cohere_embeddings
+  - sentence_transformers
+  - huggingface_embeddings
+  - jina_embeddings
+  load_all_at_startup: false
+  model_configs_path: ./configs/models/
+  model_timeout: 300
+reporting:
+  comparison_report:
+    enabled: true
+    include_cost_analysis: true
+    ranking_metrics:
+    - overall_score
+    - similarity_score
+    - retrieval_score
+  formats:
+  - json
+  - yaml
+  - html
+  include_raw_results: true
+  include_visualizations: true
+  output_directory: ./reports/
+test_configuration:
+  continue_on_error: true
+  description: Comprehensive testing framework for embedding models in RAG-based PowerPoint
+    generation
+  execution_mode: sequential
+  name: Embedding Model Evaluation Suite
+  save_intermediate_results: true
+  version: 1.0.0

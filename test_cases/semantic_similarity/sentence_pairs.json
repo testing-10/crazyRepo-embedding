@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "name": "Sentence Pairs Similarity",
+    "description": "Semantic similarity evaluation for sentence pairs across various domains",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_pairs": 50,
+    "domains": [
+      "general",
+      "technical",
+      "conversational",
+      "academic"
+    ],
+    "similarity_scale": "0.0 to 1.0 (higher = more similar)",
+    "evaluation_metrics": [
+      "cosine_similarity",
+      "spearman_correlation",
+      "pearson_correlation"
+    ]
+  },
+  "test_cases": [
+    {
+      "id": "sp_001",
+      "sentence1": "The cat is sleeping on the couch.",
+      "sentence2": "A feline is resting on the sofa.",
+      "expected_similarity": 0.85,
+      "domain": "general",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_002",
+      "sentence1": "Machine learning algorithms can process large datasets efficiently.",
+      "sentence2": "AI systems are capable of handling big data with high performance.",
+      "expected_similarity": 0.78,
+      "domain": "technical",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_003",
+      "sentence1": "The weather is beautiful today.",
+      "sentence2": "Today has lovely weather conditions.",
+      "expected_similarity": 0.82,
+      "domain": "conversational",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "medium"
+      }
+    },
+    {
+      "id": "sp_004",
+      "sentence1": "The research methodology employed quantitative analysis techniques.",
+      "sentence2": "This study utilized statistical methods for data analysis.",
+      "expected_similarity": 0.75,
+      "domain": "academic",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_005",
+      "sentence1": "The dog barked loudly at the mailman.",
+      "sentence2": "The elephant trumpeted in the jungle.",
+      "expected_similarity": 0.25,
+      "domain": "general",
+      "category": "unrelated",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "low",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_006",
+      "sentence1": "Neural networks require substantial computational resources for training.",
+      "sentence2": "Deep learning models need significant processing power during the learning phase.",
+      "expected_similarity": 0.88,
+      "domain": "technical",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "semantic_overlap": "very_high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_007",
+      "sentence1": "I love pizza with extra cheese.",
+      "sentence2": "Pizza topped with additional cheese is my favorite.",
+      "expected_similarity": 0.9,
+      "domain": "conversational",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "very_high",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "high"
+      }
+    },
+    {
+      "id": "sp_008",
+      "sentence1": "The hypothesis was validated through rigorous experimental procedures.",
+      "sentence2": "Comprehensive testing confirmed the theoretical assumption.",
+      "expected_similarity": 0.8,
+      "domain": "academic",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "very_low"
+      }
+    },
+    {
+      "id": "sp_009",
+      "sentence1": "The stock market crashed yesterday.",
+      "sentence2": "Quantum computing will revolutionize cryptography.",
+      "expected_similarity": 0.15,
+      "domain": "technical",
+      "category": "unrelated",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "none",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "none"
+      }
+    },
+    {
+      "id": "sp_010",
+      "sentence1": "The algorithm optimizes performance through iterative refinement.",
+      "sentence2": "This method improves efficiency via repeated enhancement cycles.",
+      "expected_similarity": 0.85,
+      "domain": "technical",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "semantic_overlap": "very_high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "very_low"
+      }
+    },
+    {
+      "id": "sp_011",
+      "sentence1": "She enjoys reading mystery novels in her spare time.",
+      "sentence2": "Reading detective fiction is her favorite hobby.",
+      "expected_similarity": 0.83,
+      "domain": "general",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "medium"
+      }
+    },
+    {
+      "id": "sp_012",
+      "sentence1": "The conference presentation was well-received by the audience.",
+      "sentence2": "Attendees responded positively to the academic talk.",
+      "expected_similarity": 0.78,
+      "domain": "academic",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_013",
+      "sentence1": "Can you help me with this problem?",
+      "sentence2": "Would you assist me in solving this issue?",
+      "expected_similarity": 0.87,
+      "domain": "conversational",
+      "category": "paraphrase",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "very_high",
+        "syntactic_similarity": "medium",
+        "lexical_overlap": "medium"
+      }
+    },
+    {
+      "id": "sp_014",
+      "sentence1": "The database query returned no results.",
+      "sentence2": "No records were found matching the search criteria.",
+      "expected_similarity": 0.82,
+      "domain": "technical",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "semantic_overlap": "high",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "low"
+      }
+    },
+    {
+      "id": "sp_015",
+      "sentence1": "The sun is shining brightly today.",
+      "sentence2": "The car needs an oil change.",
+      "expected_similarity": 0.1,
+      "domain": "general",
+      "category": "unrelated",
+      "difficulty": "easy",
+      "metadata": {
+        "semantic_overlap": "none",
+        "syntactic_similarity": "low",
+        "lexical_overlap": "none"
+      }
+    }
+  ]
+}

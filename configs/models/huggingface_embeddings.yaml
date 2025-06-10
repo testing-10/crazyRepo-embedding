@@ -1,0 +1,22 @@
+batch_config:
+  max_batch_size: 16
+  max_concurrent_requests: 1
+cost:
+  currency: USD
+  per_1k_tokens: 0.0
+dimensions: 4096
+display_name: E5-Mistral-7B Instruct
+enabled: true
+max_tokens: 32768
+model_config:
+  cache_folder: ./model_cache
+  device: auto
+  torch_dtype: float16
+  trust_remote_code: true
+model_name: intfloat/e5-mistral-7b-instruct
+normalization: true
+provider: huggingface
+supported_tasks:
+- similarity
+- retrieval
+- clustering

@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "test_type": "efficiency",
+    "category": "speed_benchmark",
+    "description": "Speed and latency evaluation for embedding model performance",
+    "total_benchmarks": 12,
+    "evaluation_metrics": [
+      "latency_ms",
+      "throughput_tokens_per_sec",
+      "tokens_per_second",
+      "requests_per_second"
+    ],
+    "text_lengths": [
+      "short",
+      "medium",
+      "long",
+      "very_long"
+    ],
+    "batch_sizes": [
+      1,
+      10,
+      50,
+      100
+    ],
+    "timeout_threshold_ms": 30000,
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "benchmark_id": "short_text_single",
+      "description": "Single short text embedding speed test",
+      "batch_size": 1,
+      "text_length_category": "short",
+      "samples": [
+        {
+          "sample_id": "short_1",
+          "text": "Machine learning algorithms.",
+          "token_count": 4,
+          "expected_latency_ms": 150,
+          "max_acceptable_latency_ms": 500
+        },
+        {
+          "sample_id": "short_2",
+          "text": "Natural language processing.",
+          "token_count": 4,
+          "expected_latency_ms": 150,
+          "max_acceptable_latency_ms": 500
+        },
+        {
+          "sample_id": "short_3",
+          "text": "Deep neural networks enable advanced AI.",
+          "token_count": 7,
+          "expected_latency_ms": 160,
+          "max_acceptable_latency_ms": 500
+        }
+      ],
+      "performance_targets": {
+        "target_latency_ms": 200,
+        "target_throughput_tps": 20,
+        "acceptable_variance_percent": 15
+      }
+    },
+    {
+      "benchmark_id": "medium_text_single",
+      "description": "Single medium text embedding speed test",
+      "batch_size": 1,
+      "text_length_category": "medium",
+      "samples": [
+        {
+          "sample_id": "medium_1",
+          "text": "Artificial intelligence and machine learning technologies are revolutionizing various industries by enabling automated decision-making processes and predictive analytics capabilities.",
+          "token_count": 25,
+          "expected_latency_ms": 300,
+          "max_acceptable_latency_ms": 800
+        },
+        {
+          "sample_id": "medium_2",
+          "text": "Cloud computing platforms provide scalable infrastructure solutions that allow businesses to deploy applications efficiently while reducing operational costs and maintenance overhead.",
+          "token_count": 26,
+          "expected_latency_ms": 310,
+          "max_acceptable_latency_ms": 800
+        },
+        {
+          "sample_id": "medium_3",
+          "text": "Data science methodologies combine statistical analysis, programming skills, and domain expertise to extract meaningful insights from large datasets for business intelligence purposes.",
+          "token_count": 27,
+          "expected_latency_ms": 320,
+          "max_acceptable_latency_ms": 800
+        }
+      ],
+      "performance_targets": {
+        "target_latency_ms": 400,
+        "target_throughput_tps": 15,
+        "acceptable_variance_percent": 20
+      }
+    },
+    {
+      "benchmark_id": "long_text_single",
+      "description": "Single long text embedding speed test",
+      "batch_size": 1,
+      "text_length_category": "long",
+      "samples": [
+        {
+          "sample_id": "long_1",
+          "text": "The rapid advancement of artificial intelligence and machine learning technologies has fundamentally transformed how organizations approach data analysis, decision-making, and automation across various sectors. These sophisticated algorithms can process vast amounts of information, identify complex patterns, and generate actionable insights that were previously impossible to obtain through traditional analytical methods. Companies are increasingly leveraging these capabilities to optimize operations, enhance customer experiences, and drive innovation in their respective markets.",
+          "token_count": 75,
+          "expected_latency_ms": 600,
+          "max_acceptable_latency_ms": 1500
+        },
+        {
+          "sample_id": "long_2",
+          "text": "Modern cloud computing architectures enable organizations to build scalable, resilient, and cost-effective technology solutions that can adapt to changing business requirements and market conditions. These platforms provide comprehensive services including compute resources, storage solutions, networking capabilities, and managed databases that eliminate the need for extensive on-premises infrastructure investments. Furthermore, cloud-native development practices promote microservices architectures, containerization, and continuous integration workflows that accelerate software delivery cycles.",
+          "token_count": 78,
+          "expected_latency_ms": 620,
+          "max_acceptable_latency_ms": 1500
+        }
+      ],
+      "performance_targets": {
+        "target_latency_ms": 800,
+        "target_throughput_tps": 8,
+        "acceptable_variance_percent": 25
+      }
+    },
+    {
+      "benchmark_id": "batch_processing_speed",
+      "description": "Batch processing speed evaluation",
+      "batch_size": 10,
+      "text_length_category": "mixed",
+      "samples": [
+        {
+          "sample_id": "batch_1",
+          "texts": [
+            "AI transforms industries.",
+            "Machine learning enables automation and predictive analytics for business intelligence.",
+            "Cloud computing provides scalable infrastructure solutions for modern applications.",
+            "Data science combines statistics and programming.",
+            "Natural language processing understands human communication patterns and semantic relationships.",
+            "Computer vision algorithms analyze visual content.",
+            "Blockchain technology ensures secure and transparent transaction processing across distributed networks.",
+            "Internet of Things connects devices.",
+            "Cybersecurity protects digital assets from threats and vulnerabilities through comprehensive security measures.",
+            "Quantum computing promises exponential computational power."
+          ],
+          "total_tokens": 150,
+          "expected_latency_ms": 800,
+          "max_acceptable_latency_ms": 2000
+        }
+      ],
+      "performance_targets": {
+        "target_latency_ms": 1000,
+        "target_throughput_tps": 150,
+        "acceptable_variance_percent": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "test_type": "clustering",
+    "category": "topic_clustering",
+    "description": "Topic-based clustering evaluation for content organization and discovery",
+    "total_clusters": 12,
+    "total_documents": 36,
+    "evaluation_metrics": [
+      "silhouette_score",
+      "calinski_harabasz_score",
+      "davies_bouldin_score"
+    ],
+    "domains": [
+      "news",
+      "research",
+      "social_media",
+      "product_reviews"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "cluster_id": "news_topics_1",
+      "domain": "news",
+      "expected_clusters": 4,
+      "documents": [
+        {
+          "doc_id": "news_1",
+          "text": "Global climate summit reaches historic agreement on carbon emission reduction targets.",
+          "expected_cluster": 0,
+          "topic": "Environment"
+        },
+        {
+          "doc_id": "news_2",
+          "text": "Renewable energy investments surge as countries transition away from fossil fuels.",
+          "expected_cluster": 0,
+          "topic": "Environment"
+        },
+        {
+          "doc_id": "news_3",
+          "text": "Stock markets rally following positive economic indicators and corporate earnings reports.",
+          "expected_cluster": 1,
+          "topic": "Economy"
+        },
+        {
+          "doc_id": "news_4",
+          "text": "Federal Reserve adjusts interest rates to combat inflation and stabilize economic growth.",
+          "expected_cluster": 1,
+          "topic": "Economy"
+        },
+        {
+          "doc_id": "news_5",
+          "text": "Breakthrough gene therapy treatment shows promising results in clinical trials.",
+          "expected_cluster": 2,
+          "topic": "Health"
+        },
+        {
+          "doc_id": "news_6",
+          "text": "New vaccine development accelerates global pandemic preparedness initiatives.",
+          "expected_cluster": 2,
+          "topic": "Health"
+        },
+        {
+          "doc_id": "news_7",
+          "text": "Space exploration mission successfully lands on Mars, collecting geological samples.",
+          "expected_cluster": 3,
+          "topic": "Science"
+        },
+        {
+          "doc_id": "news_8",
+          "text": "Quantum computing breakthrough achieves unprecedented computational capabilities.",
+          "expected_cluster": 3,
+          "topic": "Science"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_silhouette_score": 0.78
+    },
+    {
+      "cluster_id": "research_topics_1",
+      "domain": "research",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "research_1",
+          "text": "Convolutional neural networks demonstrate superior performance in image classification tasks.",
+          "expected_cluster": 0,
+          "topic": "Computer Vision"
+        },
+        {
+          "doc_id": "research_2",
+          "text": "Object detection algorithms using YOLO architecture achieve real-time processing speeds.",
+          "expected_cluster": 0,
+          "topic": "Computer Vision"
+        },
+        {
+          "doc_id": "research_3",
+          "text": "Transformer models revolutionize natural language understanding and generation capabilities.",
+          "expected_cluster": 1,
+          "topic": "NLP"
+        },
+        {
+          "doc_id": "research_4",
+          "text": "Large language models exhibit emergent abilities in few-shot learning scenarios.",
+          "expected_cluster": 1,
+          "topic": "NLP"
+        },
+        {
+          "doc_id": "research_5",
+          "text": "Reinforcement learning agents master complex strategic games through self-play training.",
+          "expected_cluster": 2,
+          "topic": "Reinforcement Learning"
+        },
+        {
+          "doc_id": "research_6",
+          "text": "Multi-agent systems coordinate autonomous behavior in dynamic environments.",
+          "expected_cluster": 2,
+          "topic": "Reinforcement Learning"
+        }
+      ],
+      "difficulty": "hard",
+      "expected_silhouette_score": 0.73
+    },
+    {
+      "cluster_id": "social_media_topics_1",
+      "domain": "social_media",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "social_1",
+          "text": "Just finished an amazing workout at the gym! Feeling energized and ready for the day. #fitness #motivation",
+          "expected_cluster": 0,
+          "topic": "Fitness/Health"
+        },
+        {
+          "doc_id": "social_2",
+          "text": "Trying out this new healthy recipe for dinner tonight. Quinoa bowl with roasted vegetables! #healthyeating #nutrition",
+          "expected_cluster": 0,
+          "topic": "Fitness/Health"
+        },
+        {
+          "doc_id": "social_3",
+          "text": "Exploring the beautiful mountains this weekend. Nature therapy at its finest! #travel #adventure #hiking",
+          "expected_cluster": 1,
+          "topic": "Travel/Lifestyle"
+        },
+        {
+          "doc_id": "social_4",
+          "text": "Coffee shop hopping in downtown today. Found the perfect spot for remote work! #coffee #digitalnomad #lifestyle",
+          "expected_cluster": 1,
+          "topic": "Travel/Lifestyle"
+        },
+        {
+          "doc_id": "social_5",
+          "text": "Excited about the new smartphone release! The camera quality looks incredible. #tech #gadgets #innovation",
+          "expected_cluster": 2,
+          "topic": "Technology"
+        },
+        {
+          "doc_id": "social_6",
+          "text": "AI is changing everything! Just saw a demo of the latest language model capabilities. Mind blown! #AI #technology #future",
+          "expected_cluster": 2,
+          "topic": "Technology"
+        }
+      ],
+      "difficulty": "easy",
+      "expected_silhouette_score": 0.82
+    },
+    {
+      "cluster_id": "product_reviews_1",
+      "domain": "product_reviews",
+      "expected_clusters": 3,
+      "documents": [
+        {
+          "doc_id": "review_1",
+          "text": "This laptop has excellent performance for gaming and video editing. Battery life could be better though.",
+          "expected_cluster": 0,
+          "topic": "Electronics"
+        },
+        {
+          "doc_id": "review_2",
+          "text": "Smartphone camera quality is outstanding in daylight but struggles in low-light conditions.",
+          "expected_cluster": 0,
+          "topic": "Electronics"
+        },
+        {
+          "doc_id": "review_3",
+          "text": "This book provides comprehensive insights into machine learning algorithms with practical examples.",
+          "expected_cluster": 1,
+          "topic": "Books/Education"
+        },
+        {
+          "doc_id": "review_4",
+          "text": "Online course content is well-structured and the instructor explains complex concepts clearly.",
+          "expected_cluster": 1,
+          "topic": "Books/Education"
+        },
+        {
+          "doc_id": "review_5",
+          "text": "Restaurant service was prompt and the food quality exceeded expectations. Highly recommended!",
+          "expected_cluster": 2,
+          "topic": "Food/Service"
+        },
+        {
+          "doc_id": "review_6",
+          "text": "Hotel staff was friendly and accommodating. Room cleanliness and amenities were top-notch.",
+          "expected_cluster": 2,
+          "topic": "Food/Service"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_silhouette_score": 0.76
+    }
+  ]
+}

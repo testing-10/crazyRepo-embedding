@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "test_type": "robustness",
+    "category": "length_variation",
+    "description": "Robustness evaluation across different text lengths and content densities",
+    "total_tests": 6,
+    "evaluation_metrics": [
+      "embedding_consistency",
+      "length_scaling_stability",
+      "semantic_preservation"
+    ],
+    "length_categories": [
+      "micro",
+      "short",
+      "medium",
+      "long",
+      "very_long",
+      "extreme"
+    ],
+    "token_ranges": {
+      "micro": [
+        1,
+        5
+      ],
+      "short": [
+        6,
+        20
+      ],
+      "medium": [
+        21,
+        100
+      ],
+      "long": [
+        101,
+        300
+      ],
+      "very_long": [
+        301,
+        500
+      ],
+      "extreme": [
+        501,
+        1000
+      ]
+    },
+    "consistency_threshold": 0.8,
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "test_id": "micro_text_stability",
+      "description": "Embedding stability for very short texts",
+      "length_category": "micro",
+      "test_scenario": {
+        "action": "micro_text_evaluation",
+        "samples": [
+          {
+            "text": "AI",
+            "token_count": 1,
+            "semantic_density": "high",
+            "expected_embedding_norm": 1.0,
+            "stability_score": 0.85
+          },
+          {
+            "text": "Machine learning",
+            "token_count": 2,
+            "semantic_density": "high",
+            "expected_embedding_norm": 1.0,
+            "stability_score": 0.88
+          },
+          {
+            "text": "Deep neural networks",
+            "token_count": 3,
+            "semantic_density": "high",
+            "expected_embedding_norm": 1.0,
+            "stability_score": 0.9
+          },
+          {
+            "text": "Natural language processing systems",
+            "token_count": 4,
+            "semantic_density": "medium",
+            "expected_embedding_norm": 1.0,
+            "stability_score": 0.87
+          },
+          {
+            "text": "Cloud computing infrastructure solutions enable",
+            "token_count": 5,
+            "semantic_density": "medium",
+            "expected_embedding_norm": 1.0,
+            "stability_score": 0.85
+          }
+        ],
+        "consistency_tests": [
+          {
+            "base_text": "AI",
+            "variations": [
+              "AI.",
+              "AI!",
+              "AI?",
+              "ai",
+              "A.I."
+            ],
+            "expected_min_similarity": 0.82
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_stability_score": 0.83,
+        "embedding_norm_consistency": 0.95,
+        "variation_tolerance": 0.8
+      }
+    },
+    {
+      "test_id": "short_text_consistency",
+      "description": "Embedding consistency for short texts",
+      "length_category": "short",
+      "test_scenario": {
+        "action": "short_text_evaluation",
+        "samples": [
+          {
+            "text": "Artificial intelligence transforms industries.",
+            "token_count": 6,
+            "semantic_density": "high",
+            "content_type": "declarative",
+            "expected_stability": 0.92
+          },
+          {
+            "text": "Machine learning algorithms enable automation systems.",
+            "token_count": 8,
+            "semantic_density": "high",
+            "content_type": "descriptive",
+            "expected_stability": 0.9
+          },
+          {
+            "text": "Cloud computing provides scalable infrastructure solutions for businesses.",
+            "token_count": 10,
+            "semantic_density": "medium",
+            "content_type": "explanatory",
+            "expected_stability": 0.88
+          },
+          {
+            "text": "Data science combines statistical analysis with programming expertise to extract insights.",
+            "token_count": 13,
+            "semantic_density": "high",
+            "content_type": "definitional",
+            "expected_stability": 0.91
+          },
+          {
+            "text": "Blockchain technology ensures secure and transparent transaction processing across distributed networks.",
+            "token_count": 15,
+            "semantic_density": "medium",
+            "content_type": "descriptive",
+            "expected_stability": 0.89
+          }
+        ],
+        "length_progression_test": {
+          "base_concept": "machine learning",
+          "progressive_texts": [
+            "Machine learning",
+            "Machine learning algorithms",
+            "Machine learning algorithms enable automation",
+            "Machine learning algorithms enable intelligent automation systems",
+            "Machine learning algorithms enable intelligent automation systems for businesses"
+          ],
+          "expected_similarity_preservation": 0.85
+        }
+      },
+      "performance_targets": {
+        "min_consistency_score": 0.87,
+        "length_progression_stability": 0.83,
+        "semantic_preservation": 0.9
+      }
+    },
+    {
+      "test_id": "medium_text_scaling",
+      "description": "Embedding scaling behavior for medium-length texts",
+      "length_category": "medium",
+      "test_scenario": {
+        "action": "medium_text_evaluation",
+        "samples": [
+          {
+            "text": "Artificial intelligence and machine learning technologies are revolutionizing various industries by enabling automated decision-making processes and predictive analytics capabilities. These sophisticated algorithms can process vast amounts of information, identify complex patterns, and generate actionable insights that were previously impossible to obtain through traditional analytical methods.",
+            "token_count": 50,
+            "semantic_density": "high",
+            "content_complexity": "medium",
+            "expected_stability": 0.88
+          },
+          {
+            "text": "Cloud computing platforms provide comprehensive infrastructure solutions that allow organizations to deploy, scale, and manage applications efficiently while reducing operational costs and maintenance overhead. Modern cloud services offer various deployment models including public, private, and hybrid clouds, each designed to meet specific business requirements and security considerations.",
+            "token_count": 55,
+            "semantic_density": "medium",
+            "content_complexity": "medium",
+            "expected_stability": 0.86
+          },
+          {
+            "text": "Data science methodologies combine statistical analysis, programming skills, and domain expertise to extract meaningful insights from large datasets for business intelligence purposes. The field encompasses various techniques including data mining, machine learning, predictive modeling, and visualization tools that help organizations make data-driven decisions and optimize their operations across different sectors.",
+            "token_count": 60,
+            "semantic_density": "high",
+            "content_complexity": "high",
+            "expected_stability": 0.89
+          }
+        ],
+        "content_density_test": {
+          "high_density": "Machine learning algorithms utilize neural networks, decision trees, support vector machines, and ensemble methods to process data, identify patterns, extract features, and generate predictions for classification and regression tasks.",
+          "medium_density": "Machine learning involves using algorithms to analyze data and make predictions. These systems can learn from examples and improve their performance over time without being explicitly programmed for every scenario.",
+          "low_density": "Machine learning is a field that uses computers to learn from data. It helps make predictions and decisions. Many companies use it today for various applications and business purposes.",
+          "expected_density_correlation": 0.75
+        }
+      },
+      "performance_targets": {
+        "scaling_consistency": 0.85,
+        "density_handling": 0.8,
+        "complexity_robustness": 0.87
+      }
+    },
+    {
+      "test_id": "long_text_stability",
+      "description": "Embedding stability for long-form content",
+      "length_category": "long",
+      "test_scenario": {
+        "action": "long_text_evaluation",
+        "samples": [
+          {
+            "text": "The rapid advancement of artificial intelligence and machine learning technologies has fundamentally transformed how organizations approach data analysis, decision-making, and automation across various sectors. These sophisticated algorithms can process vast amounts of information, identify complex patterns, and generate actionable insights that were previously impossible to obtain through traditional analytical methods. Companies are increasingly leveraging these capabilities to optimize operations, enhance customer experiences, and drive innovation in their respective markets. The integration of AI systems into business processes has enabled unprecedented levels of efficiency and accuracy, while also creating new opportunities for competitive advantage and revenue generation through intelligent automation and predictive analytics.",
+            "token_count": 120,
+            "semantic_density": "high",
+            "content_structure": "coherent_narrative",
+            "expected_stability": 0.85
+          },
+          {
+            "text": "Modern cloud computing architectures enable organizations to build scalable, resilient, and cost-effective technology solutions that can adapt to changing business requirements and market conditions. These platforms provide comprehensive services including compute resources, storage solutions, networking capabilities, and managed databases that eliminate the need for extensive on-premises infrastructure investments. Furthermore, cloud-native development practices promote microservices architectures, containerization, and continuous integration workflows that accelerate software delivery cycles and improve system reliability. The adoption of cloud technologies has democratized access to enterprise-grade infrastructure, allowing startups and small businesses to compete with larger organizations by leveraging the same powerful computing resources and advanced services.",
+            "token_count": 130,
+            "semantic_density": "medium",
+            "content_structure": "technical_explanation",
+            "expected_stability": 0.83
+          }
+        ],
+        "coherence_preservation_test": {
+          "coherent_text": "Blockchain technology represents a paradigm shift in how we approach data storage, transaction processing, and trust establishment in digital environments. This distributed ledger system eliminates the need for central authorities by creating an immutable record of transactions that is verified and maintained by a network of participants.",
+          "fragmented_text": "Blockchain technology. Data storage. Transaction processing. Trust establishment. Digital environments. Distributed ledger system. Central authorities. Immutable record. Transactions verified. Network participants maintain.",
+          "expected_coherence_advantage": 0.15
+        }
+      },
+      "performance_targets": {
+        "long_form_stability": 0.82,
+        "coherence_sensitivity": 0.78,
+        "narrative_preservation": 0.85
+      }
+    },
+    {
+      "test_id": "very_long_text_handling",
+      "description": "Embedding behavior for very long texts",
+      "length_category": "very_long",
+      "test_scenario": {
+        "action": "very_long_text_evaluation",
+        "token_range": [
+          301,
+          500
+        ],
+        "content_types": [
+          "technical_documentation",
+          "research_abstract",
+          "business_report"
+        ],
+        "truncation_behavior": {
+          "test_truncation_points": [
+            256,
+            384,
+            512
+          ],
+          "expected_similarity_preservation": 0.75,
+          "information_loss_tolerance": 0.25
+        },
+        "samples": [
+          {
+            "content_type": "technical_documentation",
+            "token_count": 350,
+            "expected_stability": 0.8,
+            "truncation_sensitivity": "medium"
+          },
+          {
+            "content_type": "research_abstract",
+            "token_count": 400,
+            "expected_stability": 0.82,
+            "truncation_sensitivity": "low"
+          },
+          {
+            "content_type": "business_report",
+            "token_count": 450,
+            "expected_stability": 0.78,
+            "truncation_sensitivity": "high"
+          }
+        ]
+      },
+      "performance_targets": {
+        "very_long_stability": 0.78,
+        "truncation_robustness": 0.73,
+        "content_type_consistency": 0.8
+      }
+    },
+    {
+      "test_id": "extreme_length_behavior",
+      "description": "Embedding behavior at extreme text lengths",
+      "length_category": "extreme",
+      "test_scenario": {
+        "action": "extreme_length_evaluation",
+        "token_range": [
+          501,
+          1000
+        ],
+        "stress_test_scenarios": [
+          {
+            "scenario": "repetitive_content",
+            "description": "Text with high repetition",
+            "expected_degradation": 0.2
+          },
+          {
+            "scenario": "diverse_content",
+            "description": "Text with diverse topics",
+            "expected_degradation": 0.15
+          },
+          {
+            "scenario": "technical_content",
+            "description": "Dense technical content",
+            "expected_degradation": 0.25
+          }
+        ],
+        "performance_monitoring": {
+          "memory_usage_scaling": "linear",
+          "processing_time_scaling": "sub_quadratic",
+          "quality_degradation_threshold": 0.3
+        }
+      },
+      "performance_targets": {
+        "extreme_length_tolerance": 0.7,
+        "graceful_degradation": true,
+        "resource_efficiency": 0.75
+      }
+    }
+  ]
+}

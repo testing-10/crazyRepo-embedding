@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "test_type": "efficiency",
+    "category": "batch_processing",
+    "description": "Batch processing efficiency evaluation for embedding models",
+    "total_tests": 6,
+    "evaluation_metrics": [
+      "batch_throughput",
+      "latency_per_item",
+      "memory_efficiency",
+      "scaling_factor"
+    ],
+    "batch_sizes": [
+      1,
+      5,
+      10,
+      25,
+      50,
+      100,
+      200
+    ],
+    "text_categories": [
+      "short",
+      "medium",
+      "long",
+      "mixed"
+    ],
+    "efficiency_targets": {
+      "min_throughput_improvement": 2.0,
+      "max_latency_per_item_ms": 100,
+      "memory_efficiency_ratio": 0.8
+    },
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "test_id": "small_batch_efficiency",
+      "description": "Small batch processing efficiency evaluation",
+      "batch_sizes": [
+        1,
+        5,
+        10
+      ],
+      "text_category": "short",
+      "test_scenario": {
+        "action": "small_batch_comparison",
+        "text_samples": [
+          "AI transforms industries.",
+          "Machine learning algorithms.",
+          "Deep neural networks.",
+          "Natural language processing.",
+          "Computer vision systems.",
+          "Data science methodologies.",
+          "Cloud computing platforms.",
+          "Blockchain technology solutions.",
+          "Internet of Things devices.",
+          "Cybersecurity protection measures."
+        ],
+        "iterations": 50,
+        "expected_results": {
+          "batch_1": {
+            "avg_latency_ms": 200,
+            "throughput_tps": 5,
+            "memory_usage_mb": 100
+          },
+          "batch_5": {
+            "avg_latency_ms": 400,
+            "throughput_tps": 12,
+            "memory_usage_mb": 150
+          },
+          "batch_10": {
+            "avg_latency_ms": 600,
+            "throughput_tps": 16,
+            "memory_usage_mb": 200
+          }
+        }
+      },
+      "performance_targets": {
+        "efficiency_improvement_factor": 2.5,
+        "latency_scaling_acceptable": true,
+        "memory_scaling_linear": true
+      }
+    },
+    {
+      "test_id": "medium_batch_efficiency",
+      "description": "Medium batch processing efficiency evaluation",
+      "batch_sizes": [
+        10,
+        25,
+        50
+      ],
+      "text_category": "medium",
+      "test_scenario": {
+        "action": "medium_batch_comparison",
+        "text_samples": [
+          "Artificial intelligence and machine learning technologies are revolutionizing various industries by enabling automated decision-making processes.",
+          "Cloud computing platforms provide scalable infrastructure solutions that allow businesses to deploy applications efficiently while reducing costs.",
+          "Data science methodologies combine statistical analysis, programming skills, and domain expertise to extract meaningful insights from datasets.",
+          "Natural language processing systems understand and generate human language through advanced neural network architectures and algorithms.",
+          "Computer vision algorithms analyze visual content to identify objects, patterns, and features in images and video streams.",
+          "Blockchain technology ensures secure and transparent transaction processing across distributed networks without central authorities.",
+          "Internet of Things devices collect and transmit data from physical environments to enable smart automation and monitoring.",
+          "Cybersecurity frameworks protect digital assets and infrastructure from threats through comprehensive security measures and protocols.",
+          "Quantum computing promises exponential computational power for solving complex problems that are intractable for classical computers.",
+          "Edge computing brings processing capabilities closer to data sources to reduce latency and improve real-time application performance."
+        ],
+        "iterations": 30,
+        "expected_results": {
+          "batch_10": {
+            "avg_latency_ms": 800,
+            "throughput_tps": 12,
+            "memory_usage_mb": 300
+          },
+          "batch_25": {
+            "avg_latency_ms": 1500,
+            "throughput_tps": 16,
+            "memory_usage_mb": 500
+          },
+          "batch_50": {
+            "avg_latency_ms": 2500,
+            "throughput_tps": 20,
+            "memory_usage_mb": 800
+          }
+        }
+      },
+      "performance_targets": {
+        "efficiency_improvement_factor": 3.0,
+        "optimal_batch_size": 25,
+        "diminishing_returns_threshold": 50
+      }
+    },
+    {
+      "test_id": "large_batch_efficiency",
+      "description": "Large batch processing efficiency evaluation",
+      "batch_sizes": [
+        50,
+        100,
+        200
+      ],
+      "text_category": "long",
+      "test_scenario": {
+        "action": "large_batch_comparison",
+        "text_length_range": {
+          "min_tokens": 100,
+          "max_tokens": 300,
+          "average_tokens": 200
+        },
+        "sample_count": 200,
+        "iterations": 10,
+        "expected_results": {
+          "batch_50": {
+            "avg_latency_ms": 3000,
+            "throughput_tps": 16,
+            "memory_usage_mb": 1200
+          },
+          "batch_100": {
+            "avg_latency_ms": 5000,
+            "throughput_tps": 20,
+            "memory_usage_mb": 2000
+          },
+          "batch_200": {
+            "avg_latency_ms": 8000,
+            "throughput_tps": 25,
+            "memory_usage_mb": 3500
+          }
+        }
+      },
+      "performance_targets": {
+        "efficiency_improvement_factor": 4.0,
+        "memory_efficiency_threshold": 0.7,
+        "max_acceptable_latency_ms": 10000
+      }
+    },
+    {
+      "test_id": "mixed_content_batch",
+      "description": "Mixed content batch processing evaluation",
+      "batch_sizes": [
+        20,
+        50
+      ],
+      "text_category": "mixed",
+      "test_scenario": {
+        "action": "mixed_content_processing",
+        "content_distribution": {
+          "short_texts": 0.3,
+          "medium_texts": 0.5,
+          "long_texts": 0.2
+        },
+        "sample_texts": {
+          "short": [
+            "AI revolutionizes technology.",
+            "Machine learning algorithms.",
+            "Deep neural networks.",
+            "Natural language processing.",
+            "Computer vision systems.",
+            "Data science methodologies."
+          ],
+          "medium": [
+            "Artificial intelligence technologies are transforming industries through automated decision-making and predictive analytics capabilities.",
+            "Cloud computing platforms provide scalable infrastructure solutions for modern enterprise applications and services.",
+            "Data science combines statistical analysis with programming expertise to extract actionable insights from complex datasets."
+          ],
+          "long": [
+            "The rapid advancement of artificial intelligence and machine learning technologies has fundamentally transformed how organizations approach data analysis, decision-making, and automation across various sectors. These sophisticated algorithms can process vast amounts of information, identify complex patterns, and generate actionable insights that were previously impossible to obtain through traditional analytical methods."
+          ]
+        },
+        "iterations": 25,
+        "expected_results": {
+          "batch_20": {
+            "avg_latency_ms": 1200,
+            "throughput_tps": 16,
+            "memory_usage_mb": 400,
+            "variance_coefficient": 0.3
+          },
+          "batch_50": {
+            "avg_latency_ms": 2800,
+            "throughput_tps": 18,
+            "memory_usage_mb": 900,
+            "variance_coefficient": 0.25
+          }
+        }
+      },
+      "performance_targets": {
+        "consistency_required": true,
+        "variance_tolerance": 0.4,
+        "adaptive_batching_benefit": 1.5
+      }
+    },
+    {
+      "test_id": "batch_scaling_analysis",
+      "description": "Batch size scaling analysis and optimization",
+      "batch_sizes": [
+        1,
+        5,
+        10,
+        20,
+        50,
+        100
+      ],
+      "text_category": "medium",
+      "test_scenario": {
+        "action": "scaling_analysis",
+        "fixed_text_sample": "Machine learning algorithms enable intelligent automation systems that can process large datasets, identify patterns, and make predictions to support business decision-making processes across various industries and applications.",
+        "iterations_per_batch": 20,
+        "metrics_to_track": [
+          "latency_per_item",
+          "total_throughput",
+          "memory_efficiency",
+          "cpu_utilization"
+        ],
+        "expected_scaling_pattern": {
+          "optimal_batch_size": 25,
+          "efficiency_plateau": 50,
+          "diminishing_returns_start": 75
+        }
+      },
+      "performance_targets": {
+        "linear_scaling_range": [
+          1,
+          25
+        ],
+        "efficiency_plateau_range": [
+          25,
+          50
+        ],
+        "max_beneficial_batch_size": 100
+      }
+    },
+    {
+      "test_id": "concurrent_batch_processing",
+      "description": "Concurrent batch processing efficiency evaluation",
+      "batch_sizes": [
+        10,
+        25
+      ],
+      "text_category": "mixed",
+      "test_scenario": {
+        "action": "concurrent_batch_processing",
+        "concurrent_batches": [
+          1,
+          2,
+          4
+        ],
+        "batch_size": 25,
+        "text_samples_per_batch": 25,
+        "total_concurrent_requests": 100,
+        "expected_results": {
+          "single_batch": {
+            "avg_latency_ms": 1500,
+            "total_time_ms": 6000,
+            "memory_usage_mb": 500
+          },
+          "dual_batch": {
+            "avg_latency_ms": 1800,
+            "total_time_ms": 3600,
+            "memory_usage_mb": 800
+          },
+          "quad_batch": {
+            "avg_latency_ms": 2200,
+            "total_time_ms": 2200,
+            "memory_usage_mb": 1400
+          }
+        }
+      },
+      "performance_targets": {
+        "concurrency_efficiency": 0.8,
+        "memory_overhead_acceptable": 2.0,
+        "thread_safety_required": true
+      }
+    }
+  ]
+}

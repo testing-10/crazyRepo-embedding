@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "test_type": "clustering",
+    "category": "hierarchical_clustering",
+    "description": "Hierarchical clustering evaluation with multi-level topic organization",
+    "total_levels": 3,
+    "total_documents": 24,
+    "evaluation_metrics": [
+      "cophenetic_correlation",
+      "silhouette_score",
+      "dendrogram_quality"
+    ],
+    "clustering_methods": [
+      "ward",
+      "complete",
+      "average"
+    ],
+    "domains": [
+      "academic_papers",
+      "corporate_documents",
+      "web_content"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "cluster_id": "academic_hierarchy_1",
+      "domain": "academic_papers",
+      "hierarchy_levels": 3,
+      "documents": [
+        {
+          "doc_id": "paper_1",
+          "text": "Supervised learning algorithms require labeled training data to learn classification patterns.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Supervised Learning",
+          "level_3_cluster": "Classification"
+        },
+        {
+          "doc_id": "paper_2",
+          "text": "Support vector machines optimize decision boundaries for binary classification problems.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Supervised Learning",
+          "level_3_cluster": "Classification"
+        },
+        {
+          "doc_id": "paper_3",
+          "text": "Linear regression models predict continuous target variables using feature relationships.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Supervised Learning",
+          "level_3_cluster": "Regression"
+        },
+        {
+          "doc_id": "paper_4",
+          "text": "Polynomial regression captures non-linear relationships between input and output variables.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Supervised Learning",
+          "level_3_cluster": "Regression"
+        },
+        {
+          "doc_id": "paper_5",
+          "text": "K-means clustering partitions data into distinct groups without labeled examples.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Unsupervised Learning",
+          "level_3_cluster": "Clustering"
+        },
+        {
+          "doc_id": "paper_6",
+          "text": "Hierarchical clustering creates tree-like structures representing data relationships.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Unsupervised Learning",
+          "level_3_cluster": "Clustering"
+        },
+        {
+          "doc_id": "paper_7",
+          "text": "Principal component analysis reduces dimensionality while preserving data variance.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Unsupervised Learning",
+          "level_3_cluster": "Dimensionality Reduction"
+        },
+        {
+          "doc_id": "paper_8",
+          "text": "t-SNE visualization reveals high-dimensional data structure in two-dimensional space.",
+          "level_1_cluster": "Machine Learning",
+          "level_2_cluster": "Unsupervised Learning",
+          "level_3_cluster": "Dimensionality Reduction"
+        }
+      ],
+      "difficulty": "hard",
+      "expected_cophenetic_correlation": 0.85
+    },
+    {
+      "cluster_id": "corporate_hierarchy_1",
+      "domain": "corporate_documents",
+      "hierarchy_levels": 3,
+      "documents": [
+        {
+          "doc_id": "corp_1",
+          "text": "Annual financial reports demonstrate company profitability and growth trajectory over fiscal periods.",
+          "level_1_cluster": "Finance",
+          "level_2_cluster": "Financial Reporting",
+          "level_3_cluster": "Annual Reports"
+        },
+        {
+          "doc_id": "corp_2",
+          "text": "Quarterly earnings statements provide stakeholders with regular performance updates and forecasts.",
+          "level_1_cluster": "Finance",
+          "level_2_cluster": "Financial Reporting",
+          "level_3_cluster": "Quarterly Reports"
+        },
+        {
+          "doc_id": "corp_3",
+          "text": "Budget allocation strategies optimize resource distribution across departmental initiatives.",
+          "level_1_cluster": "Finance",
+          "level_2_cluster": "Budget Management",
+          "level_3_cluster": "Resource Allocation"
+        },
+        {
+          "doc_id": "corp_4",
+          "text": "Cost reduction initiatives identify operational efficiencies and expense optimization opportunities.",
+          "level_1_cluster": "Finance",
+          "level_2_cluster": "Budget Management",
+          "level_3_cluster": "Cost Control"
+        },
+        {
+          "doc_id": "corp_5",
+          "text": "Employee recruitment processes ensure talent acquisition aligns with organizational needs.",
+          "level_1_cluster": "Human Resources",
+          "level_2_cluster": "Talent Management",
+          "level_3_cluster": "Recruitment"
+        },
+        {
+          "doc_id": "corp_6",
+          "text": "Performance evaluation systems measure employee contributions and development opportunities.",
+          "level_1_cluster": "Human Resources",
+          "level_2_cluster": "Talent Management",
+          "level_3_cluster": "Performance Review"
+        },
+        {
+          "doc_id": "corp_7",
+          "text": "Training programs enhance employee skills and support professional development goals.",
+          "level_1_cluster": "Human Resources",
+          "level_2_cluster": "Employee Development",
+          "level_3_cluster": "Skills Training"
+        },
+        {
+          "doc_id": "corp_8",
+          "text": "Leadership development initiatives prepare high-potential employees for executive roles.",
+          "level_1_cluster": "Human Resources",
+          "level_2_cluster": "Employee Development",
+          "level_3_cluster": "Leadership Programs"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_cophenetic_correlation": 0.78
+    },
+    {
+      "cluster_id": "web_content_hierarchy_1",
+      "domain": "web_content",
+      "hierarchy_levels": 3,
+      "documents": [
+        {
+          "doc_id": "web_1",
+          "text": "Frontend frameworks like React and Vue.js enable interactive user interface development.",
+          "level_1_cluster": "Web Development",
+          "level_2_cluster": "Frontend Development",
+          "level_3_cluster": "JavaScript Frameworks"
+        },
+        {
+          "doc_id": "web_2",
+          "text": "CSS preprocessors and responsive design ensure optimal user experience across devices.",
+          "level_1_cluster": "Web Development",
+          "level_2_cluster": "Frontend Development",
+          "level_3_cluster": "Styling & Design"
+        },
+        {
+          "doc_id": "web_3",
+          "text": "Node.js and Express.js provide robust backend infrastructure for web applications.",
+          "level_1_cluster": "Web Development",
+          "level_2_cluster": "Backend Development",
+          "level_3_cluster": "Server Technologies"
+        },
+        {
+          "doc_id": "web_4",
+          "text": "Database design and API development support scalable web application architecture.",
+          "level_1_cluster": "Web Development",
+          "level_2_cluster": "Backend Development",
+          "level_3_cluster": "Data Management"
+        },
+        {
+          "doc_id": "web_5",
+          "text": "Search engine optimization improves website visibility and organic traffic generation.",
+          "level_1_cluster": "Digital Marketing",
+          "level_2_cluster": "SEO & Content",
+          "level_3_cluster": "Search Optimization"
+        },
+        {
+          "doc_id": "web_6",
+          "text": "Content marketing strategies engage audiences through valuable and relevant information.",
+          "level_1_cluster": "Digital Marketing",
+          "level_2_cluster": "SEO & Content",
+          "level_3_cluster": "Content Strategy"
+        },
+        {
+          "doc_id": "web_7",
+          "text": "Social media advertising targets specific demographics through platform-specific campaigns.",
+          "level_1_cluster": "Digital Marketing",
+          "level_2_cluster": "Paid Advertising",
+          "level_3_cluster": "Social Media Ads"
+        },
+        {
+          "doc_id": "web_8",
+          "text": "Pay-per-click campaigns optimize ad spend through keyword bidding and conversion tracking.",
+          "level_1_cluster": "Digital Marketing",
+          "level_2_cluster": "Paid Advertising",
+          "level_3_cluster": "PPC Campaigns"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_cophenetic_correlation": 0.82
+    }
+  ]
+}

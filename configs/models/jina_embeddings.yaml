@@ -1,0 +1,22 @@
+api_config:
+  base_url: https://api.jina.ai/v1
+  max_retries: 3
+  retry_delay: 1
+  timeout: 30
+batch_config:
+  max_batch_size: 100
+  max_concurrent_requests: 10
+cost:
+  currency: USD
+  per_1k_tokens: 2.0e-05
+dimensions: 768
+display_name: Jina Embeddings v2 Base EN
+enabled: true
+max_tokens: 8192
+model_name: jina-embeddings-v2-base-en
+normalization: true
+provider: jina
+supported_tasks:
+- similarity
+- retrieval
+- clustering

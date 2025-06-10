@@ -1,0 +1,281 @@
+{
+  "metadata": {
+    "name": "Question-Answer Retrieval",
+    "description": "Retrieval evaluation for question-answering scenarios with query-document matching",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_queries": 5,
+    "domains": [
+      "general",
+      "technical",
+      "scientific",
+      "historical",
+      "medical"
+    ],
+    "evaluation_metrics": [
+      "precision_at_k",
+      "recall_at_k",
+      "mrr",
+      "ndcg"
+    ],
+    "retrieval_type": "question_answering",
+    "corpus_size_range": "5-20 documents per query"
+  },
+  "test_cases": [
+    {
+      "id": "qa_001",
+      "query": "What are the main causes of climate change?",
+      "corpus": [
+        {
+          "doc_id": "doc_001",
+          "text": "Climate change is primarily caused by greenhouse gas emissions from human activities. The burning of fossil fuels like coal, oil, and natural gas releases carbon dioxide into the atmosphere. Deforestation reduces the Earth's capacity to absorb CO2, while industrial processes and agriculture contribute methane and other greenhouse gases.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_002",
+          "text": "The greenhouse effect occurs when certain gases in Earth's atmosphere trap heat from the sun. While this is a natural process that makes life possible, human activities have intensified it by increasing concentrations of greenhouse gases like carbon dioxide, methane, and nitrous oxide.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_003",
+          "text": "Renewable energy sources like solar, wind, and hydroelectric power offer alternatives to fossil fuels. These clean energy technologies can significantly reduce greenhouse gas emissions and help mitigate climate change impacts.",
+          "relevance_score": 0.6,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_004",
+          "text": "The history of pizza dates back to ancient civilizations, with flatbreads topped with oils and herbs being common in Mediterranean cultures. Modern pizza as we know it originated in Naples, Italy, in the 18th century.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_005",
+          "text": "Ocean acidification is another consequence of increased atmospheric CO2. As oceans absorb more carbon dioxide, they become more acidic, threatening marine ecosystems and coral reefs.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_001",
+        "doc_002",
+        "doc_003",
+        "doc_005"
+      ],
+      "domain": "scientific",
+      "difficulty": "medium",
+      "query_type": "factual",
+      "metadata": {
+        "topic": "climate_change",
+        "answer_type": "explanatory",
+        "corpus_diversity": "high",
+        "distractor_count": 1
+      }
+    },
+    {
+      "id": "qa_002",
+      "query": "How does machine learning work?",
+      "corpus": [
+        {
+          "doc_id": "doc_006",
+          "text": "Machine learning is a subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed. It uses algorithms to analyze data, identify patterns, and make predictions or decisions.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_007",
+          "text": "There are three main types of machine learning: supervised learning (using labeled data), unsupervised learning (finding patterns in unlabeled data), and reinforcement learning (learning through trial and error with rewards).",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_008",
+          "text": "Neural networks are a popular machine learning technique inspired by the human brain. They consist of interconnected nodes that process information and can learn complex patterns in data through training.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_009",
+          "text": "The best chocolate chip cookie recipe requires butter, sugar, eggs, flour, and chocolate chips. Cream the butter and sugar, add eggs, mix in flour, fold in chocolate chips, and bake at 375\u00b0F for 10-12 minutes.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_010",
+          "text": "Data preprocessing is crucial in machine learning. It involves cleaning data, handling missing values, normalizing features, and splitting datasets into training and testing sets to ensure model accuracy.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_006",
+        "doc_007",
+        "doc_008",
+        "doc_010"
+      ],
+      "domain": "technical",
+      "difficulty": "medium",
+      "query_type": "explanatory",
+      "metadata": {
+        "topic": "machine_learning",
+        "answer_type": "conceptual",
+        "corpus_diversity": "medium",
+        "distractor_count": 1
+      }
+    },
+    {
+      "id": "qa_003",
+      "query": "What is the treatment for hypertension?",
+      "corpus": [
+        {
+          "doc_id": "doc_011",
+          "text": "Hypertension treatment typically involves lifestyle modifications and medications. Lifestyle changes include reducing sodium intake, regular exercise, weight management, limiting alcohol, and stress reduction. Common medications include ACE inhibitors, diuretics, and calcium channel blockers.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_012",
+          "text": "ACE inhibitors work by blocking the production of angiotensin II, a hormone that narrows blood vessels. This helps relax blood vessels and lower blood pressure. Common examples include lisinopril, enalapril, and captopril.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_013",
+          "text": "Regular blood pressure monitoring is essential for hypertension management. Home monitoring devices allow patients to track their readings and help healthcare providers adjust treatment plans accordingly.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_014",
+          "text": "The Great Wall of China is an ancient fortification system built to protect Chinese states from invasions. Construction began in the 7th century BC and continued for centuries, with the most famous sections built during the Ming Dynasty.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_015",
+          "text": "Diuretics, also known as water pills, help reduce blood pressure by removing excess sodium and water from the body through increased urination. Thiazide diuretics are commonly prescribed for hypertension.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_011",
+        "doc_012",
+        "doc_013",
+        "doc_015"
+      ],
+      "domain": "medical",
+      "difficulty": "medium",
+      "query_type": "treatment",
+      "metadata": {
+        "topic": "hypertension",
+        "answer_type": "medical_advice",
+        "corpus_diversity": "high",
+        "distractor_count": 1
+      }
+    },
+    {
+      "id": "qa_004",
+      "query": "Who invented the telephone?",
+      "corpus": [
+        {
+          "doc_id": "doc_016",
+          "text": "Alexander Graham Bell is credited with inventing the telephone in 1876. He received the first patent for the telephone on March 10, 1876, and made the first successful telephone call to his assistant Thomas Watson.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_017",
+          "text": "The invention of the telephone was the result of Bell's work on the harmonic telegraph, which aimed to transmit multiple telegraph messages simultaneously over a single wire using different audio frequencies.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_018",
+          "text": "Elisha Gray also worked on telephone technology and filed a patent caveat on the same day as Bell's patent application. This led to a famous patent dispute, but Bell's patent was ultimately upheld.",
+          "relevance_score": 0.7,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_019",
+          "text": "Photosynthesis is the process by which plants convert sunlight, carbon dioxide, and water into glucose and oxygen. This process occurs in chloroplasts and is essential for plant growth and oxygen production.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_020",
+          "text": "Bell's first telephone call on March 10, 1876, transmitted the famous words 'Mr. Watson, come here, I want to see you' from Bell to his assistant in the next room.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_016",
+        "doc_017",
+        "doc_018",
+        "doc_020"
+      ],
+      "domain": "historical",
+      "difficulty": "easy",
+      "query_type": "factual",
+      "metadata": {
+        "topic": "telephone_invention",
+        "answer_type": "historical_fact",
+        "corpus_diversity": "high",
+        "distractor_count": 1
+      }
+    },
+    {
+      "id": "qa_005",
+      "query": "What are the benefits of regular exercise?",
+      "corpus": [
+        {
+          "doc_id": "doc_021",
+          "text": "Regular exercise provides numerous health benefits including improved cardiovascular health, stronger muscles and bones, better mental health, and enhanced immune function. It also helps maintain healthy weight and reduces the risk of chronic diseases.",
+          "relevance_score": 1.0,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_022",
+          "text": "Exercise releases endorphins, which are natural mood elevators that help reduce stress, anxiety, and depression. Physical activity also improves sleep quality and cognitive function.",
+          "relevance_score": 0.9,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_023",
+          "text": "Cardiovascular exercise like running, swimming, and cycling strengthens the heart muscle, improves circulation, and lowers blood pressure. It also increases lung capacity and oxygen delivery to tissues.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        },
+        {
+          "doc_id": "doc_024",
+          "text": "The process of making sourdough bread involves creating a starter culture of wild yeast and bacteria. This fermentation process gives sourdough its distinctive tangy flavor and chewy texture.",
+          "relevance_score": 0.0,
+          "is_relevant": false
+        },
+        {
+          "doc_id": "doc_025",
+          "text": "Strength training exercises help build muscle mass, increase bone density, and boost metabolism. Regular resistance training can prevent age-related muscle loss and improve functional strength for daily activities.",
+          "relevance_score": 0.8,
+          "is_relevant": true
+        }
+      ],
+      "expected_relevant_docs": [
+        "doc_021",
+        "doc_022",
+        "doc_023",
+        "doc_025"
+      ],
+      "domain": "general",
+      "difficulty": "easy",
+      "query_type": "benefits",
+      "metadata": {
+        "topic": "exercise_benefits",
+        "answer_type": "health_information",
+        "corpus_diversity": "high",
+        "distractor_count": 1
+      }
+    }
+  ]
+}

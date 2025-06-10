@@ -1,0 +1,337 @@
+{
+  "metadata": {
+    "name": "Cross-Lingual Similarity",
+    "description": "Semantic similarity evaluation across different languages",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_pairs": 30,
+    "languages": [
+      "English",
+      "Spanish",
+      "French",
+      "German",
+      "Italian",
+      "Portuguese"
+    ],
+    "similarity_scale": "0.0 to 1.0 (higher = more similar)",
+    "evaluation_metrics": [
+      "cosine_similarity",
+      "semantic_similarity_score"
+    ],
+    "note": "Tests multilingual embedding model capabilities"
+  },
+  "test_cases": [
+    {
+      "id": "cl_001",
+      "text1": "Hello, how are you today?",
+      "text2": "Hola, \u00bfc\u00f3mo est\u00e1s hoy?",
+      "language1": "English",
+      "language2": "Spanish",
+      "expected_similarity": 0.95,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "greeting",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_002",
+      "text1": "The weather is beautiful today.",
+      "text2": "Le temps est magnifique aujourd'hui.",
+      "language1": "English",
+      "language2": "French",
+      "expected_similarity": 0.92,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "weather",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_003",
+      "text1": "I love reading books in my free time.",
+      "text2": "Ich liebe es, in meiner Freizeit B\u00fccher zu lesen.",
+      "language1": "English",
+      "language2": "German",
+      "expected_similarity": 0.9,
+      "category": "direct_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "hobbies",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_004",
+      "text1": "Artificial intelligence is transforming our world.",
+      "text2": "L'intelligenza artificiale sta trasformando il nostro mondo.",
+      "language1": "English",
+      "language2": "Italian",
+      "expected_similarity": 0.93,
+      "category": "direct_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "technology",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_005",
+      "text1": "The cat is sleeping on the sofa.",
+      "text2": "O gato est\u00e1 dormindo no sof\u00e1.",
+      "language1": "English",
+      "language2": "Portuguese",
+      "expected_similarity": 0.94,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "daily_life",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_006",
+      "text1": "It's raining cats and dogs.",
+      "text2": "Llueve a c\u00e1ntaros.",
+      "language1": "English",
+      "language2": "Spanish",
+      "expected_similarity": 0.85,
+      "category": "idiomatic_translation",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "weather",
+        "translation_type": "idiomatic",
+        "cultural_context": "language_specific",
+        "literal_meaning_en": "heavy rain",
+        "literal_meaning_es": "raining pitchers"
+      }
+    },
+    {
+      "id": "cl_007",
+      "text1": "Break a leg!",
+      "text2": "Bonne chance!",
+      "language1": "English",
+      "language2": "French",
+      "expected_similarity": 0.8,
+      "category": "idiomatic_translation",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "encouragement",
+        "translation_type": "idiomatic",
+        "cultural_context": "language_specific",
+        "literal_meaning_en": "good luck",
+        "literal_meaning_fr": "good luck"
+      }
+    },
+    {
+      "id": "cl_008",
+      "text1": "Time flies when you're having fun.",
+      "text2": "Die Zeit vergeht wie im Flug, wenn man Spa\u00df hat.",
+      "language1": "English",
+      "language2": "German",
+      "expected_similarity": 0.88,
+      "category": "idiomatic_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "time_perception",
+        "translation_type": "semi_idiomatic",
+        "cultural_context": "universal_concept"
+      }
+    },
+    {
+      "id": "cl_009",
+      "text1": "Machine learning algorithms can process large datasets efficiently.",
+      "text2": "Los algoritmos de aprendizaje autom\u00e1tico pueden procesar grandes conjuntos de datos de manera eficiente.",
+      "language1": "English",
+      "language2": "Spanish",
+      "expected_similarity": 0.96,
+      "category": "technical_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "technology",
+        "translation_type": "technical",
+        "cultural_context": "universal",
+        "domain": "computer_science"
+      }
+    },
+    {
+      "id": "cl_010",
+      "text1": "The research methodology employed quantitative analysis techniques.",
+      "text2": "La m\u00e9thodologie de recherche a employ\u00e9 des techniques d'analyse quantitative.",
+      "language1": "English",
+      "language2": "French",
+      "expected_similarity": 0.94,
+      "category": "academic_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "research",
+        "translation_type": "academic",
+        "cultural_context": "universal",
+        "domain": "academic"
+      }
+    },
+    {
+      "id": "cl_011",
+      "text1": "The sun rises in the east.",
+      "text2": "La luna brilla en la noche.",
+      "language1": "English",
+      "language2": "Spanish",
+      "expected_similarity": 0.35,
+      "category": "different_meaning",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "astronomy",
+        "translation_type": "none",
+        "cultural_context": "universal",
+        "note": "Different celestial objects and times"
+      }
+    },
+    {
+      "id": "cl_012",
+      "text1": "I enjoy cooking Italian food.",
+      "text2": "J'aime cuisiner la nourriture italienne.",
+      "language1": "English",
+      "language2": "French",
+      "expected_similarity": 0.93,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "cooking",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_013",
+      "text1": "The early bird catches the worm.",
+      "text2": "Morgenstund hat Gold im Mund.",
+      "language1": "English",
+      "language2": "German",
+      "expected_similarity": 0.82,
+      "category": "idiomatic_translation",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "productivity",
+        "translation_type": "idiomatic",
+        "cultural_context": "universal_concept",
+        "literal_meaning_en": "early action brings success",
+        "literal_meaning_de": "morning hour has gold in mouth"
+      }
+    },
+    {
+      "id": "cl_014",
+      "text1": "Climate change is a global challenge.",
+      "text2": "Il cambiamento climatico \u00e8 una sfida globale.",
+      "language1": "English",
+      "language2": "Italian",
+      "expected_similarity": 0.95,
+      "category": "direct_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "environment",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_015",
+      "text1": "Education is the key to success.",
+      "text2": "A educa\u00e7\u00e3o \u00e9 a chave para o sucesso.",
+      "language1": "English",
+      "language2": "Portuguese",
+      "expected_similarity": 0.96,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "education",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_016",
+      "text1": "Don't count your chickens before they hatch.",
+      "text2": "No vendas la piel del oso antes de cazarlo.",
+      "language1": "English",
+      "language2": "Spanish",
+      "expected_similarity": 0.78,
+      "category": "idiomatic_translation",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "caution",
+        "translation_type": "idiomatic",
+        "cultural_context": "universal_concept",
+        "literal_meaning_en": "don't assume success prematurely",
+        "literal_meaning_es": "don't sell bear's skin before hunting it"
+      }
+    },
+    {
+      "id": "cl_017",
+      "text1": "The database query returned no results.",
+      "text2": "La requ\u00eate de base de donn\u00e9es n'a renvoy\u00e9 aucun r\u00e9sultat.",
+      "language1": "English",
+      "language2": "French",
+      "expected_similarity": 0.94,
+      "category": "technical_translation",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "database",
+        "translation_type": "technical",
+        "cultural_context": "universal",
+        "domain": "computer_science"
+      }
+    },
+    {
+      "id": "cl_018",
+      "text1": "Music is the universal language.",
+      "text2": "Die Musik ist die universelle Sprache.",
+      "language1": "English",
+      "language2": "German",
+      "expected_similarity": 0.95,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "music",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_019",
+      "text1": "The conference was very informative.",
+      "text2": "La conferenza \u00e8 stata molto informativa.",
+      "language1": "English",
+      "language2": "Italian",
+      "expected_similarity": 0.93,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "events",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    },
+    {
+      "id": "cl_020",
+      "text1": "Health is wealth.",
+      "text2": "A sa\u00fade \u00e9 riqueza.",
+      "language1": "English",
+      "language2": "Portuguese",
+      "expected_similarity": 0.92,
+      "category": "direct_translation",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "health",
+        "translation_type": "literal",
+        "cultural_context": "universal"
+      }
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "test_type": "classification",
+    "category": "text_classification",
+    "description": "Multi-class text classification evaluation across various domains",
+    "total_classes": 15,
+    "total_samples": 60,
+    "evaluation_metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1_score",
+      "confusion_matrix"
+    ],
+    "domains": [
+      "news",
+      "academic",
+      "business",
+      "social_media"
+    ],
+    "classification_types": [
+      "topic",
+      "genre",
+      "domain"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "classification_id": "news_topic_classification",
+      "domain": "news",
+      "num_classes": 4,
+      "class_labels": [
+        "Politics",
+        "Technology",
+        "Sports",
+        "Health"
+      ],
+      "samples": [
+        {
+          "sample_id": "news_1",
+          "text": "Congressional committee approves new legislation addressing climate change and environmental protection.",
+          "true_label": "Politics",
+          "confidence_threshold": 0.85
+        },
+        {
+          "sample_id": "news_2",
+          "text": "Presidential election campaign intensifies with debates focusing on economic policy reforms.",
+          "true_label": "Politics",
+          "confidence_threshold": 0.9
+        },
+        {
+          "sample_id": "news_3",
+          "text": "Artificial intelligence startup raises $100 million in Series B funding round.",
+          "true_label": "Technology",
+          "confidence_threshold": 0.88
+        },
+        {
+          "sample_id": "news_4",
+          "text": "New smartphone features advanced camera technology and extended battery life capabilities.",
+          "true_label": "Technology",
+          "confidence_threshold": 0.82
+        },
+        {
+          "sample_id": "news_5",
+          "text": "Championship game draws record viewership as teams compete for national title.",
+          "true_label": "Sports",
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "news_6",
+          "text": "Olympic athlete breaks world record in swimming competition at international meet.",
+          "true_label": "Sports",
+          "confidence_threshold": 0.91
+        },
+        {
+          "sample_id": "news_7",
+          "text": "Medical researchers discover breakthrough treatment for rare genetic disorder.",
+          "true_label": "Health",
+          "confidence_threshold": 0.89
+        },
+        {
+          "sample_id": "news_8",
+          "text": "Public health officials recommend updated vaccination guidelines for seasonal flu prevention.",
+          "true_label": "Health",
+          "confidence_threshold": 0.86
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.85
+    },
+    {
+      "classification_id": "academic_genre_classification",
+      "domain": "academic",
+      "num_classes": 3,
+      "class_labels": [
+        "Computer Science",
+        "Biology",
+        "Economics"
+      ],
+      "samples": [
+        {
+          "sample_id": "academic_1",
+          "text": "Graph neural networks demonstrate superior performance in node classification and link prediction tasks.",
+          "true_label": "Computer Science",
+          "confidence_threshold": 0.92
+        },
+        {
+          "sample_id": "academic_2",
+          "text": "Distributed computing frameworks enable parallel processing of large-scale data analytics workloads.",
+          "true_label": "Computer Science",
+          "confidence_threshold": 0.88
+        },
+        {
+          "sample_id": "academic_3",
+          "text": "CRISPR gene editing technology allows precise modification of DNA sequences in living organisms.",
+          "true_label": "Biology",
+          "confidence_threshold": 0.94
+        },
+        {
+          "sample_id": "academic_4",
+          "text": "Cellular metabolism pathways regulate energy production and biosynthesis in prokaryotic cells.",
+          "true_label": "Biology",
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "academic_5",
+          "text": "Market equilibrium theory explains price determination through supply and demand interactions.",
+          "true_label": "Economics",
+          "confidence_threshold": 0.9
+        },
+        {
+          "sample_id": "academic_6",
+          "text": "Behavioral economics incorporates psychological factors into traditional economic decision-making models.",
+          "true_label": "Economics",
+          "confidence_threshold": 0.85
+        }
+      ],
+      "difficulty": "hard",
+      "expected_accuracy": 0.78
+    },
+    {
+      "classification_id": "business_document_classification",
+      "domain": "business",
+      "num_classes": 4,
+      "class_labels": [
+        "Financial Report",
+        "Marketing Material",
+        "Legal Document",
+        "Technical Specification"
+      ],
+      "samples": [
+        {
+          "sample_id": "business_1",
+          "text": "Quarterly revenue increased by 15% compared to previous year, driven by strong product sales.",
+          "true_label": "Financial Report",
+          "confidence_threshold": 0.89
+        },
+        {
+          "sample_id": "business_2",
+          "text": "Operating expenses decreased through cost optimization initiatives and operational efficiency improvements.",
+          "true_label": "Financial Report",
+          "confidence_threshold": 0.86
+        },
+        {
+          "sample_id": "business_3",
+          "text": "Brand awareness campaign targets millennials through social media and influencer partnerships.",
+          "true_label": "Marketing Material",
+          "confidence_threshold": 0.91
+        },
+        {
+          "sample_id": "business_4",
+          "text": "Product launch strategy emphasizes unique value proposition and competitive differentiation.",
+          "true_label": "Marketing Material",
+          "confidence_threshold": 0.88
+        },
+        {
+          "sample_id": "business_5",
+          "text": "Contract terms specify intellectual property rights and confidentiality obligations between parties.",
+          "true_label": "Legal Document",
+          "confidence_threshold": 0.93
+        },
+        {
+          "sample_id": "business_6",
+          "text": "Liability limitations and indemnification clauses protect against potential legal disputes.",
+          "true_label": "Legal Document",
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "business_7",
+          "text": "System architecture requires microservices design with RESTful API endpoints and database integration.",
+          "true_label": "Technical Specification",
+          "confidence_threshold": 0.9
+        },
+        {
+          "sample_id": "business_8",
+          "text": "Performance requirements include 99.9% uptime and sub-100ms response times for critical operations.",
+          "true_label": "Technical Specification",
+          "confidence_threshold": 0.84
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.82
+    },
+    {
+      "classification_id": "social_media_content_classification",
+      "domain": "social_media",
+      "num_classes": 4,
+      "class_labels": [
+        "Personal Update",
+        "Product Review",
+        "News Share",
+        "Opinion/Commentary"
+      ],
+      "samples": [
+        {
+          "sample_id": "social_1",
+          "text": "Just got back from an amazing vacation in Italy! The food and scenery were absolutely incredible. #travel #italy",
+          "true_label": "Personal Update",
+          "confidence_threshold": 0.92
+        },
+        {
+          "sample_id": "social_2",
+          "text": "Starting a new job next week! Excited about the opportunities and challenges ahead. #career #newbeginnings",
+          "true_label": "Personal Update",
+          "confidence_threshold": 0.89
+        },
+        {
+          "sample_id": "social_3",
+          "text": "This new laptop is fantastic! Great performance, excellent display, and battery lasts all day. Highly recommend! #tech #review",
+          "true_label": "Product Review",
+          "confidence_threshold": 0.88
+        },
+        {
+          "sample_id": "social_4",
+          "text": "Tried the new restaurant downtown. Service was slow but the food quality made up for it. 4/5 stars. #foodreview",
+          "true_label": "Product Review",
+          "confidence_threshold": 0.85
+        },
+        {
+          "sample_id": "social_5",
+          "text": "Breaking: Major tech company announces acquisition of AI startup for $2 billion. This could change the industry! #technews",
+          "true_label": "News Share",
+          "confidence_threshold": 0.9
+        },
+        {
+          "sample_id": "social_6",
+          "text": "Scientists discover new exoplanet that could potentially support life. Amazing what we're learning about space! #science #space",
+          "true_label": "News Share",
+          "confidence_threshold": 0.87
+        },
+        {
+          "sample_id": "social_7",
+          "text": "I think remote work is here to stay. Companies that embrace flexibility will attract better talent. #remotework #opinion",
+          "true_label": "Opinion/Commentary",
+          "confidence_threshold": 0.86
+        },
+        {
+          "sample_id": "social_8",
+          "text": "Climate change requires immediate action from governments and individuals. We can't wait any longer! #climatechange #opinion",
+          "true_label": "Opinion/Commentary",
+          "confidence_threshold": 0.91
+        }
+      ],
+      "difficulty": "easy",
+      "expected_accuracy": 0.88
+    }
+  ]
+}

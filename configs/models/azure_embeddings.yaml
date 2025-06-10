@@ -1,0 +1,22 @@
+api_config:
+  api_version: '2023-05-15'
+  max_retries: 3
+  retry_delay: 1
+  timeout: 30
+batch_config:
+  max_batch_size: 100
+  max_concurrent_requests: 10
+cost:
+  currency: USD
+  per_1k_tokens: 0.0001
+dimensions: 1536
+display_name: Azure OpenAI Text Embedding Ada 002
+enabled: false
+max_tokens: 8191
+model_name: text-embedding-ada-002
+normalization: true
+provider: azure_openai
+supported_tasks:
+- similarity
+- retrieval
+- clustering

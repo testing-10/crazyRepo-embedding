@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "name": "Scientific Papers Similarity",
+    "description": "Scientific text pairs for evaluating semantic similarity in academic research contexts",
+    "task_type": "similarity",
+    "domain": "scientific",
+    "fields": [
+      "computer_science",
+      "biology",
+      "physics",
+      "chemistry",
+      "medicine",
+      "mathematics"
+    ],
+    "text_types": [
+      "abstracts",
+      "conclusions",
+      "methodologies",
+      "results"
+    ],
+    "created_by": "embedding_framework",
+    "version": "1.0"
+  },
+  "samples": [
+    {
+      "text1": "We propose a novel deep learning architecture that combines convolutional neural networks with attention mechanisms for improved image classification accuracy.",
+      "text2": "This study introduces an innovative neural network design integrating CNNs and attention layers to enhance visual recognition performance.",
+      "label": 0.92,
+      "field": "computer_science",
+      "subfield": "machine_learning",
+      "text_type": "abstract",
+      "complexity": "high"
+    },
+    {
+      "text1": "The experimental results demonstrate a statistically significant improvement in protein folding prediction accuracy using our proposed algorithm.",
+      "text2": "Our computational method shows measurable enhancement in predicting three-dimensional protein structures compared to existing approaches.",
+      "label": 0.87,
+      "field": "biology",
+      "subfield": "computational_biology",
+      "text_type": "results",
+      "complexity": "high"
+    },
+    {
+      "text1": "Quantum entanglement exhibits non-local correlations that violate Bell's inequalities, challenging classical physics assumptions.",
+      "text2": "Entangled quantum systems display instantaneous correlations across spatial distances, contradicting local realism principles.",
+      "label": 0.89,
+      "field": "physics",
+      "subfield": "quantum_mechanics",
+      "text_type": "conclusion",
+      "complexity": "high"
+    },
+    {
+      "text1": "The synthesis of novel organic compounds was achieved through palladium-catalyzed cross-coupling reactions under mild conditions.",
+      "text2": "New organic molecules were prepared using palladium-based catalytic systems in environmentally friendly reaction conditions.",
+      "label": 0.88,
+      "field": "chemistry",
+      "subfield": "organic_chemistry",
+      "text_type": "methodology",
+      "complexity": "medium"
+    },
+    {
+      "text1": "Clinical trials revealed that the new drug significantly reduced tumor size in 78% of patients with minimal side effects.",
+      "text2": "The experimental treatment demonstrated substantial cancer regression in the majority of study participants with acceptable toxicity profiles.",
+      "label": 0.85,
+      "field": "medicine",
+      "subfield": "oncology",
+      "text_type": "results",
+      "complexity": "medium"
+    },
+    {
+      "text1": "The mathematical proof establishes the convergence properties of the iterative algorithm under specified boundary conditions.",
+      "text2": "We demonstrate that the recursive computational method converges to the optimal solution given particular constraint parameters.",
+      "label": 0.83,
+      "field": "mathematics",
+      "subfield": "numerical_analysis",
+      "text_type": "conclusion",
+      "complexity": "high"
+    },
+    {
+      "text1": "CRISPR-Cas9 gene editing technology enables precise modification of DNA sequences in living organisms.",
+      "text2": "The recipe for chocolate chip cookies requires butter, sugar, flour, and chocolate chips mixed together.",
+      "label": 0.03,
+      "field": "mixed",
+      "subfield": "unrelated",
+      "text_type": "unrelated",
+      "complexity": "unrelated"
+    },
+    {
+      "text1": "Machine learning models trained on large datasets can identify patterns invisible to human analysis in medical imaging.",
+      "text2": "AI algorithms processing extensive image databases reveal diagnostic features beyond human visual perception capabilities.",
+      "label": 0.9,
+      "field": "computer_science",
+      "subfield": "medical_ai",
+      "text_type": "abstract",
+      "complexity": "medium"
+    },
+    {
+      "text1": "The study employed a randomized controlled trial design with 500 participants across multiple clinical sites.",
+      "text2": "Research methodology included a multi-center RCT involving five hundred subjects randomly assigned to treatment groups.",
+      "label": 0.91,
+      "field": "medicine",
+      "subfield": "clinical_research",
+      "text_type": "methodology",
+      "complexity": "medium"
+    },
+    {
+      "text1": "Renewable energy sources, particularly solar and wind power, demonstrate increasing cost-effectiveness compared to fossil fuels.",
+      "text2": "Clean energy technologies like photovoltaic and wind systems show improved economic viability relative to traditional energy sources.",
+      "label": 0.86,
+      "field": "environmental_science",
+      "subfield": "energy",
+      "text_type": "conclusion",
+      "complexity": "medium"
+    },
+    {
+      "text1": "The genome-wide association study identified novel genetic variants associated with increased susceptibility to autoimmune disorders.",
+      "text2": "GWAS analysis revealed previously unknown DNA polymorphisms linked to heightened risk of immune system dysfunction.",
+      "label": 0.88,
+      "field": "biology",
+      "subfield": "genetics",
+      "text_type": "results",
+      "complexity": "high"
+    },
+    {
+      "text1": "Nanotechnology applications in drug delivery systems enable targeted therapeutic interventions with reduced systemic toxicity.",
+      "text2": "Nanoscale drug carriers facilitate precise medication delivery to specific tissues while minimizing adverse effects on healthy cells.",
+      "label": 0.89,
+      "field": "medicine",
+      "subfield": "nanomedicine",
+      "text_type": "abstract",
+      "complexity": "high"
+    },
+    {
+      "text1": "Climate change models predict significant temperature increases and altered precipitation patterns over the next century.",
+      "text2": "Global warming simulations forecast substantial thermal elevation and modified rainfall distributions in coming decades.",
+      "label": 0.87,
+      "field": "environmental_science",
+      "subfield": "climatology",
+      "text_type": "conclusion",
+      "complexity": "medium"
+    },
+    {
+      "text1": "The blockchain consensus mechanism ensures transaction integrity through cryptographic validation and distributed verification.",
+      "text2": "Distributed ledger protocols maintain data authenticity via cryptographic proofs and decentralized consensus algorithms.",
+      "label": 0.85,
+      "field": "computer_science",
+      "subfield": "cryptography",
+      "text_type": "methodology",
+      "complexity": "high"
+    }
+  ]
+}

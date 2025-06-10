@@ -1,0 +1,193 @@
+{
+  "metadata": {
+    "name": "Paragraph Similarity",
+    "description": "Semantic similarity evaluation for longer text passages and paragraphs",
+    "version": "1.0",
+    "created_date": "2024-01-01",
+    "total_pairs": 25,
+    "domains": [
+      "news",
+      "scientific",
+      "literature",
+      "business"
+    ],
+    "similarity_scale": "0.0 to 1.0 (higher = more similar)",
+    "evaluation_metrics": [
+      "cosine_similarity",
+      "semantic_similarity_score"
+    ],
+    "text_length_range": "50-300 words"
+  },
+  "test_cases": [
+    {
+      "id": "ps_001",
+      "paragraph1": "Climate change represents one of the most pressing challenges of our time. Rising global temperatures are causing ice caps to melt, sea levels to rise, and weather patterns to become increasingly unpredictable. Scientists worldwide are working to understand the complex mechanisms behind these changes and develop strategies to mitigate their impact on human civilization.",
+      "paragraph2": "Global warming poses a significant threat to our planet's future. The increasing temperatures are leading to the melting of polar ice, elevated ocean levels, and erratic climate conditions. Researchers across the globe are studying these phenomena to create solutions that can help reduce the effects on society.",
+      "expected_similarity": 0.92,
+      "domain": "news",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "climate_change",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "high",
+        "lexical_overlap": "medium",
+        "word_count_p1": 67,
+        "word_count_p2": 58
+      }
+    },
+    {
+      "id": "ps_002",
+      "paragraph1": "The human brain contains approximately 86 billion neurons, each connected to thousands of others through synapses. This intricate network enables complex cognitive processes such as memory formation, decision-making, and creative thinking. Neuroscientists continue to unravel the mysteries of how these neural connections give rise to consciousness and human behavior.",
+      "paragraph2": "Machine learning algorithms process vast amounts of data through artificial neural networks inspired by biological systems. These computational models can recognize patterns, make predictions, and solve complex problems across various domains. The field of artificial intelligence continues to advance rapidly, with applications in healthcare, finance, and autonomous systems.",
+      "expected_similarity": 0.45,
+      "domain": "scientific",
+      "category": "related",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "neural_systems",
+        "semantic_overlap": "medium",
+        "structural_similarity": "medium",
+        "lexical_overlap": "low",
+        "word_count_p1": 62,
+        "word_count_p2": 65
+      }
+    },
+    {
+      "id": "ps_003",
+      "paragraph1": "The old lighthouse stood majestically on the rocky cliff, its beacon cutting through the dense fog that rolled in from the sea. For over a century, it had guided countless ships safely to harbor, serving as a symbol of hope and safety for sailors navigating treacherous waters. The keeper's quarters, though weathered by time and salt air, still held the warmth of generations who had called this place home.",
+      "paragraph2": "Perched atop the jagged coastline, the ancient tower commanded respect with its towering presence. Through thick maritime mist, its light pierced the darkness, offering salvation to vessels lost in the night. For generations, this sentinel had been a beacon of security, while the modest dwelling beside it housed those dedicated to its sacred mission.",
+      "expected_similarity": 0.88,
+      "domain": "literature",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "lighthouse_description",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "high",
+        "lexical_overlap": "low",
+        "word_count_p1": 78,
+        "word_count_p2": 64
+      }
+    },
+    {
+      "id": "ps_004",
+      "paragraph1": "The quarterly earnings report revealed strong performance across all business segments. Revenue increased by 15% compared to the same period last year, driven primarily by robust sales in the technology division. Operating margins improved significantly due to cost optimization initiatives and increased operational efficiency. The company's strategic investments in research and development are beginning to yield positive returns.",
+      "paragraph2": "This quarter's financial results demonstrate exceptional growth throughout the organization. Income rose 15% year-over-year, with the tech sector leading the charge. Profit margins expanded considerably thanks to streamlined operations and enhanced productivity measures. The firm's commitment to innovation through R&D spending is starting to pay dividends.",
+      "expected_similarity": 0.9,
+      "domain": "business",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "financial_results",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "high",
+        "lexical_overlap": "medium",
+        "word_count_p1": 68,
+        "word_count_p2": 58
+      }
+    },
+    {
+      "id": "ps_005",
+      "paragraph1": "The discovery of exoplanets has revolutionized our understanding of planetary systems beyond our solar system. Advanced telescopes and detection methods have identified thousands of these distant worlds, some of which may harbor conditions suitable for life. The search for potentially habitable exoplanets continues to be a major focus of astronomical research, as scientists seek to answer the fundamental question of whether we are alone in the universe.",
+      "paragraph2": "Cooking traditional Italian pasta requires attention to timing and technique. The water must be brought to a rolling boil before adding salt and the pasta. Different shapes require varying cooking times to achieve the perfect al dente texture. A good sauce should complement rather than overpower the pasta, creating a harmonious balance of flavors that represents the essence of Italian cuisine.",
+      "expected_similarity": 0.08,
+      "domain": "mixed",
+      "category": "unrelated",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "completely_different",
+        "semantic_overlap": "none",
+        "structural_similarity": "low",
+        "lexical_overlap": "none",
+        "word_count_p1": 75,
+        "word_count_p2": 72
+      }
+    },
+    {
+      "id": "ps_006",
+      "paragraph1": "Artificial intelligence is transforming healthcare through predictive analytics, diagnostic imaging, and personalized treatment plans. Machine learning algorithms can analyze medical images with remarkable accuracy, often detecting abnormalities that human radiologists might miss. These technological advances promise to improve patient outcomes while reducing healthcare costs and increasing accessibility to quality medical care.",
+      "paragraph2": "AI technology is revolutionizing the medical field by enabling advanced data analysis, enhanced imaging interpretation, and customized therapeutic approaches. Computer algorithms demonstrate exceptional precision in medical image analysis, frequently identifying conditions that may escape human detection. Such innovations hold the potential to enhance patient care quality while making healthcare more affordable and widely available.",
+      "expected_similarity": 0.94,
+      "domain": "scientific",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "ai_in_healthcare",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "very_high",
+        "lexical_overlap": "low",
+        "word_count_p1": 66,
+        "word_count_p2": 68
+      }
+    },
+    {
+      "id": "ps_007",
+      "paragraph1": "The ancient city of Pompeii offers a unique window into Roman life, preserved in volcanic ash for nearly two millennia. Archaeological excavations have revealed remarkably intact buildings, artwork, and even the final moments of its inhabitants. This tragic yet fascinating site continues to provide invaluable insights into ancient Roman culture, daily life, and urban planning.",
+      "paragraph2": "Pompeii serves as an extraordinary time capsule of Roman civilization, frozen by volcanic eruption almost 2000 years ago. Ongoing archaeological work has uncovered well-preserved structures, artistic works, and poignant human remains. This remarkable location remains a treasure trove of information about ancient Roman society, customs, and city design.",
+      "expected_similarity": 0.91,
+      "domain": "news",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "pompeii_archaeology",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "high",
+        "lexical_overlap": "medium",
+        "word_count_p1": 61,
+        "word_count_p2": 58
+      }
+    },
+    {
+      "id": "ps_008",
+      "paragraph1": "Sustainable agriculture practices are essential for feeding the world's growing population while protecting environmental resources. Crop rotation, integrated pest management, and precision farming techniques help maintain soil health and reduce chemical inputs. Farmers are increasingly adopting these methods to ensure long-term productivity and minimize their ecological footprint.",
+      "paragraph2": "The stock market experienced significant volatility this week as investors reacted to unexpected inflation data and geopolitical tensions. Technology stocks led the decline, with major indices falling more than 3% in a single trading session. Market analysts suggest that uncertainty about future monetary policy is contributing to increased trading volumes and price swings.",
+      "expected_similarity": 0.12,
+      "domain": "mixed",
+      "category": "unrelated",
+      "difficulty": "easy",
+      "metadata": {
+        "topic": "completely_different",
+        "semantic_overlap": "none",
+        "structural_similarity": "low",
+        "lexical_overlap": "none",
+        "word_count_p1": 58,
+        "word_count_p2": 63
+      }
+    },
+    {
+      "id": "ps_009",
+      "paragraph1": "The Renaissance period marked a profound transformation in European art, science, and philosophy. Artists like Leonardo da Vinci and Michelangelo created masterpieces that continue to inspire generations. This era saw the revival of classical learning, the development of perspective in painting, and groundbreaking scientific discoveries that challenged medieval worldviews.",
+      "paragraph2": "During the Renaissance, Europe experienced a remarkable cultural and intellectual awakening. Masters such as da Vinci and Michelangelo produced timeless works of art that remain influential today. The period was characterized by renewed interest in ancient knowledge, artistic innovations including realistic perspective, and scientific breakthroughs that questioned traditional beliefs.",
+      "expected_similarity": 0.93,
+      "domain": "literature",
+      "category": "paraphrase",
+      "difficulty": "medium",
+      "metadata": {
+        "topic": "renaissance_period",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "very_high",
+        "lexical_overlap": "high",
+        "word_count_p1": 58,
+        "word_count_p2": 60
+      }
+    },
+    {
+      "id": "ps_010",
+      "paragraph1": "Quantum computing represents a paradigm shift in computational capability, leveraging quantum mechanical phenomena to process information in fundamentally new ways. Unlike classical computers that use binary bits, quantum computers employ quantum bits or qubits that can exist in multiple states simultaneously. This quantum superposition, combined with entanglement, enables quantum computers to solve certain problems exponentially faster than their classical counterparts.",
+      "paragraph2": "The field of quantum computation introduces revolutionary approaches to information processing by harnessing quantum physics principles. While traditional computers rely on binary digits, quantum machines utilize quantum bits capable of existing in superposed states. Through quantum superposition and entanglement effects, these systems can tackle specific computational challenges with exponential speed advantages over conventional computers.",
+      "expected_similarity": 0.95,
+      "domain": "scientific",
+      "category": "paraphrase",
+      "difficulty": "hard",
+      "metadata": {
+        "topic": "quantum_computing",
+        "semantic_overlap": "very_high",
+        "structural_similarity": "very_high",
+        "lexical_overlap": "medium",
+        "word_count_p1": 78,
+        "word_count_p2": 72
+      }
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "metadata": {
+    "test_type": "classification",
+    "category": "intent_classification",
+    "description": "Intent classification evaluation for conversational AI and chatbot applications",
+    "total_classes": 12,
+    "total_samples": 48,
+    "evaluation_metrics": [
+      "accuracy",
+      "precision",
+      "recall",
+      "f1_score",
+      "intent_confidence"
+    ],
+    "domains": [
+      "customer_service",
+      "e_commerce",
+      "banking",
+      "travel"
+    ],
+    "intent_types": [
+      "informational",
+      "transactional",
+      "navigational",
+      "support"
+    ],
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "classification_id": "customer_service_intents",
+      "domain": "customer_service",
+      "num_classes": 6,
+      "class_labels": [
+        "complaint",
+        "inquiry",
+        "compliment",
+        "refund_request",
+        "technical_support",
+        "account_help"
+      ],
+      "samples": [
+        {
+          "sample_id": "cs_1",
+          "text": "I'm very disappointed with the quality of the product I received. It doesn't work as advertised.",
+          "true_label": "complaint",
+          "intent_confidence": 0.91,
+          "urgency_level": "high"
+        },
+        {
+          "sample_id": "cs_2",
+          "text": "The service I received was terrible. The staff was rude and unhelpful throughout my visit.",
+          "true_label": "complaint",
+          "intent_confidence": 0.89,
+          "urgency_level": "high"
+        },
+        {
+          "sample_id": "cs_3",
+          "text": "Can you tell me what your store hours are on weekends? I'd like to visit this Saturday.",
+          "true_label": "inquiry",
+          "intent_confidence": 0.87,
+          "urgency_level": "low"
+        },
+        {
+          "sample_id": "cs_4",
+          "text": "Do you offer international shipping? I need to send a package to Germany.",
+          "true_label": "inquiry",
+          "intent_confidence": 0.85,
+          "urgency_level": "medium"
+        },
+        {
+          "sample_id": "cs_5",
+          "text": "Your customer service team was amazing! They solved my problem quickly and professionally.",
+          "true_label": "compliment",
+          "intent_confidence": 0.93,
+          "urgency_level": "low"
+        },
+        {
+          "sample_id": "cs_6",
+          "text": "I want to return this item and get my money back. It's not what I ordered.",
+          "true_label": "refund_request",
+          "intent_confidence": 0.94,
+          "urgency_level": "medium"
+        },
+        {
+          "sample_id": "cs_7",
+          "text": "My app keeps crashing when I try to log in. Can you help me fix this issue?",
+          "true_label": "technical_support",
+          "intent_confidence": 0.88,
+          "urgency_level": "high"
+        },
+        {
+          "sample_id": "cs_8",
+          "text": "I forgot my password and can't access my account. How can I reset it?",
+          "true_label": "account_help",
+          "intent_confidence": 0.9,
+          "urgency_level": "medium"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.84
+    },
+    {
+      "classification_id": "ecommerce_intents",
+      "domain": "e_commerce",
+      "num_classes": 5,
+      "class_labels": [
+        "product_search",
+        "order_status",
+        "payment_issue",
+        "shipping_inquiry",
+        "product_comparison"
+      ],
+      "samples": [
+        {
+          "sample_id": "ecom_1",
+          "text": "I'm looking for wireless headphones under $100. Do you have any recommendations?",
+          "true_label": "product_search",
+          "intent_confidence": 0.89,
+          "purchase_intent": "high"
+        },
+        {
+          "sample_id": "ecom_2",
+          "text": "Show me laptops with at least 16GB RAM and SSD storage for gaming.",
+          "true_label": "product_search",
+          "intent_confidence": 0.92,
+          "purchase_intent": "high"
+        },
+        {
+          "sample_id": "ecom_3",
+          "text": "Where is my order? I placed it three days ago and haven't received any updates.",
+          "true_label": "order_status",
+          "intent_confidence": 0.95,
+          "purchase_intent": "none"
+        },
+        {
+          "sample_id": "ecom_4",
+          "text": "My payment was declined but I was still charged. Can you help resolve this?",
+          "true_label": "payment_issue",
+          "intent_confidence": 0.91,
+          "purchase_intent": "none"
+        },
+        {
+          "sample_id": "ecom_5",
+          "text": "How long does standard shipping take? I need the item by Friday.",
+          "true_label": "shipping_inquiry",
+          "intent_confidence": 0.87,
+          "purchase_intent": "medium"
+        },
+        {
+          "sample_id": "ecom_6",
+          "text": "What's the difference between the iPhone 14 and iPhone 15? Which one should I buy?",
+          "true_label": "product_comparison",
+          "intent_confidence": 0.88,
+          "purchase_intent": "high"
+        }
+      ],
+      "difficulty": "easy",
+      "expected_accuracy": 0.88
+    },
+    {
+      "classification_id": "banking_intents",
+      "domain": "banking",
+      "num_classes": 6,
+      "class_labels": [
+        "balance_inquiry",
+        "transfer_money",
+        "report_fraud",
+        "loan_application",
+        "card_activation",
+        "investment_advice"
+      ],
+      "samples": [
+        {
+          "sample_id": "bank_1",
+          "text": "What's my current account balance? I need to check before making a purchase.",
+          "true_label": "balance_inquiry",
+          "intent_confidence": 0.93,
+          "security_level": "medium"
+        },
+        {
+          "sample_id": "bank_2",
+          "text": "I want to send $500 to my friend's account. How can I do that?",
+          "true_label": "transfer_money",
+          "intent_confidence": 0.9,
+          "security_level": "high"
+        },
+        {
+          "sample_id": "bank_3",
+          "text": "I see unauthorized charges on my credit card statement. I think my card was stolen.",
+          "true_label": "report_fraud",
+          "intent_confidence": 0.96,
+          "security_level": "critical"
+        },
+        {
+          "sample_id": "bank_4",
+          "text": "I'm interested in applying for a home loan. What are the requirements and interest rates?",
+          "true_label": "loan_application",
+          "intent_confidence": 0.89,
+          "security_level": "medium"
+        },
+        {
+          "sample_id": "bank_5",
+          "text": "I received my new debit card but it's not working. How do I activate it?",
+          "true_label": "card_activation",
+          "intent_confidence": 0.92,
+          "security_level": "medium"
+        },
+        {
+          "sample_id": "bank_6",
+          "text": "I have $10,000 to invest. What investment options do you recommend for long-term growth?",
+          "true_label": "investment_advice",
+          "intent_confidence": 0.87,
+          "security_level": "high"
+        }
+      ],
+      "difficulty": "hard",
+      "expected_accuracy": 0.81
+    },
+    {
+      "classification_id": "travel_intents",
+      "domain": "travel",
+      "num_classes": 5,
+      "class_labels": [
+        "flight_booking",
+        "hotel_reservation",
+        "trip_cancellation",
+        "travel_insurance",
+        "destination_info"
+      ],
+      "samples": [
+        {
+          "sample_id": "travel_1",
+          "text": "I need to book a flight from New York to London for next month. What are the available options?",
+          "true_label": "flight_booking",
+          "intent_confidence": 0.94,
+          "booking_urgency": "medium"
+        },
+        {
+          "sample_id": "travel_2",
+          "text": "Can you help me find a hotel near Times Square for three nights in December?",
+          "true_label": "hotel_reservation",
+          "intent_confidence": 0.91,
+          "booking_urgency": "medium"
+        },
+        {
+          "sample_id": "travel_3",
+          "text": "I need to cancel my trip to Paris due to a family emergency. What's the cancellation policy?",
+          "true_label": "trip_cancellation",
+          "intent_confidence": 0.95,
+          "booking_urgency": "high"
+        },
+        {
+          "sample_id": "travel_4",
+          "text": "Do you offer travel insurance for international trips? I'm traveling to Southeast Asia.",
+          "true_label": "travel_insurance",
+          "intent_confidence": 0.88,
+          "booking_urgency": "low"
+        },
+        {
+          "sample_id": "travel_5",
+          "text": "What's the best time to visit Japan? I'm interested in seeing cherry blossoms.",
+          "true_label": "destination_info",
+          "intent_confidence": 0.86,
+          "booking_urgency": "low"
+        },
+        {
+          "sample_id": "travel_6",
+          "text": "What documents do I need for traveling to Brazil? Is a visa required for US citizens?",
+          "true_label": "destination_info",
+          "intent_confidence": 0.89,
+          "booking_urgency": "medium"
+        }
+      ],
+      "difficulty": "medium",
+      "expected_accuracy": 0.85
+    }
+  ]
+}

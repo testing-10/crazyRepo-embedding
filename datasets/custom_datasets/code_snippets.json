@@ -1,0 +1,108 @@
+{
+  "metadata": {
+    "name": "Code Snippets Similarity",
+    "description": "Code snippets for evaluating semantic similarity in programming contexts",
+    "task_type": "similarity",
+    "domain": "programming",
+    "languages": [
+      "python",
+      "javascript",
+      "java",
+      "sql"
+    ],
+    "created_by": "embedding_framework",
+    "version": "1.0"
+  },
+  "samples": [
+    {
+      "text1": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)",
+      "text2": "function fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n-1) + fibonacci(n-2);\n}",
+      "label": 0.95,
+      "language1": "python",
+      "language2": "javascript",
+      "algorithm": "fibonacci",
+      "complexity": "recursive"
+    },
+    {
+      "text1": "SELECT * FROM users WHERE age > 18 AND status = 'active'",
+      "text2": "SELECT user_id, name, email FROM users WHERE age >= 19 AND status = 'active'",
+      "label": 0.78,
+      "language1": "sql",
+      "language2": "sql",
+      "operation": "select",
+      "complexity": "simple"
+    },
+    {
+      "text1": "public class Calculator {\n    public int add(int a, int b) {\n        return a + b;\n    }\n}",
+      "text2": "class Calculator:\n    def add(self, a, b):\n        return a + b",
+      "label": 0.92,
+      "language1": "java",
+      "language2": "python",
+      "pattern": "class_method",
+      "complexity": "simple"
+    },
+    {
+      "text1": "const sortArray = arr => arr.sort((a, b) => a - b);",
+      "text2": "def sort_array(arr):\n    return sorted(arr)",
+      "label": 0.88,
+      "language1": "javascript",
+      "language2": "python",
+      "operation": "sorting",
+      "complexity": "simple"
+    },
+    {
+      "text1": "for i in range(len(array)):\n    print(array[i])",
+      "text2": "for (let i = 0; i < array.length; i++) {\n    console.log(array[i]);\n}",
+      "label": 0.9,
+      "language1": "python",
+      "language2": "javascript",
+      "pattern": "loop",
+      "complexity": "simple"
+    },
+    {
+      "text1": "import pandas as pd\ndf = pd.read_csv('data.csv')\nprint(df.head())",
+      "text2": "UPDATE products SET price = price * 1.1 WHERE category = 'electronics'",
+      "label": 0.15,
+      "language1": "python",
+      "language2": "sql",
+      "operation": "different",
+      "complexity": "unrelated"
+    },
+    {
+      "text1": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+      "text2": "public int binarySearch(int[] arr, int target) {\n    int left = 0, right = arr.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (arr[mid] == target) return mid;\n        if (arr[mid] < target) left = mid + 1;\n        else right = mid - 1;\n    }\n    return -1;\n}",
+      "label": 0.96,
+      "language1": "python",
+      "language2": "java",
+      "algorithm": "binary_search",
+      "complexity": "iterative"
+    },
+    {
+      "text1": "const fetchData = async (url) => {\n    try {\n        const response = await fetch(url);\n        return await response.json();\n    } catch (error) {\n        console.error('Error:', error);\n    }\n};",
+      "text2": "import requests\n\ndef fetch_data(url):\n    try:\n        response = requests.get(url)\n        return response.json()\n    except Exception as error:\n        print(f'Error: {error}')",
+      "label": 0.89,
+      "language1": "javascript",
+      "language2": "python",
+      "pattern": "api_call",
+      "complexity": "async"
+    },
+    {
+      "text1": "CREATE TABLE users (\n    id SERIAL PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    email VARCHAR(255) UNIQUE,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+      "text2": "CREATE TABLE products (\n    product_id INT AUTO_INCREMENT PRIMARY KEY,\n    title VARCHAR(200) NOT NULL,\n    price DECIMAL(10,2),\n    created_date DATETIME DEFAULT NOW()\n);",
+      "label": 0.72,
+      "language1": "sql",
+      "language2": "sql",
+      "operation": "create_table",
+      "complexity": "schema"
+    },
+    {
+      "text1": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None",
+      "text2": "public class ListNode {\n    int val;\n    ListNode next;\n    ListNode(int val) {\n        this.val = val;\n        this.next = null;\n    }\n}",
+      "label": 0.85,
+      "language1": "python",
+      "language2": "java",
+      "data_structure": "linked_list",
+      "complexity": "class_definition"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+batch_config:
+  max_batch_size: 32
+  max_concurrent_requests: 1
+cost:
+  currency: USD
+  per_1k_tokens: 0.0
+dimensions: 1024
+display_name: BGE-M3 Multilingual
+enabled: true
+max_tokens: 8192
+model_config:
+  cache_folder: ./model_cache
+  device: auto
+  trust_remote_code: true
+model_name: BAAI/bge-m3
+normalization: true
+provider: sentence_transformers
+supported_tasks:
+- similarity
+- retrieval
+- clustering

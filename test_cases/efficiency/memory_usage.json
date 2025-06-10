@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "test_type": "efficiency",
+    "category": "memory_usage",
+    "description": "Memory consumption evaluation for embedding models under various loads",
+    "total_tests": 8,
+    "evaluation_metrics": [
+      "peak_memory_mb",
+      "average_memory_mb",
+      "memory_growth_rate",
+      "garbage_collection_frequency"
+    ],
+    "load_types": [
+      "baseline",
+      "single_text",
+      "batch_processing",
+      "sustained_load"
+    ],
+    "memory_thresholds": {
+      "warning_mb": 2048,
+      "critical_mb": 4096,
+      "max_acceptable_mb": 8192
+    },
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "test_id": "baseline_memory",
+      "description": "Baseline memory consumption with model loaded but no processing",
+      "load_type": "baseline",
+      "duration_seconds": 60,
+      "test_scenario": {
+        "action": "model_initialization",
+        "expected_peak_memory_mb": 512,
+        "expected_average_memory_mb": 480,
+        "max_acceptable_memory_mb": 1024,
+        "memory_stability_required": true
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 600,
+        "target_average_memory_mb": 500,
+        "acceptable_variance_percent": 10
+      }
+    },
+    {
+      "test_id": "single_text_memory",
+      "description": "Memory usage for single text embedding processing",
+      "load_type": "single_text",
+      "duration_seconds": 300,
+      "test_scenario": {
+        "action": "sequential_single_embeddings",
+        "text_samples": [
+          {
+            "text": "Short text for memory testing.",
+            "token_count": 6,
+            "expected_memory_increase_mb": 50
+          },
+          {
+            "text": "Medium length text sample for evaluating memory consumption patterns during embedding generation processes.",
+            "token_count": 16,
+            "expected_memory_increase_mb": 80
+          },
+          {
+            "text": "This is a longer text sample designed to test memory usage patterns when processing more substantial content that requires additional computational resources and memory allocation for the embedding generation process, including tokenization, model inference, and result storage.",
+            "token_count": 40,
+            "expected_memory_increase_mb": 120
+          }
+        ],
+        "iterations": 100,
+        "expected_peak_memory_mb": 800,
+        "max_acceptable_memory_mb": 1500
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 900,
+        "memory_leak_tolerance_mb": 100,
+        "gc_frequency_max": 10
+      }
+    },
+    {
+      "test_id": "small_batch_memory",
+      "description": "Memory usage for small batch processing",
+      "load_type": "batch_processing",
+      "duration_seconds": 600,
+      "test_scenario": {
+        "action": "batch_embedding_processing",
+        "batch_size": 10,
+        "batch_count": 50,
+        "text_samples": [
+          "AI revolutionizes technology.",
+          "Machine learning enables intelligent automation systems.",
+          "Cloud computing provides scalable infrastructure solutions for modern enterprises.",
+          "Data science combines statistical analysis with programming expertise.",
+          "Natural language processing understands human communication patterns.",
+          "Computer vision algorithms analyze and interpret visual content.",
+          "Blockchain technology ensures secure transaction processing.",
+          "Internet of Things connects smart devices.",
+          "Cybersecurity protects digital assets from threats.",
+          "Quantum computing promises exponential computational power."
+        ],
+        "expected_peak_memory_mb": 1200,
+        "expected_average_memory_mb": 900,
+        "max_acceptable_memory_mb": 2048
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 1400,
+        "target_average_memory_mb": 1000,
+        "memory_efficiency_ratio": 0.75
+      }
+    },
+    {
+      "test_id": "large_batch_memory",
+      "description": "Memory usage for large batch processing",
+      "load_type": "batch_processing",
+      "duration_seconds": 900,
+      "test_scenario": {
+        "action": "large_batch_processing",
+        "batch_size": 100,
+        "batch_count": 20,
+        "text_length_range": {
+          "min_tokens": 10,
+          "max_tokens": 200,
+          "average_tokens": 75
+        },
+        "expected_peak_memory_mb": 2500,
+        "expected_average_memory_mb": 1800,
+        "max_acceptable_memory_mb": 4096
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 3000,
+        "target_average_memory_mb": 2000,
+        "memory_growth_rate_max": 0.1
+      }
+    },
+    {
+      "test_id": "sustained_load_memory",
+      "description": "Memory usage under sustained processing load",
+      "load_type": "sustained_load",
+      "duration_seconds": 1800,
+      "test_scenario": {
+        "action": "continuous_processing",
+        "requests_per_minute": 60,
+        "total_requests": 1800,
+        "text_variety": "mixed_lengths",
+        "expected_peak_memory_mb": 2000,
+        "expected_average_memory_mb": 1500,
+        "max_acceptable_memory_mb": 3072,
+        "memory_leak_detection": true
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 2200,
+        "target_average_memory_mb": 1600,
+        "memory_stability_required": true,
+        "max_memory_growth_mb": 200
+      }
+    },
+    {
+      "test_id": "concurrent_requests_memory",
+      "description": "Memory usage with concurrent request processing",
+      "load_type": "concurrent_load",
+      "duration_seconds": 600,
+      "test_scenario": {
+        "action": "concurrent_processing",
+        "concurrent_threads": 5,
+        "requests_per_thread": 100,
+        "text_samples_per_request": 3,
+        "expected_peak_memory_mb": 1800,
+        "expected_average_memory_mb": 1300,
+        "max_acceptable_memory_mb": 2560
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 2000,
+        "target_average_memory_mb": 1400,
+        "thread_safety_required": true
+      }
+    },
+    {
+      "test_id": "memory_recovery_test",
+      "description": "Memory recovery after high-load processing",
+      "load_type": "recovery_test",
+      "duration_seconds": 900,
+      "test_scenario": {
+        "action": "load_and_recovery",
+        "phases": [
+          {
+            "phase": "high_load",
+            "duration_seconds": 300,
+            "batch_size": 50,
+            "expected_peak_memory_mb": 2000
+          },
+          {
+            "phase": "idle_recovery",
+            "duration_seconds": 300,
+            "expected_memory_reduction_mb": 800,
+            "target_memory_mb": 600
+          },
+          {
+            "phase": "normal_load",
+            "duration_seconds": 300,
+            "batch_size": 10,
+            "expected_stable_memory_mb": 800
+          }
+        ],
+        "memory_recovery_efficiency": 0.8
+      },
+      "performance_targets": {
+        "recovery_time_seconds": 180,
+        "final_memory_mb": 700,
+        "memory_leak_tolerance_mb": 50
+      }
+    },
+    {
+      "test_id": "extreme_load_memory",
+      "description": "Memory behavior under extreme processing loads",
+      "load_type": "stress_test",
+      "duration_seconds": 300,
+      "test_scenario": {
+        "action": "stress_testing",
+        "batch_size": 200,
+        "batch_count": 10,
+        "text_length_tokens": 500,
+        "expected_peak_memory_mb": 4000,
+        "max_acceptable_memory_mb": 6144,
+        "out_of_memory_protection": true
+      },
+      "performance_targets": {
+        "target_peak_memory_mb": 4500,
+        "graceful_degradation_required": true,
+        "error_handling_required": true
+      }
+    }
+  ]
+}

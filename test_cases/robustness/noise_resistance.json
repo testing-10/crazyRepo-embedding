@@ -1,0 +1,499 @@
+{
+  "metadata": {
+    "test_type": "robustness",
+    "category": "noise_resistance",
+    "description": "Robustness evaluation against various types of text noise and perturbations",
+    "total_tests": 8,
+    "evaluation_metrics": [
+      "similarity_preservation",
+      "embedding_stability",
+      "noise_tolerance_threshold"
+    ],
+    "noise_types": [
+      "typos",
+      "punctuation",
+      "case_variation",
+      "whitespace",
+      "character_substitution",
+      "word_order"
+    ],
+    "noise_levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "similarity_threshold": 0.85,
+    "created_date": "2025-06-09",
+    "version": "1.0"
+  },
+  "test_cases": [
+    {
+      "test_id": "typo_resistance",
+      "description": "Resistance to common typing errors and misspellings",
+      "noise_type": "typos",
+      "test_scenario": {
+        "action": "typo_perturbation",
+        "samples": [
+          {
+            "original": "Machine learning algorithms enable intelligent automation systems.",
+            "noisy_variants": [
+              {
+                "text": "Machine leraning algorithms enable intelligent automation systems.",
+                "noise_level": "low",
+                "changes": [
+                  "leraning -> learning"
+                ],
+                "expected_similarity": 0.92
+              },
+              {
+                "text": "Machien leraning algoritms enable inteligent automation systmes.",
+                "noise_level": "medium",
+                "changes": [
+                  "Machien -> Machine",
+                  "leraning -> learning",
+                  "algoritms -> algorithms",
+                  "inteligent -> intelligent",
+                  "systmes -> systems"
+                ],
+                "expected_similarity": 0.87
+              },
+              {
+                "text": "Machien leraning algoritms enabel inteligent automaton systmes.",
+                "noise_level": "high",
+                "changes": [
+                  "Machien -> Machine",
+                  "leraning -> learning",
+                  "algoritms -> algorithms",
+                  "enabel -> enable",
+                  "inteligent -> intelligent",
+                  "automaton -> automation",
+                  "systmes -> systems"
+                ],
+                "expected_similarity": 0.82
+              }
+            ]
+          },
+          {
+            "original": "Natural language processing understands human communication patterns.",
+            "noisy_variants": [
+              {
+                "text": "Natural language procesing understands human communication patterns.",
+                "noise_level": "low",
+                "changes": [
+                  "procesing -> processing"
+                ],
+                "expected_similarity": 0.94
+              },
+              {
+                "text": "Natual language procesing understands humna communication paterns.",
+                "noise_level": "medium",
+                "changes": [
+                  "Natual -> Natural",
+                  "procesing -> processing",
+                  "humna -> human",
+                  "paterns -> patterns"
+                ],
+                "expected_similarity": 0.88
+              },
+              {
+                "text": "Natual languag procesing understans humna comunication paterns.",
+                "noise_level": "high",
+                "changes": [
+                  "Natual -> Natural",
+                  "languag -> language",
+                  "procesing -> processing",
+                  "understans -> understands",
+                  "humna -> human",
+                  "comunication -> communication",
+                  "paterns -> patterns"
+                ],
+                "expected_similarity": 0.83
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.9,
+        "min_similarity_medium_noise": 0.85,
+        "min_similarity_high_noise": 0.8
+      }
+    },
+    {
+      "test_id": "punctuation_resistance",
+      "description": "Resistance to punctuation variations and removal",
+      "noise_type": "punctuation",
+      "test_scenario": {
+        "action": "punctuation_perturbation",
+        "samples": [
+          {
+            "original": "AI transforms industries, enabling automation and efficiency.",
+            "noisy_variants": [
+              {
+                "text": "AI transforms industries enabling automation and efficiency",
+                "noise_level": "low",
+                "changes": [
+                  "removed comma"
+                ],
+                "expected_similarity": 0.95
+              },
+              {
+                "text": "AI transforms industries; enabling automation, and efficiency!",
+                "noise_level": "medium",
+                "changes": [
+                  "comma to semicolon",
+                  "added comma",
+                  "period to exclamation"
+                ],
+                "expected_similarity": 0.91
+              },
+              {
+                "text": "AI... transforms industries??? enabling automation!!! and efficiency???",
+                "noise_level": "high",
+                "changes": [
+                  "excessive punctuation"
+                ],
+                "expected_similarity": 0.86
+              }
+            ]
+          },
+          {
+            "original": "Data science combines statistics, programming, and domain expertise.",
+            "noisy_variants": [
+              {
+                "text": "Data science combines statistics programming and domain expertise",
+                "noise_level": "low",
+                "changes": [
+                  "removed commas"
+                ],
+                "expected_similarity": 0.94
+              },
+              {
+                "text": "Data science combines: statistics; programming; and domain expertise!",
+                "noise_level": "medium",
+                "changes": [
+                  "added colon",
+                  "commas to semicolons",
+                  "period to exclamation"
+                ],
+                "expected_similarity": 0.89
+              },
+              {
+                "text": "Data science combines??? statistics!!! programming??? and domain expertise...",
+                "noise_level": "high",
+                "changes": [
+                  "excessive mixed punctuation"
+                ],
+                "expected_similarity": 0.84
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.93,
+        "min_similarity_medium_noise": 0.88,
+        "min_similarity_high_noise": 0.83
+      }
+    },
+    {
+      "test_id": "case_variation_resistance",
+      "description": "Resistance to case and capitalization changes",
+      "noise_type": "case_variation",
+      "test_scenario": {
+        "action": "case_perturbation",
+        "samples": [
+          {
+            "original": "Cloud computing provides scalable infrastructure solutions.",
+            "noisy_variants": [
+              {
+                "text": "cloud computing provides scalable infrastructure solutions.",
+                "noise_level": "low",
+                "changes": [
+                  "lowercase first letter"
+                ],
+                "expected_similarity": 0.96
+              },
+              {
+                "text": "CLOUD COMPUTING PROVIDES SCALABLE INFRASTRUCTURE SOLUTIONS.",
+                "noise_level": "medium",
+                "changes": [
+                  "all uppercase"
+                ],
+                "expected_similarity": 0.92
+              },
+              {
+                "text": "cLoUd CoMpUtInG pRoViDeS sCaLaBlE iNfRaStRuCtUrE sOlUtIoNs.",
+                "noise_level": "high",
+                "changes": [
+                  "alternating case"
+                ],
+                "expected_similarity": 0.88
+              }
+            ]
+          },
+          {
+            "original": "Blockchain technology ensures secure transaction processing.",
+            "noisy_variants": [
+              {
+                "text": "blockchain technology ensures secure transaction processing.",
+                "noise_level": "low",
+                "changes": [
+                  "lowercase first letter"
+                ],
+                "expected_similarity": 0.97
+              },
+              {
+                "text": "BLOCKCHAIN TECHNOLOGY ENSURES SECURE TRANSACTION PROCESSING.",
+                "noise_level": "medium",
+                "changes": [
+                  "all uppercase"
+                ],
+                "expected_similarity": 0.93
+              },
+              {
+                "text": "bLoCkChAiN tEcHnOlOgY eNsUrEs SeCuRe TrAnSaCtIoN pRoCeSsInG.",
+                "noise_level": "high",
+                "changes": [
+                  "alternating case"
+                ],
+                "expected_similarity": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.95,
+        "min_similarity_medium_noise": 0.91,
+        "min_similarity_high_noise": 0.87
+      }
+    },
+    {
+      "test_id": "whitespace_resistance",
+      "description": "Resistance to whitespace and formatting variations",
+      "noise_type": "whitespace",
+      "test_scenario": {
+        "action": "whitespace_perturbation",
+        "samples": [
+          {
+            "original": "Internet of Things devices collect and transmit data.",
+            "noisy_variants": [
+              {
+                "text": "Internet  of  Things  devices  collect  and  transmit  data.",
+                "noise_level": "low",
+                "changes": [
+                  "double spaces"
+                ],
+                "expected_similarity": 0.96
+              },
+              {
+                "text": "Internet    of    Things    devices    collect    and    transmit    data.",
+                "noise_level": "medium",
+                "changes": [
+                  "multiple spaces"
+                ],
+                "expected_similarity": 0.93
+              },
+              {
+                "text": "Internet\tof\nThings\t\tdevices\n\ncollect\t\nand\ttransmit\ndata.",
+                "noise_level": "high",
+                "changes": [
+                  "tabs and newlines"
+                ],
+                "expected_similarity": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.94,
+        "min_similarity_medium_noise": 0.91,
+        "min_similarity_high_noise": 0.87
+      }
+    },
+    {
+      "test_id": "character_substitution_resistance",
+      "description": "Resistance to character substitutions and similar-looking characters",
+      "noise_type": "character_substitution",
+      "test_scenario": {
+        "action": "character_substitution",
+        "samples": [
+          {
+            "original": "Cybersecurity protects digital assets from threats.",
+            "noisy_variants": [
+              {
+                "text": "Cybersecurity pr0tects digital assets fr0m threats.",
+                "noise_level": "low",
+                "changes": [
+                  "o -> 0"
+                ],
+                "expected_similarity": 0.91
+              },
+              {
+                "text": "Cyb3rs3curity pr0t3cts digit4l 4ss3ts fr0m thr34ts.",
+                "noise_level": "medium",
+                "changes": [
+                  "e -> 3",
+                  "o -> 0",
+                  "a -> 4"
+                ],
+                "expected_similarity": 0.86
+              },
+              {
+                "text": "Cyb3r53cur1ty pr0t3ct5 d1g1t4l 455et5 fr0m thr34t5.",
+                "noise_level": "high",
+                "changes": [
+                  "multiple character substitutions"
+                ],
+                "expected_similarity": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.89,
+        "min_similarity_medium_noise": 0.84,
+        "min_similarity_high_noise": 0.79
+      }
+    },
+    {
+      "test_id": "word_order_resistance",
+      "description": "Resistance to minor word order changes",
+      "noise_type": "word_order",
+      "test_scenario": {
+        "action": "word_order_perturbation",
+        "samples": [
+          {
+            "original": "Quantum computing promises exponential computational power for complex problems.",
+            "noisy_variants": [
+              {
+                "text": "Quantum computing promises computational exponential power for complex problems.",
+                "noise_level": "low",
+                "changes": [
+                  "swapped adjacent words"
+                ],
+                "expected_similarity": 0.89
+              },
+              {
+                "text": "Quantum computing promises exponential power computational for problems complex.",
+                "noise_level": "medium",
+                "changes": [
+                  "multiple word swaps"
+                ],
+                "expected_similarity": 0.82
+              },
+              {
+                "text": "Computing quantum promises power exponential computational for complex problems.",
+                "noise_level": "high",
+                "changes": [
+                  "significant reordering"
+                ],
+                "expected_similarity": 0.75
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.87,
+        "min_similarity_medium_noise": 0.8,
+        "min_similarity_high_noise": 0.73
+      }
+    },
+    {
+      "test_id": "combined_noise_resistance",
+      "description": "Resistance to multiple types of noise simultaneously",
+      "noise_type": "combined",
+      "test_scenario": {
+        "action": "multi_noise_perturbation",
+        "samples": [
+          {
+            "original": "Edge computing brings processing capabilities closer to data sources.",
+            "noisy_variants": [
+              {
+                "text": "edge computing brings procesing capabilities closer to data sources",
+                "noise_level": "low",
+                "changes": [
+                  "case + typo + punctuation"
+                ],
+                "expected_similarity": 0.88
+              },
+              {
+                "text": "EDGE  COMPUTING  BRINGS  PROCES1NG  CAPABIL1TIES  CL0SER  T0  DATA  S0URCES!!!",
+                "noise_level": "medium",
+                "changes": [
+                  "case + spacing + substitution + punctuation"
+                ],
+                "expected_similarity": 0.81
+              },
+              {
+                "text": "3DG3  C0MPUT1NG  BR1NG5  PR0C351NG  C4P4B1L1T135  CL053R  T0  D4T4  50URC35???",
+                "noise_level": "high",
+                "changes": [
+                  "multiple noise types"
+                ],
+                "expected_similarity": 0.72
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_low_noise": 0.86,
+        "min_similarity_medium_noise": 0.79,
+        "min_similarity_high_noise": 0.7
+      }
+    },
+    {
+      "test_id": "domain_specific_noise",
+      "description": "Resistance to domain-specific noise patterns",
+      "noise_type": "domain_specific",
+      "test_scenario": {
+        "action": "domain_noise_perturbation",
+        "domains": [
+          "technical",
+          "medical",
+          "legal"
+        ],
+        "samples": [
+          {
+            "domain": "technical",
+            "original": "RESTful APIs enable stateless communication between distributed systems.",
+            "noisy_variants": [
+              {
+                "text": "REST-ful API's enable state-less communication between distributed systems.",
+                "noise_level": "low",
+                "changes": [
+                  "hyphenation + apostrophe"
+                ],
+                "expected_similarity": 0.92
+              }
+            ]
+          },
+          {
+            "domain": "medical",
+            "original": "Cardiovascular disease requires comprehensive treatment protocols.",
+            "noisy_variants": [
+              {
+                "text": "Cardio-vascular disease requires comprehensive treatment protocols.",
+                "noise_level": "low",
+                "changes": [
+                  "medical term hyphenation"
+                ],
+                "expected_similarity": 0.94
+              }
+            ]
+          }
+        ]
+      },
+      "performance_targets": {
+        "min_similarity_technical": 0.9,
+        "min_similarity_medical": 0.92,
+        "min_similarity_legal": 0.88
+      }
+    }
+  ]
+}
