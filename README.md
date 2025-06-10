@@ -37,22 +37,104 @@ python embedding_executor.py --config configs/default_config.yaml
 ## Project Structure
 
 ```
-embedding_framework/
-├── configs/                    # Configuration files
-│   ├── default_config.yaml
-│   ├── model_configs/
-│   └── evaluation_configs/
-├── src/
-│   ├── utils/                  # Core utilities
-│   ├── embedding_clients/      # Model client implementations
-│   ├── evaluators/            # Evaluation logic
-│   ├── metrics/               # Metric calculations
-│   ├── datasets/              # Dataset loaders
-│   └── reporting/             # Report generation
-├── test_cases/                # Test datasets
-├── tests/                     # Unit and integration tests
-├── outputs/                   # Generated reports
-└── logs/                      # Execution logs
+Directory structure:
+└── testing-10-crazyrepo-embedding/
+    ├── README.md
+    ├── embedding_client_factory.py                  # Unit and integration tests
+    ├── embedding_executor.py
+    ├── requirements.txt
+    ├── test_embedding_imports.py
+    ├── test_embedding_integration.py
+    ├── clients/                                     # Model client implementations
+    │   ├── __init__.py
+    │   ├── azure_embedding_client.py
+    │   ├── base_embedding_client.py
+    │   ├── cohere_embedding_client.py
+    │   ├── huggingface_embedding_client.py
+    │   ├── jina_embedding_client.py
+    │   ├── openai_embedding_client.py
+    │   └── sentence_transformer_client.py
+    ├── configs/                                     # Configuration files
+    │   ├── embedding_test_config.yaml
+    │   └── models/
+    │       ├── azure_embeddings.yaml
+    │       ├── cohere_embeddings.yaml
+    │       ├── huggingface_embeddings.yaml
+    │       ├── jina_embeddings.yaml
+    │       ├── openai_embeddings.yaml
+    │       └── sentence_transformers.yaml
+    ├── costs/
+    │   └── embedding_api_costs.json
+    ├── datasets/                                    # Dataset loaders
+    │   ├── __init__.py
+    │   ├── dataset_loader.py
+    │   ├── benchmark_datasets/
+    │   │   ├── __init__.py
+    │   │   ├── beir_datasets.py
+    │   │   ├── msmarco.py
+    │   │   ├── nfcorpus.py
+    │   │   ├── quora_duplicates.py
+    │   │   └── sts_benchmark.py
+    │   └── custom_datasets/
+    │       ├── code_snippets.json
+    │       ├── domain_specific_texts.json
+    │       ├── legal_documents.json
+    │       └── scientific_papers.json
+    ├── evaluators/                                   # Evaluation logic
+    │   ├── __init__.py
+    │   ├── base_embedding_evaluator.py
+    │   ├── classification_evaluator.py
+    │   ├── clustering_evaluator.py
+    │   ├── efficiency_evaluator.py
+    │   ├── evaluator_factory.py
+    │   ├── retrieval_evaluator.py
+    │   ├── robustness_evaluator.py
+    │   └── semantic_similarity_evaluator.py
+    ├── metrics/                                      # Metric calculations
+    │   ├── __init__.py
+    │   ├── classification_metrics.py
+    │   ├── clustering_metrics.py
+    │   ├── efficiency_metrics.py
+    │   ├── retrieval_metrics.py
+    │   └── similarity_metrics.py
+    ├── reporting/                                    # Report generation
+    │   ├── __init__.py
+    │   ├── dimension_analysis.py
+    │   ├── embedding_comparison_report.py
+    │   └── embedding_visualizations.py
+    ├── test_cases/                                   # Test datasets
+    │   ├── classification/
+    │   │   ├── intent_classification.json
+    │   │   ├── sentiment_analysis.json
+    │   │   └── text_classification.json
+    │   ├── clustering/
+    │   │   ├── document_clustering.json
+    │   │   ├── hierarchical_clustering.json
+    │   │   └── topic_clustering.json
+    │   ├── efficiency/
+    │   │   ├── batch_processing.json
+    │   │   ├── memory_usage.json
+    │   │   └── speed_benchmark.json
+    │   ├── retrieval/
+    │   │   ├── code_search.json
+    │   │   ├── cross_modal_search.json
+    │   │   ├── document_search.json
+    │   │   └── qa_retrieval.json
+    │   ├── robustness/
+    │   │   ├── adversarial_examples.json
+    │   │   ├── length_variation.json
+    │   │   └── noise_resistance.json
+    │   └── semantic_similarity/
+    │       ├── cross_lingual.json
+    │       ├── domain_adaptation.json
+    │       ├── paragraph_similarity.json
+    │       └── sentence_pairs.json
+    └── utils/                                   # Core utilities
+        ├── __init__.py
+        ├── embedding_cost_tracker.py
+        ├── embedding_file_utils.py
+        ├── embedding_logger.py
+        └── vector_operations.py
 ```
 
 ## Configuration

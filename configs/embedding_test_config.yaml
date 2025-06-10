@@ -83,11 +83,11 @@ logging:
   rotate_logs: true
 models:
   enabled_models:
-  - openai_embeddings
-  - cohere_embeddings
-  - sentence_transformers
+  # - openai_embeddings
+  # - cohere_embeddings
+  # - sentence_transformers
   - huggingface_embeddings
-  - jina_embeddings
+  # - jina_embeddings
   load_all_at_startup: false
   model_configs_path: ./configs/models/
   model_timeout: 300

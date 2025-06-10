@@ -18,7 +18,7 @@ class TestEmbeddingImports:
         core_deps = [
             'numpy',
             'pandas', 
-            'scikit-learn',
+            'sklearn',
             'scipy',
             'yaml',
             'json',
@@ -98,8 +98,8 @@ class TestEmbeddingImports:
         """Test utility module imports"""
         try:
             from utils.embedding_logger import EmbeddingLogger
-            from utils.embedding_file_utils import EmbeddingFileUtils
-            from utils.embedding_cost_tracker import EmbeddingCostTracker
+            from utils.embedding_file_utils import FileUtils
+            from utils.embedding_cost_tracker import CostTracker
             from utils.vector_operations import VectorOperations
         except ImportError as e:
             pytest.fail(f"Failed to import utility modules: {e}")
@@ -108,12 +108,12 @@ class TestEmbeddingImports:
         """Test client module imports"""
         try:
             from clients.base_embedding_client import BaseEmbeddingClient
-            from clients.openai_client import OpenAIEmbeddingClient
-            from clients.cohere_client import CohereEmbeddingClient
-            from clients.sentence_transformers_client import SentenceTransformersClient
-            from clients.huggingface_client import HuggingFaceEmbeddingClient
-            from clients.jina_client import JinaEmbeddingClient
-            from clients.azure_openai_client import AzureOpenAIEmbeddingClient
+            from clients.openai_embedding_client import OpenAIEmbeddingClient
+            from clients.cohere_embedding_client import CohereEmbeddingClient
+            from clients.sentence_transformer_client import SentenceTransformersClient
+            from clients.huggingface_embedding_client import HuggingFaceEmbeddingClient
+            from clients.jina_embedding_client import JinaEmbeddingClient
+            from clients.azure_embedding_client import AzureEmbeddingClient
         except ImportError as e:
             pytest.fail(f"Failed to import client modules: {e}")
     
@@ -121,7 +121,7 @@ class TestEmbeddingImports:
         """Test evaluator module imports"""
         try:
             from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator
-            from evaluators.similarity_evaluator import SimilarityEvaluator
+            from evaluators.semantic_similarity_evaluator import SemanticSimilarityEvaluator
             from evaluators.retrieval_evaluator import RetrievalEvaluator
             from evaluators.clustering_evaluator import ClusteringEvaluator
             from evaluators.classification_evaluator import ClassificationEvaluator
@@ -145,9 +145,9 @@ class TestEmbeddingImports:
     def test_dataset_imports(self):
         """Test dataset module imports"""
         try:
-            from datasets.base_dataset_loader import BaseDatasetLoader
-            from datasets.benchmark_dataset_loader import BenchmarkDatasetLoader
-            from datasets.custom_dataset_loader import CustomDatasetLoader
+            from datasets.dataset_loader import BaseDatasetLoader
+            from datasets.dataset_loader import BenchmarkDatasetLoader
+            from datasets.dataset_loader import CustomDatasetLoader
             from datasets.dataset_loader import DatasetLoader
         except ImportError as e:
             pytest.fail(f"Failed to import dataset modules: {e}")
