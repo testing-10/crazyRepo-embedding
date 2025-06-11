@@ -19,8 +19,8 @@ import numpy as np
 from embedding_client_factory import EmbeddingClientFactory
 from embedding_executor import EmbeddingExecutor
 from utils.embedding_logger import EmbeddingLogger
-from utils.embedding_file_utils import EmbeddingFileUtils
-from utils.embedding_cost_tracker import EmbeddingCostTracker
+from utils.embedding_file_utils import FileUtils
+from utils.embedding_cost_tracker import CostTracker
 
 class TestEmbeddingIntegration:
     """Integration tests for the embedding framework"""
@@ -119,7 +119,7 @@ class TestEmbeddingIntegration:
         assert 'valid' in validation_results
         
         # Test available providers
-        providers = factory.get_available_providers()
+        providers = factory.list_providers()
         assert isinstance(providers, list)
         assert len(providers) > 0
         
@@ -231,7 +231,7 @@ class TestEmbeddingIntegration:
         factory = EvaluatorFactory()
         
         # Test available evaluators
-        evaluators = factory.get_available_evaluators()
+        evaluators = factory.list_evaluators()
         assert isinstance(evaluators, list)
         assert len(evaluators) > 0
         
@@ -250,7 +250,7 @@ class TestEmbeddingIntegration:
     
     def test_cost_tracking_integration(self):
         """Test cost tracking functionality"""
-        tracker = EmbeddingCostTracker()
+        tracker = CostTracker()
         
         # Test basic functionality
         tracker.start_session()
@@ -282,7 +282,7 @@ class TestEmbeddingIntegration:
     
     def test_file_utils_integration(self, temp_dir):
         """Test file utilities integration"""
-        file_utils = EmbeddingFileUtils()
+        file_utils = FileUtils()
         
         # Test directory creation
         test_dir = os.path.join(temp_dir, 'test_subdir')
@@ -564,12 +564,12 @@ def run_integration_tests():
         # Test utilities
         print("✓ Testing utilities...")
         from utils.embedding_logger import EmbeddingLogger
-        from utils.embedding_file_utils import EmbeddingFileUtils
-        from utils.embedding_cost_tracker import EmbeddingCostTracker
+        from utils.embedding_file_utils import FileUtils
+        from utils.embedding_cost_tracker import CostTracker
         
         logger = EmbeddingLogger.get_logger("integration_test")
-        file_utils = EmbeddingFileUtils()
-        cost_tracker = EmbeddingCostTracker()
+        file_utils = FileUtils()
+        cost_tracker = CostTracker()
         
         logger.info("Integration test log message")
         
@@ -577,7 +577,7 @@ def run_integration_tests():
         print("✓ Testing evaluator factory...")
         from evaluators.evaluator_factory import EvaluatorFactory
         eval_factory = EvaluatorFactory()
-        available_evaluators = eval_factory.get_available_evaluators()
+        available_evaluators = eval_factory.list_evaluators()
         print(f"  Available evaluators: {available_evaluators}")
         
         # Test dataset loader

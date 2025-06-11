@@ -11,7 +11,7 @@ import json
 from typing import List, Tuple, Dict
 from collections import defaultdict
 
-from ..dataset_loader import BenchmarkDatasetLoader, DatasetSample, DatasetInfo
+from datasets.dataset_loader import BenchmarkDatasetLoader, DatasetSample, DatasetInfo
 from utils.embedding_logger import EmbeddingLogger
 
 logger = EmbeddingLogger.get_logger(__name__)

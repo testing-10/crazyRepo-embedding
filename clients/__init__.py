@@ -12,13 +12,13 @@ This package provides client implementations for various embedding model provide
 All clients extend from BaseEmbeddingClient and provide consistent interfaces.
 """
 
-from .base_embedding_client import BaseEmbeddingClient
-from .openai_embedding_client import OpenAIEmbeddingClient
-from .cohere_embedding_client import CohereEmbeddingClient
-from .sentence_transformer_client import SentenceTransformerClient
-from .huggingface_embedding_client import HuggingFaceEmbeddingClient
-from .jina_embedding_client import JinaEmbeddingClient
-from .azure_embedding_client import AzureEmbeddingClient
+from clients.base_embedding_client import BaseEmbeddingClient
+from clients.openai_embedding_client import OpenAIEmbeddingClient
+from clients.cohere_embedding_client import CohereEmbeddingClient
+from clients.sentence_transformer_client import SentenceTransformerClient
+from clients.huggingface_embedding_client import HuggingFaceEmbeddingClient
+from clients.jina_embedding_client import JinaEmbeddingClient
+from clients.azure_embedding_client import AzureEmbeddingClient
 
 __all__ = [
     'BaseEmbeddingClient',

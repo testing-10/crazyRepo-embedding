@@ -11,7 +11,7 @@ from typing import Dict, List, Any, Optional, Tuple
 from collections import defaultdict
 from sklearn.metrics.pairwise import cosine_similarity
 
-from .base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
+from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
 from datasets.dataset_loader import DatasetSample
 from utils.vector_operations import VectorOperations
 

@@ -5,14 +5,14 @@ This module provides evaluation logic for different embedding tasks including
 semantic similarity, clustering, retrieval, classification, efficiency, and robustness evaluation.
 """
 
-from .base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult, EvaluatorRegistry
-from .semantic_similarity_evaluator import SemanticSimilarityEvaluator
-from .clustering_evaluator import ClusteringEvaluator
-from .retrieval_evaluator import RetrievalEvaluator
-from .classification_evaluator import ClassificationEvaluator
-from .efficiency_evaluator import EfficiencyEvaluator
-from .robustness_evaluator import RobustnessEvaluator
-from .evaluator_factory import (
+from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult, EvaluatorRegistry
+from evaluators.semantic_similarity_evaluator import SemanticSimilarityEvaluator
+from evaluators.clustering_evaluator import ClusteringEvaluator
+from evaluators.retrieval_evaluator import RetrievalEvaluator
+from evaluators.classification_evaluator import ClassificationEvaluator
+from evaluators.efficiency_evaluator import EfficiencyEvaluator
+from evaluators.robustness_evaluator import RobustnessEvaluator
+from evaluators.evaluator_factory import (
     EvaluatorFactory, EvaluationPipeline, EVALUATOR_FACTORY,
     register_evaluator, create_evaluator, list_evaluators, 
     get_evaluator_info, create_evaluation_pipeline, evaluate_embeddings

@@ -13,8 +13,8 @@ from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict
 import logging
 
-from ..utils.embedding_logger import EmbeddingLogger
-from ..utils.embedding_file_utils import EmbeddingFileUtils
+from utils.embedding_logger import EmbeddingLogger
+from utils.embedding_file_utils import FileUtils
 
 @dataclass
 class ModelPerformance:

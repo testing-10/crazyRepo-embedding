@@ -494,3 +494,44 @@ class FileUtils:
                     return pickle.load(f)
         except (pickle.PickleError, gzip.BadGzipFile) as e:
             raise pickle.PickleError(f"Failed to load pickle from {file_path}: {e}")
+
+    @staticmethod
+    def calculate_file_hash(file_path: Union[str, Path], algorithm: str = 'md5') -> str:
+        """
+        Calculate hash of a file.
+        
+        Args:
+            file_path: Path to file
+            algorithm: Hash algorithm ('md5', 'sha1', 'sha256')
+        
+        Returns:
+            Hex digest of file hash
+        
+        Raises:
+            FileNotFoundError: If file doesn't exist
+            ValueError: If algorithm is not supported
+        """
+        import hashlib
+        
+        file_path = Path(file_path)
+        
+        if not file_path.exists():
+            raise FileNotFoundError(f"File not found: {file_path}")
+        
+        # Get hash function
+        if algorithm.lower() == 'md5':
+            hash_func = hashlib.md5()
+        elif algorithm.lower() == 'sha1':
+            hash_func = hashlib.sha1()
+        elif algorithm.lower() == 'sha256':
+            hash_func = hashlib.sha256()
+        else:
+            raise ValueError(f"Unsupported hash algorithm: {algorithm}")
+        
+        try:
+            with open(file_path, 'rb') as f:
+                for chunk in iter(lambda: f.read(4096), b""):
+                    hash_func.update(chunk)
+            return hash_func.hexdigest()
+        except OSError as e:
+            raise OSError(f"Failed to calculate hash for {file_path}: {e}")

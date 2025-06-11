@@ -21,8 +21,8 @@ import logging
 # Framework imports
 from embedding_client_factory import EmbeddingClientFactory
 from utils.embedding_logger import EmbeddingLogger
-from utils.embedding_file_utils import EmbeddingFileUtils
-from utils.embedding_cost_tracker import EmbeddingCostTracker
+from utils.embedding_file_utils import FileUtils
+from utils.embedding_cost_tracker import CostTracker
 from datasets.dataset_loader import DatasetLoader
 from evaluators.evaluator_factory import EvaluatorFactory
 from reporting.embedding_comparison_report import EmbeddingComparisonReport
@@ -59,8 +59,8 @@ class EmbeddingExecutor:
         
         # Initialize utilities
         self.logger = EmbeddingLogger.get_logger(__name__)
-        self.file_utils = EmbeddingFileUtils()
-        self.cost_tracker = EmbeddingCostTracker()
+        self.file_utils = FileUtils()
+        self.cost_tracker = CostTracker()
         
         # Initialize components
         self.client_factory = EmbeddingClientFactory()

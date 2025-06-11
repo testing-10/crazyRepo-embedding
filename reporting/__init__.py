@@ -5,9 +5,9 @@ This module provides comprehensive reporting capabilities for embedding model ev
 including visual summaries, performance comparisons, and multi-format outputs.
 """
 
-from .embedding_comparison_report import EmbeddingComparisonReport
-from .embedding_visualizations import EmbeddingVisualizations
-from .dimension_analysis import DimensionAnalysis
+from reporting.embedding_comparison_report import EmbeddingComparisonReport
+from reporting.embedding_visualizations import EmbeddingVisualizations
+from reporting.dimension_analysis import DimensionAnalysis
 
 __all__ = [
     'EmbeddingComparisonReport',

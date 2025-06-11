@@ -12,7 +12,7 @@ import pandas as pd
 from typing import List, Tuple
 from urllib.parse import urljoin
 
-from ..dataset_loader import BenchmarkDatasetLoader, DatasetSample, DatasetInfo
+from datasets.dataset_loader import BenchmarkDatasetLoader, DatasetSample, DatasetInfo
 from utils.embedding_logger import EmbeddingLogger
 
 logger = EmbeddingLogger.get_logger(__name__)

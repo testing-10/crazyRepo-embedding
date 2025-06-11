@@ -8,8 +8,8 @@ from typing import List, Dict, Any, Optional
 import requests
 import json
 
-from .base_embedding_client import BaseEmbeddingClient, EmbeddingResult
-from ..utils.embedding_cost_tracker import APICallTracker
+from clients.base_embedding_client import BaseEmbeddingClient, EmbeddingResult
+from utils.embedding_cost_tracker import APICallTracker
 
 
 class JinaEmbeddingClient(BaseEmbeddingClient):

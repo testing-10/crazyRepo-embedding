@@ -15,7 +15,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor
 import sys
 
-from .base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
+from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
 from datasets.dataset_loader import DatasetSample
 from utils.embedding_cost_tracker import CostTracker
 

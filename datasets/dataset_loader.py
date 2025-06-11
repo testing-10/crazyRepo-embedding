@@ -18,6 +18,7 @@ from utils.embedding_file_utils import FileUtils
 
 logger = EmbeddingLogger.get_logger(__name__)
 
+
 @dataclass
 class DatasetSample:
     """Represents a single dataset sample"""
@@ -197,8 +198,8 @@ class CustomDatasetLoader(BaseDatasetLoader):
         
         # Extract metadata (all other fields)
         metadata = {k: v for k, v in item.items() 
-                   if k not in ['text1', 'text2', 'text', 'sentence1', 'sentence2', 
-                               'query', 'document', 'label', 'score', 'similarity']}
+                if k not in ['text1', 'text2', 'text', 'sentence1', 'sentence2', 
+                            'query', 'document', 'label', 'score', 'similarity']}
         
         return DatasetSample(
             text1=str(text1) if text1 is not None else "",
@@ -230,7 +231,7 @@ class CustomDatasetLoader(BaseDatasetLoader):
             
             # Extract metadata
             metadata = {col: row[col] for col in df.columns 
-                       if col.lower() not in ['text1', 'text2', 'text', 'sentence1', 
+                    if col.lower() not in ['text1', 'text2', 'text', 'sentence1', 
                                             'sentence2', 'query', 'document', 'label', 
                                             'score', 'similarity']}
             
@@ -304,3 +305,6 @@ def load_dataset(dataset_name: str, split: str = "test", **kwargs) -> Tuple[List
     
     else:
         raise ValueError(f"Unknown dataset or file not found: {dataset_name}")
+
+class DatasetLoader:
+    pass

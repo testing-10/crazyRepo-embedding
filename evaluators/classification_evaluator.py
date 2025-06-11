@@ -20,7 +20,7 @@ from sklearn.metrics import (
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.pipeline import Pipeline
 
-from .base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
+from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
 from datasets.dataset_loader import DatasetSample
 from utils.vector_operations import VectorOperations
 

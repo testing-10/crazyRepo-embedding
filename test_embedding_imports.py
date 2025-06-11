@@ -110,7 +110,7 @@ class TestEmbeddingImports:
             from clients.base_embedding_client import BaseEmbeddingClient
             from clients.openai_embedding_client import OpenAIEmbeddingClient
             from clients.cohere_embedding_client import CohereEmbeddingClient
-            from clients.sentence_transformer_client import SentenceTransformersClient
+            from clients.sentence_transformer_client import SentenceTransformerClient
             from clients.huggingface_embedding_client import HuggingFaceEmbeddingClient
             from clients.jina_embedding_client import JinaEmbeddingClient
             from clients.azure_embedding_client import AzureEmbeddingClient
@@ -230,9 +230,9 @@ class TestEmbeddingImports:
     def test_file_utils_functionality(self):
         """Test file utilities functionality"""
         try:
-            from utils.embedding_file_utils import EmbeddingFileUtils
+            from utils.embedding_file_utils import FileUtils
             
-            file_utils = EmbeddingFileUtils()
+            file_utils = FileUtils()
             assert file_utils is not None
             
             # Test that methods exist

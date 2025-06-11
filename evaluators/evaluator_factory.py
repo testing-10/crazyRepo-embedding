@@ -10,7 +10,7 @@ import importlib
 import inspect
 from abc import ABC
 
-from .base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
+from evaluators.base_embedding_evaluator import BaseEmbeddingEvaluator, EvaluationResult
 from utils.embedding_logger import EmbeddingLogger
 
 logger = EmbeddingLogger.get_logger(__name__)

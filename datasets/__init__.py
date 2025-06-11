@@ -6,19 +6,15 @@ used in embedding model evaluation, including standard benchmarks
 and custom domain-specific datasets.
 """
 
-from .dataset_loader import (
-    BaseDatasetLoader,
-    BenchmarkDatasetLoader, 
-    CustomDatasetLoader,
-    DatasetRegistry,
-    load_dataset
-)
+from datasets.dataset_loader import DatasetLoader
+from datasets.dataset_loader import DatasetRegistry
+from datasets.dataset_loader import BaseDatasetLoader, BenchmarkDatasetLoader, CustomDatasetLoader
 
-from .benchmark_datasets.sts_benchmark import STSBenchmarkLoader
-from .benchmark_datasets.msmarco import MSMARCOLoader
-from .benchmark_datasets.nfcorpus import NFCorpusLoader
-from .benchmark_datasets.quora_duplicates import QuoraDuplicatesLoader
-from .benchmark_datasets.beir_datasets import BEIRDatasetLoader
+from datasets.benchmark_datasets.sts_benchmark import STSBenchmarkLoader
+from datasets.benchmark_datasets.msmarco import MSMARCOLoader
+from datasets.benchmark_datasets.nfcorpus import NFCorpusLoader
+from datasets.benchmark_datasets.quora_duplicates import QuoraDuplicatesLoader
+from datasets.benchmark_datasets.beir_datasets import BEIRDatasetLoader
 
 __all__ = [
     'BaseDatasetLoader',

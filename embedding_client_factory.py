@@ -14,12 +14,12 @@ import logging
 from clients.base_embedding_client import BaseEmbeddingClient
 from clients.openai_embedding_client import OpenAIEmbeddingClient
 from clients.cohere_embedding_client import CohereEmbeddingClient
-from clients.sentence_transformer_client import SentenceTransformersClient
+from clients.sentence_transformer_client import SentenceTransformerClient
 from clients.huggingface_embedding_client import HuggingFaceEmbeddingClient
 from clients.jina_embedding_client import JinaEmbeddingClient
 from clients.azure_embedding_client import AzureEmbeddingClient
 from utils.embedding_logger import EmbeddingLogger
-from utils.embedding_file_utils import EmbeddingFileUtils
+from utils.embedding_file_utils import FileUtils
 
 class EmbeddingClientFactory:
     """
@@ -30,7 +30,7 @@ class EmbeddingClientFactory:
     _client_registry: Dict[str, Type[BaseEmbeddingClient]] = {
         'openai': OpenAIEmbeddingClient,
         'cohere': CohereEmbeddingClient,
-        'sentence_transformers': SentenceTransformersClient,
+        'sentence_transformers': SentenceTransformerClient,
         'huggingface': HuggingFaceEmbeddingClient,
         'jina': JinaEmbeddingClient,
         'azure_openai': AzureEmbeddingClient
@@ -44,7 +44,7 @@ class EmbeddingClientFactory:
             cost_config_path: Path to cost configuration file
         """
         self.logger = EmbeddingLogger.get_logger(__name__)
-        self.file_utils = EmbeddingFileUtils()
+        self.file_utils = FileUtils()
         self.cost_config_path = cost_config_path
         self.cost_config = self._load_cost_config()
         

@@ -9,8 +9,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import torch
 
-from .base_embedding_client import BaseEmbeddingClient, EmbeddingResult
-from ..utils.embedding_cost_tracker import APICallTracker
+from clients.base_embedding_client import BaseEmbeddingClient, EmbeddingResult
+from utils.embedding_cost_tracker import APICallTracker
 
 
 class SentenceTransformerClient(BaseEmbeddingClient):

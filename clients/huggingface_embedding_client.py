@@ -10,8 +10,8 @@ import torch
 from transformers import AutoTokenizer, AutoModel
 import torch.nn.functional as F
 
-from .base_embedding_client import BaseEmbeddingClient, EmbeddingResult
-from ..utils.embedding_cost_tracker import APICallTracker
+from clients.base_embedding_client import BaseEmbeddingClient, EmbeddingResult
+from utils.embedding_cost_tracker import APICallTracker
 
 
 class HuggingFaceEmbeddingClient(BaseEmbeddingClient):

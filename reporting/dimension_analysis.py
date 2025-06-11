@@ -21,7 +21,7 @@ from typing import Dict, List, Any, Optional, Tuple
 from datetime import datetime
 import logging
 
-from ..utils.embedding_logger import EmbeddingLogger
+from utils.embedding_logger import EmbeddingLogger
 
 class DimensionAnalysis:
     """
