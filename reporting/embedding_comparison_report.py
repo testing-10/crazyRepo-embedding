@@ -44,7 +44,7 @@ class EmbeddingComparisonReport:
         """
         self.output_dir = output_dir
         self.logger = EmbeddingLogger.get_logger(__name__)
-        self.file_utils = EmbeddingFileUtils()
+        self.file_utils = FileUtils()
         
         # Ensure output directory exists
         os.makedirs(self.output_dir, exist_ok=True)

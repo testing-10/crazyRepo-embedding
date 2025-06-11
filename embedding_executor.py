@@ -24,6 +24,7 @@ from utils.embedding_logger import EmbeddingLogger
 from utils.embedding_file_utils import FileUtils
 from utils.embedding_cost_tracker import CostTracker
 from datasets.dataset_loader import DatasetLoader
+from datasets.dataset_loader import DatasetRegistry
 from evaluators.evaluator_factory import EvaluatorFactory
 from reporting.embedding_comparison_report import EmbeddingComparisonReport
 from reporting.embedding_visualizations import EmbeddingVisualizations
@@ -45,7 +46,7 @@ class EmbeddingExecutor:
     Main orchestrator for the embedding model testing framework
     """
     
-    def __init__(self, config_path: str = "config/test_config.yaml"):
+    def __init__(self, config_path: str = "configs/embedding_test_config.yaml"):
         """
         Initialize the executor
         
@@ -129,19 +130,78 @@ class EmbeddingExecutor:
         if not self.config['models']:
             raise ValueError("No models specified in configuration")
         
-        for model_name, model_config in self.config['models'].items():
-            if 'provider' not in model_config:
-                raise ValueError(f"Missing provider for model: {model_name}")
-            if 'model_name' not in model_config:
-                raise ValueError(f"Missing model_name for model: {model_name}")
+        # Handle different model configuration structures
+        if 'enabled_models' in self.config['models']:
+            # Your structure - enabled_models is a list
+            enabled_models = self.config['models']['enabled_models']
+            if not enabled_models:
+                raise ValueError("No models enabled in configuration")
+            
+            # Check if model configs exist for enabled models
+            model_configs_path = self.config['models'].get('model_configs_path', './configs/models/')
+            if not os.path.exists(model_configs_path):
+                self.logger.warning(f"Model configs path does not exist: {model_configs_path}")
+            
+            # Validate each enabled model has a corresponding config
+            for model_name in enabled_models:
+                if isinstance(model_name, str):
+                    # Check if individual model config exists in the models section
+                    if model_name in self.config['models'] and isinstance(self.config['models'][model_name], dict):
+                        model_config = self.config['models'][model_name]
+                        if 'provider' not in model_config:
+                            raise ValueError(f"Missing provider for model: {model_name}")
+                        if 'model_name' not in model_config:
+                            raise ValueError(f"Missing model_name for model: {model_name}")
+                    else:
+                        # Model config should be in external file
+                        self.logger.info(f"Model '{model_name}' config expected in external file at {model_configs_path}")
+        else:
+            # Standard structure - models are individual configs
+            for model_name, model_config in self.config['models'].items():
+                if isinstance(model_config, dict):
+                    if 'provider' not in model_config:
+                        raise ValueError(f"Missing provider for model: {model_name}")
+                    if 'model_name' not in model_config:
+                        raise ValueError(f"Missing model_name for model: {model_name}")
         
         # Validate datasets section
         if not self.config['datasets']:
             raise ValueError("No datasets specified in configuration")
         
+        # Handle different dataset configuration structures
+        if 'enabled_datasets' in self.config['datasets']:
+            enabled_datasets = self.config['datasets']['enabled_datasets']
+            if not enabled_datasets:
+                raise ValueError("No datasets enabled in configuration")
+            
+            # Check if datasets path exists
+            datasets_path = self.config['datasets'].get('datasets_path', './datasets/')
+            if not os.path.exists(datasets_path):
+                self.logger.warning(f"Datasets path does not exist: {datasets_path}")
+        
         # Validate evaluators section
         if not self.config['evaluators']:
             raise ValueError("No evaluators specified in configuration")
+        
+        # Handle different evaluator configuration structures
+        if 'metrics' in self.config['evaluators']:
+            # Your structure - metrics with enabled flags
+            metrics_config = self.config['evaluators']['metrics']
+            enabled_evaluators = []
+            
+            for eval_type, eval_config in metrics_config.items():
+                if eval_config.get('enabled', False):
+                    enabled_evaluators.append(eval_type)
+            
+            if not enabled_evaluators:
+                raise ValueError("No evaluators enabled in configuration")
+            
+            self.logger.info(f"Enabled evaluators: {enabled_evaluators}")
+        else:
+            # Standard structure - list of evaluator configs
+            if isinstance(self.config['evaluators'], list):
+                if len(self.config['evaluators']) == 0:
+                    raise ValueError("No evaluators specified in configuration")
     
     def initialize_execution_state(self) -> None:
         """Initialize execution state for tracking and resumption"""
@@ -201,90 +261,143 @@ class EmbeddingExecutor:
             return False
     
     def setup_model_clients(self) -> Dict[str, Any]:
-        """
-        Initialize all model clients
+        """Setup embedding model clients based on configuration"""
+        self.logger.info("Setting up model clients...")
+        clients = {}
         
-        Returns:
-            Dictionary of successfully created clients
-        """
         try:
-            self.execution_state.current_step = "client_setup"
-            self._save_execution_state()
+            models_config = self.config['models']
             
-            self.logger.info("Setting up model clients...")
+            # Handle your config structure with enabled_models
+            if 'enabled_models' in models_config:
+                enabled_models = models_config['enabled_models']
+                model_configs_path = models_config.get('model_configs_path', './configs/models/')
+                
+                for model_name in enabled_models:
+                    try:
+                        # First check if model config is inline
+                        if model_name in models_config and isinstance(models_config[model_name], dict):
+                            model_config = models_config[model_name]
+                        else:
+                            # Load from external config file
+                            config_file_path = os.path.join(model_configs_path, f"{model_name}.yaml")
+                            if os.path.exists(config_file_path):
+                                with open(config_file_path, 'r') as f:
+                                    model_config = yaml.safe_load(f)
+                            else:
+                                self.logger.warning(f"Config file not found for model: {model_name} at {config_file_path}")
+                                continue
+                        
+                        # Create client using factory
+                        provider = model_config.get('provider')
+                        if not provider:
+                            self.logger.error(f"No provider specified for model: {model_name}")
+                            continue
+                        
+                        client = self.client_factory.create_client(provider, model_config)
+                        if client:
+                            clients[model_name] = client
+                            self.logger.info(f"Successfully created client for model: {model_name}")
+                        else:
+                            self.logger.error(f"Failed to create client for model: {model_name}")
+                            
+                    except Exception as e:
+                        self.logger.error(f"Error setting up client for model {model_name}: {e}")
+                        if self.config.get('execution', {}).get('error_handling', {}).get('fail_fast', False):
+                            raise
+                        continue
+            else:
+                # Handle standard config structure
+                for model_name, model_config in models_config.items():
+                    # Skip non-dict entries (like load_all_at_startup, model_configs_path, etc.)
+                    if not isinstance(model_config, dict):
+                        continue
+                        
+                    try:
+                        # Check if config_file is specified
+                        if 'config_file' in model_config:
+                            config_file_path = model_config['config_file']
+                            with open(config_file_path, 'r') as f:
+                                external_config = yaml.safe_load(f)
+                            model_config.update(external_config)
+                        
+                        provider = model_config.get('provider')
+                        if not provider:
+                            self.logger.error(f"No provider specified for model: {model_name}")
+                            continue
+                        
+                        client = self.client_factory.create_client(provider, model_config)
+                        if client:
+                            clients[model_name] = client
+                            self.logger.info(f"Successfully created client for model: {model_name}")
+                        else:
+                            self.logger.error(f"Failed to create client for model: {model_name}")
+                            
+                    except Exception as e:
+                        self.logger.error(f"Error setting up client for model {model_name}: {e}")
+                        if self.config.get('execution', {}).get('error_handling', {}).get('fail_fast', False):
+                            raise
+                        continue
             
-            # Load model configurations
-            model_configs = {}
-            for model_name, config in self.config['models'].items():
-                # Load model-specific config file if specified
-                if 'config_file' in config:
-                    config_file = config['config_file']
-                    if os.path.exists(config_file):
-                        with open(config_file, 'r') as f:
-                            model_specific_config = yaml.safe_load(f)
-                        # Merge configurations
-                        merged_config = {**model_specific_config, **config}
-                        model_configs[model_name] = merged_config
-                    else:
-                        self.logger.warning(f"Model config file not found: {config_file}")
-                        model_configs[model_name] = config
-                else:
-                    model_configs[model_name] = config
+            if not clients:
+                raise ValueError("No model clients were successfully created")
             
-            # Create clients
-            self.model_clients = self.client_factory.create_multiple_clients(model_configs)
-            
-            if not self.model_clients:
-                raise RuntimeError("No model clients were successfully created")
-            
-            self.logger.info(f"Successfully created {len(self.model_clients)} model clients")
-            return self.model_clients
+            self.logger.info(f"Successfully set up {len(clients)} model clients")
+            return clients
             
         except Exception as e:
-            self.logger.error(f"Failed to setup model clients: {str(e)}")
+            self.logger.error(f"Failed to setup model clients: {e}")
             raise
     
-    def load_datasets(self) -> Dict[str, Any]:
-        """
-        Load all configured datasets
-        
-        Returns:
-            Dictionary of loaded datasets
-        """
+    def load_datasets(self):
+        """Load all configured datasets."""
         try:
-            self.execution_state.current_step = "dataset_loading"
-            self._save_execution_state()
-            
             self.logger.info("Loading datasets...")
             
-            for dataset_config in self.config['datasets']:
-                dataset_type = dataset_config.get('type', 'custom')
-                dataset_name = dataset_config.get('name', 'unknown')
-                
-                if dataset_type == 'benchmark':
-                    # Load benchmark dataset
-                    benchmark_name = dataset_config.get('benchmark_name')
-                    dataset = self.dataset_loader.load_benchmark_dataset(benchmark_name)
-                elif dataset_type == 'custom':
-                    # Load custom dataset
-                    file_path = dataset_config.get('file_path')
-                    dataset = self.dataset_loader.load_custom_dataset(file_path)
-                else:
-                    self.logger.warning(f"Unknown dataset type: {dataset_type}")
+            # Get the enabled datasets list from config
+            datasets_config = self.config.get('datasets', {})
+            enabled_datasets = datasets_config.get('enabled_datasets', [])
+            
+            if not enabled_datasets:
+                self.logger.warning("No enabled datasets found in configuration")
+                return
+            
+            self.logger.info(f"Found {len(enabled_datasets)} enabled datasets: {enabled_datasets}")
+            
+            # Import the standalone load_dataset function
+            from datasets.dataset_loader import load_dataset
+            
+            # Load each enabled dataset
+            for dataset_name in enabled_datasets:
+                try:
+                    self.logger.info(f"Loading dataset: {dataset_name}")
+                    
+                    # Use the standalone load_dataset function
+                    samples, dataset_info = load_dataset(
+                        dataset_name=dataset_name,
+                        split="test"
+                    )
+                    
+                    if samples:
+                        self.datasets[dataset_name] = {
+                            'samples': samples,
+                            'info': dataset_info
+                        }
+                        self.logger.info(f"Successfully loaded dataset: {dataset_name} ({len(samples)} samples)")
+                    else:
+                        self.logger.warning(f"No samples loaded for dataset: {dataset_name}")
+                        
+                except Exception as e:
+                    self.logger.error(f"Error loading dataset {dataset_name}: {e}")
                     continue
-                
-                if dataset:
-                    self.datasets[dataset_name] = dataset
-                    self.logger.info(f"Loaded dataset: {dataset_name}")
             
             if not self.datasets:
-                raise RuntimeError("No datasets were successfully loaded")
+                raise ValueError("No datasets were successfully loaded")
             
             self.logger.info(f"Successfully loaded {len(self.datasets)} datasets")
-            return self.datasets
             
         except Exception as e:
-            self.logger.error(f"Failed to load datasets: {str(e)}")
+            self.logger.error(f"Failed to load datasets: {e}")
             raise
     
     def run_evaluations(self) -> Dict[str, Any]:
@@ -431,7 +544,7 @@ class EmbeddingExecutor:
                     'execution_id': self.execution_id,
                     'total_models': len(self.model_clients),
                     'total_cost': self.execution_state.total_cost,
-                    'categories': [eval_config.get('type') for eval_config in self.config['evaluators']]
+                    'categories': list(self.config['evaluators'].get('metrics', {}).keys())
                 }
             )
             report_paths.update(comparison_paths)
@@ -590,7 +703,7 @@ def main():
     parser = argparse.ArgumentParser(description="Embedding Model Testing Framework")
     parser.add_argument(
         '--config', '-c',
-        default='config/test_config.yaml',
+        default='configs/embedding_test_config.yaml',
         help='Path to configuration file'
     )
     parser.add_argument(

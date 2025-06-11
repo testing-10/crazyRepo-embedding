@@ -62,11 +62,11 @@ class EmbeddingClientFactory:
             return {}
     
     def create_client(
-        self,
-        provider: str,
-        model_config: Dict[str, Any],
-        **kwargs
-    ) -> BaseEmbeddingClient:
+    self,
+    provider: str,
+    model_config: Dict[str, Any],
+    **kwargs
+) -> BaseEmbeddingClient:
         """
         Create an embedding client instance
         
@@ -74,10 +74,10 @@ class EmbeddingClientFactory:
             provider: Provider name (e.g., 'openai', 'cohere')
             model_config: Model configuration dictionary
             **kwargs: Additional arguments for client initialization
-            
+        
         Returns:
             Configured embedding client instance
-            
+        
         Raises:
             ValueError: If provider is not supported
             RuntimeError: If client creation fails
@@ -102,13 +102,34 @@ class EmbeddingClientFactory:
             # Validate configuration
             self._validate_config(provider, enhanced_config)
             
+            # Prepare client initialization parameters
+            # Extract model_name as the primary parameter
+            model_name = enhanced_config.get('model_name')
+            if not model_name:
+                raise ValueError(f"Missing model_name in configuration for provider: {provider}")
+            
+            # Filter config to only include parameters that BaseEmbeddingClient expects
+            base_client_params = {
+                'config_path', 'api_key', 'cost_tracker', 'logger_name'
+            }
+            
+            # Prepare kwargs for client initialization
+            client_kwargs = {}
+            for key, value in enhanced_config.items():
+                if key in base_client_params:
+                    client_kwargs[key] = value
+            
+            # Add any additional kwargs passed to this method
+            client_kwargs.update(kwargs)
+            
             # Create client instance
-            client = client_class(config=enhanced_config, **kwargs)
+            # Pass model_name as first argument and filtered kwargs
+            client = client_class(model_name=model_name, **client_kwargs)
             
             # Validate client after creation
             self._validate_client(client, provider)
             
-            self.logger.info(f"Successfully created {provider} client for model: {enhanced_config.get('model_name', 'unknown')}")
+            self.logger.info(f"Successfully created {provider} client for model: {model_name}")
             return client
             
         except Exception as e:
@@ -171,16 +192,32 @@ class EmbeddingClientFactory:
             if not os.getenv(env_var):
                 self.logger.warning(f"API key not found in environment: {env_var}")
     
-    def _validate_client(self, client: BaseEmbeddingClient, provider: str) -> None:
-        """Validate that the client was created successfully"""
-        if not isinstance(client, BaseEmbeddingClient):
-            raise RuntimeError(f"Created client is not a valid BaseEmbeddingClient instance")
+    def _validate_client(self, client: BaseEmbeddingClient, provider: str):
+        """
+        Validate that the client has required methods and attributes.
         
-        # Check if client has required methods
-        required_methods = ['embed_texts', 'embed_single_text', 'get_model_info']
-        for method in required_methods:
-            if not hasattr(client, method):
-                raise RuntimeError(f"Client missing required method: {method}")
+        Args:
+            client: Client instance to validate
+            provider: Provider name for error messages
+        
+        Raises:
+            ValueError: If client is invalid
+        """
+        required_methods = ['embed_texts', 'embed_single', '_load_model']
+        
+        for method_name in required_methods:
+            if not hasattr(client, method_name):
+                raise ValueError(f"Client missing required method: {method_name}")
+            
+            method = getattr(client, method_name)
+            if not callable(method):
+                raise ValueError(f"Client attribute '{method_name}' is not callable")
+        
+        # Validate that client inherits from BaseEmbeddingClient
+        if not isinstance(client, BaseEmbeddingClient):
+            raise ValueError(f"Client must inherit from BaseEmbeddingClient")
+        
+        self.logger.debug(f"Client validation passed for provider: {provider}")
     
     def create_multiple_clients(
         self,

@@ -16,6 +16,7 @@ import logging
 from utils.embedding_logger import EmbeddingLogger
 from utils.embedding_file_utils import FileUtils
 
+
 logger = EmbeddingLogger.get_logger(__name__)
 
 
@@ -291,7 +292,7 @@ def load_dataset(dataset_name: str, split: str = "test", **kwargs) -> Tuple[List
     Returns:
         Tuple of (samples, dataset_info)
     """
-    from . import DATASET_REGISTRY
+    from datasets import DATASET_REGISTRY
     
     # Check if it's a registered dataset
     if dataset_name in DATASET_REGISTRY.list_loaders():
