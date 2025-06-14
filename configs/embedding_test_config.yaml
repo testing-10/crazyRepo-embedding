@@ -82,11 +82,11 @@ logging:
 
 models:
   enabled_models:
-    - huggingface_embeddings
-  # - openai_embeddings
-  # - cohere_embeddings
-  # - sentence_transformers
-  # - jina_embeddings
+    # - huggingface_embeddings
+    - openai_embeddings
+    # - cohere_embeddings
+    # - sentence_transformers
+    # - jina_embeddings
   load_all_at_startup: false
   model_configs_path: ./configs/models/
   model_timeout: 300

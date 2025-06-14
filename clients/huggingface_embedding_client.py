@@ -34,14 +34,15 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
             model_name: HuggingFace model name
             **kwargs: Additional arguments passed to base class
         """
-        # Initialize device and other attributes FIRST
+        super().__init__(model_name=model_name, **kwargs)
         self.device = self._get_device()
-        self.max_length = 512  # Default, will be updated from model config
         self.tokenizer = None
         self.model = None
+        self.max_length = 512  # Default, will be updated from model config
 
-        # Then call parent init
-        super().__init__(model_name=model_name, **kwargs)
+    def _get_api_key_from_env(self) -> Optional[str]:
+        """Get HuggingFace token from environment variables."""
+        return os.getenv('HUGGINGFACE_TOKEN') or os.getenv('HF_TOKEN')
 
     def _get_device(self) -> str:
         """Determine the best device for model inference."""
@@ -51,10 +52,6 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
             return "mps"  # Apple Silicon
         else:
             return "cpu"
-
-    def _get_api_key_from_env(self) -> Optional[str]:
-        """Get HuggingFace token from environment variables."""
-        return os.getenv('HUGGINGFACE_TOKEN') or os.getenv('HF_TOKEN')
 
     def _load_model(self):
         """Load HuggingFace model and tokenizer."""
@@ -227,8 +224,8 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
 
         processing_time = time.time() - start_time
 
-        # Update usage info with actual processing time
-        usage_info = self._track_usage(texts, processing_time)
+        # Track usage with correct method
+        self._track_usage(texts, processing_time)
 
         # Create result
         result = EmbeddingResult(
@@ -294,13 +291,20 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
             'device': self.device
         }
 
-        # Update cost tracker with zero costs
+        # Update cost tracker with correct method
         if self.cost_tracker:
-            self.cost_tracker.add_usage(
+            self.cost_tracker.track_api_call(
                 provider="huggingface",
                 model=self.model_name,
-                tokens=estimated_tokens,
-                cost=0.0  # No cost for local models
+                endpoint="embed",
+                tokens_used=estimated_tokens,
+                duration_seconds=processing_time,
+                success=True,
+                metadata={
+                    'texts_processed': len(texts),
+                    'device': self.device,
+                    'model_type': 'local'
+                }
             )
 
         return usage_info
@@ -372,13 +376,13 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
         Returns:
             Maximum sequence length in tokens
         """
-        return getattr(self, 'max_length', 512)
+        return self.max_length
 
     def _get_default_config(self) -> Dict[str, Any]:
         """Get default configuration for HuggingFace models."""
         return {
             'provider': 'huggingface',
-            'max_tokens': 8192,  # Use a default value
+            'max_tokens': 8192,  # Use a default value instead of self.get_max_sequence_length()
             'max_batch_size': 8,  # Conservative for large models
             'dimensions': self.get_model_dimensions(),
             'cost_per_1k_tokens': 0.0,  # Local models have no API cost
@@ -386,7 +390,7 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
             'rate_limit_tpm': 10000,
             'supports_batching': True,
             'metadata': {
-                'device': getattr(self, 'device', 'cpu'),
+                'device': self.device,
                 'max_sequence_length': 8192,  # Use default value
                 'is_local_model': True,
                 'supports_normalization': True,
@@ -406,6 +410,26 @@ class HuggingFaceEmbeddingClient(BaseEmbeddingClient):
             return 'gte'
         else:
             return 'generic'
+
+    def _create_batches(self, texts: List[str]) -> List[List[str]]:
+        """
+        Create batches optimized for HuggingFace models.
+
+        Args:
+            texts: List of texts to batch
+
+        Returns:
+            List of text batches
+        """
+        # Use smaller batches for large models to avoid memory issues
+        batch_size = min(self.config.max_batch_size, 16)
+
+        batches = []
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i:i + batch_size]
+            batches.append(batch)
+
+        return batches
 
     def get_model_info(self) -> Dict[str, Any]:
         """
